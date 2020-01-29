@@ -29,6 +29,7 @@ public class MergeSort {
 	private static int[] mergeSort(int start, int end, int[] array) {
 		if (start < end && start < array.length && end < array.length && (end - start >= 1)) {
 			if ((end - start) == 1) {
+				//  If  only two elements are there
 				int[] array1 = { array[start] };
 				int[] array2 = { array[end] };
 				return merge(array1, array2);
@@ -41,6 +42,7 @@ public class MergeSort {
 			}
 
 		} else {
+			// If only single element is there, we don't need to sort it; we can just simply return  it
 			int[] array3 = { array[start] };
 			return array3;
 		}
@@ -59,3 +61,19 @@ public class MergeSort {
 	}
 
 }
+
+
+// Time Complexity
+// Level 1 : 1 array
+// Level 2 : 2 arrays
+// Level 3 : 4  arrays
+// Level h : : 2^(h-1) arrays
+// 2^(h-1) = n
+// h = 1 + log n
+//			  2
+// O(n log n)
+//        2
+
+
+// Merge is used by most of the collections classes internally
+// Merge is a good algorithm in terms of time complexity; good for large sets of data, not so good for small set of elements
