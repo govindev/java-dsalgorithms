@@ -60,12 +60,31 @@ public class BinarySearchTree {
 						}
 					} else {
 						// 3. Both child elements
-						// a. Find the successor
+						// a. Find the successor (Right side Left most value)
+						TreeNode successor = current.getRightChildNode();
+						while (successor.getLeftChildNode() != null) {
+							successor = successor.getLeftChildNode();
+						}
 						// b. Assign Left child of current node to left child of successor
+						successor.setLeftChildNode(current.getLeftChildNode());
 						// c. Assign Right child of current node to right child of successor
-						// d. Assign Child(Determine left/right) of current's parent to successor
-						// e. Assign (if any) right child of successor to the left child of successor's
+						// Before doing this operation we should do
+						// c1. Assign (if any) right child of successor to the left child of successor's
 						// parent
+						if (successor.getRightChildNode() != null) {
+							current.getRightChildNode().setLeftChildNode(successor.getRightChildNode());
+						}
+						// Continue setting right child to the successor
+						successor.setRightChildNode(current.getRightChildNode());
+						// d. Remove the connection between the successors parent and the successor
+						current.getRightChildNode().setLeftChildNode(null);
+						// e. Assign Child(Determine left/right) of current's parent to successor
+						if (parent.getLeftChildNode().getData() == current.getData()) {
+							parent.setLeftChildNode(successor);
+						} else {
+							parent.setRightChildNode(successor);
+						}
+
 					}
 				} else if (data < current.getData() && current.getLeftChildNode() != null) {
 					parent = current;
