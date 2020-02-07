@@ -1,5 +1,8 @@
 package com.challenges.gfg.arrays;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
 //Given an unsorted array A of size N of non-negative integers, find a continuous sub-array which adds to a given number S.
@@ -32,35 +35,41 @@ import java.util.Scanner;
 
 public class SubarrayWithGivenSum {
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int T = sc.nextInt(); // Number of Test cases
-		if (!(T >= 1 && T <= 100)) {
-			System.out.println("Value is not in range of 1 and 100. Exiting");
-			System.exit(0);
-		}
-		StringBuffer output = new StringBuffer();
+	public static void main(String[] args) throws IOException {
+		StringBuilder output = new StringBuilder();
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int T = Integer.parseInt(br.readLine()); // Number of Test cases
 		for (int i = 0; i < T; i++) {
-			if (i != 0)
-				output.append("\n");
-			int n = sc.nextInt(); // Number of elements in the array
-			if (!(n >= 1 && n <= 10000000)) {
-				System.out.println("Size value is not in range of 1 and 107. Exiting");
-			}
-			int s = sc.nextInt(); // Subarray sum that
-			int a[] = new int[n];
-			for (int j = 0; j < n; j++) {
-				a[j] = sc.nextInt();
-			}
+			String sInp = br.readLine();
+			String[] aInp = sInp.split(" ");
+			int n = Integer.parseInt(aInp[0]); // Number of elements in the array
+			int s = Integer.parseInt(aInp[1]); // Subarray sum that
+
+			sInp = br.readLine();
+			aInp = sInp.split(" ");
 			// Find the sum in the subarray
 			boolean sumFound = false;
 			for (int j = 0; j < n; j++) {
-				int sum = 0;
-				for (int k = j; k < n; k++) {
-					sum = sum + a[k];
+				int sum = Integer.parseInt(aInp[j]);
+				if (sum > s)
+					continue;
+				if (sum == s) {
+					output.append((j + 1) + " " + (j + 1) + "\n");
+					sumFound = true;
+					break;
+				}
+				for (int k = j + 1; k < n; k++) {
+					int value = Integer.parseInt(aInp[k]);
+					sum = sum + value;
+					if (k > s || sum > s)
+						break;
+					if (k == s) {
+						output.append((k + 1) + " " + (k + 1) + "\n");
+						sumFound = true;
+						break;
+					}
 					if (sum == s) {
-						// Found the subarray
-						output.append((j + 1) + " " + (k + 1));
+						output.append((j + 1) + " " + (k + 1) + "\n");
 						sumFound = true;
 						break;
 					}
@@ -70,7 +79,7 @@ public class SubarrayWithGivenSum {
 				}
 			}
 			if (!sumFound) {
-				output.append(-1);
+				output.append(-1 + "\n");
 			}
 		}
 		System.out.println(output);
