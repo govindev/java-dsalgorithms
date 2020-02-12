@@ -1,84 +1,87 @@
 package com.challenges.gfg.arrays;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
+
 public class MinimumPlatforms {
 
-	private static void print(int[] array) {
-		for (int i = 0; i < array.length; i++) {
-			System.out.print(array[i] + " ");
-		}
-	}
+	private static void shellSort() {
+		// 1. Find out the 'h' value list
+		int h = 0;
+		List<Integer> hList = new ArrayList<Integer>();
+		do {
+			hList.add(h);
+			h = 3 * h + 1;
+		} while (h < arrivals.length);
 
-	private static int[] insertionSort(int[] a) {
-		for (int i = 1; i < a.length; i++) {
-			int val = a[i];
-			for (int j = i - 1; j >= 0; j--) {
-				if (val > a[j]) {
-					break;
-				}
-				a[j + 1] = a[j];
-				a[j] = val;
-			}
-		}
+		// 2. Loop through the hList
+		ListIterator<Integer> hIter = hList.listIterator();
+		while (hIter.hasNext()) {
+			h = hIter.next();
 
-		return a;
-	}
-
-	private static int[] shellSort(int[] a) {
-		// 1. Find the highest gap
-		int gap = 0;
-		while ((3 * gap + 1) < a.length)
-			gap = 3 * gap + 1;
-
-		// 2. Insertion sort
-		for (int g = gap; g >= 1; g--)
-			for (int i = g; i < a.length; i = i + g) {
-				int val = a[i];
-				for (int j = i - g; j >= 0; j = j - g) {
-					if (val > a[j]) {
-						break;
+			// 3. Loop through between 0 to h
+			for (int k = 0; k < h; k++) {
+				// 4. Loop through the array for the insertion sort
+				int i = 0 + k + h;
+				for (; i < arrivals.length; i = i + h) {
+					int newElement = Integer.parseInt(arrivals[i]);
+					int bVal = Integer.parseInt(departures[i]);
+					// 5. Insertion sort
+					for (int j = i - h; j >= 0; j = j - h) {
+						if (newElement < Integer.parseInt(arrivals[j])) {
+							arrivals[j + h] = arrivals[j];
+							arrivals[j] = newElement + "";
+							
+							departures[j + h] = departures[j];
+							departures[j] = bVal + "";
+						} else {
+							break;
+						}
 					}
-					a[j + g] = a[j];
-					a[j] = val;
 				}
 			}
+		}
 
-		return a;
 	}
 
-	private static int[] shellSortTwoArrays(int[] a, int[] b) {
-		// 1. Find the highest gap
-		int gap = 0;
-		while ((3 * gap + 1) < a.length)
-			gap = 3 * gap + 1;
+	private static String[] arrivals = {};
+	private static String[] departures = {};
 
-		// 2. Insertion sort
-		for (int g = gap; g >= 1; g--)
-			for (int i = g; i < a.length; i = i + g) {
-				int val = a[i];
-				int bVal = b[i];
-				for (int j = i - g; j >= 0; j = j - g) {
-					if (val > a[j]) {
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		StringBuilder sb = new StringBuilder();
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int t = Integer.parseInt(br.readLine());
+		for (int i = 0; i < t; i++) {
+			int highestPlatforms = 1;
+			String length = br.readLine();
+			arrivals = br.readLine().split(" ");
+			departures = br.readLine().split(" ");
+			int[] maxPlatformsArray = new int[arrivals.length];
+			shellSort();
+
+			maxPlatformsArray[0] = 1;
+			for (int j = 1; j < arrivals.length; j++) {
+				int platforms = 1;
+				int currTrainArrival = Integer.parseInt(arrivals[j]);
+				for (int k = j - 1; k >= 0; k--) {
+//					int prevTrainArrival = Integer.parseInt(arrivals[k]);
+//					int prevTrainDep = Integer.parseInt(departures[k]);
+					if (currTrainArrival >= Integer.parseInt(arrivals[k])
+							&& currTrainArrival <= Integer.parseInt(departures[k]))
+						platforms++;
+					if (maxPlatformsArray[k] < 2)
 						break;
-					}
-					a[j + g] = a[j];
-					a[j] = val;
-
-					b[j + g] = b[j];
-					b[j] = bVal;
 				}
+				maxPlatformsArray[j] = platforms;
+				highestPlatforms = (platforms > highestPlatforms) ? platforms : highestPlatforms;
 			}
-
-		return a;
-	}
-
-	public static void main(String[] args) {
-		int[] unsortedArray = { 1, 5, 7, 3 };
-		System.out.println("Unsorted array elements are : ");
-		print(unsortedArray);
-
-		int[] sortedArray = shellSort(unsortedArray);
-		System.out.println("\nSorted Array elements are : ");
-		print(sortedArray);
+			sb.append(highestPlatforms + "\n");
+		}
+		System.out.println(sb);
 	}
 
 }
