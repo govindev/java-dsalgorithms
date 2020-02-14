@@ -35,47 +35,62 @@ import java.io.IOException;
 public class SpirallyTraversingAMatrix {
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sbAll = new StringBuilder();
 		int t = Integer.parseInt(br.readLine());
 		for (int i = 0; i < t; i++) {
+			StringBuilder sb = new StringBuilder();
 			String[] lengths = br.readLine().trim().replace(" +", " ").split(" ");
 			int rows = Integer.parseInt(lengths[0]);
 			int columns = Integer.parseInt(lengths[1]);
-			int noOfElements = rows * columns;
 			String[] elements = br.readLine().trim().replace(" +", " ").split(" "); // Got the elements
-			int countOfElements = 0;
 			int colStart = 0, colEnd = columns - 1, rowStart = 0, rowEnd = rows - 1;
-			while (countOfElements != noOfElements) {
+			int count = 0;
+			boolean printedAll = false;
+			while (colStart <= colEnd && rowStart <= rowEnd) {
 				int r = rowStart, c = colStart;
 				while (r <= rowEnd) {
 					if (r > rowStart)
 						c = colEnd;
 					while (c <= colEnd) {
-						sb.append(elements[(r * columns) + c] + " ");
-						countOfElements++;
+						if (count != rows * columns)
+							sb.append(elements[(r * columns) + c] + " ");
+						else {
+							printedAll = true;
+							break;
+						}
 						c++;
+						count++;
 					}
+					if (printedAll) break;
 					r++;
 				}
-				r--; c = c - 2;
+				r--;
+				c = c - 2;
 				while (r > rowStart) {
 					if (r < rowEnd) {
 						c = colStart;
 					}
 					while (c >= colStart) {
-						sb.append(elements[(r * columns) + c] + " ");
-						countOfElements++;
+						if (count != rows * columns)
+							sb.append(elements[(r * columns) + c] + " ");
+						else {
+							printedAll = true;
+							break;
+						}
 						c--;
+						count++;
 					}
+					if (printedAll) break;
 					r--;
 				}
+				if (printedAll) break;
 				colStart++;
 				colEnd--;
 				rowStart++;
 				rowEnd--;
 			}
-			sb.append("\n");
+			sbAll.append(sb + "\n");
 		}
-		System.out.println(sb);
+		System.out.println(sbAll);
 	}
 }
