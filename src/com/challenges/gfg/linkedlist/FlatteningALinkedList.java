@@ -75,8 +75,10 @@ public class FlatteningALinkedList {
 				}
 				prevEnd = start;
 			}
-			flattenMakingNextActive(ll.head);
-			output.append(ll.getPrintString() + "\n");
+//			flattenMakingNextActive(ll.head);
+//			output.append(ll.getPrintString() + "\n");
+			flattenMakingBottomActive(ll.head);
+			output.append(ll.getPrintStringTraversingViaBottom() + "\n");
 		}
 		System.out.println(output);
 	}
@@ -102,6 +104,29 @@ public class FlatteningALinkedList {
 		}
 		// Flattening is done
 		// Now we have to sort it
+		return root;
+	}
+
+	private static Node flattenMakingBottomActive(Node root) {
+		Node currentHead = root;
+		while (currentHead.next != null) {
+			Node currentBottom = currentHead;
+			Node currentHeadNext = currentHead.next;
+			while (currentBottom.bottom != null) {
+				currentBottom.next = null;
+				currentBottom = currentBottom.bottom;
+			}
+			currentBottom.bottom = currentHeadNext;
+			currentHead = currentHeadNext;
+		}
+		Node currentBottom = currentHead;
+		while (currentBottom.bottom != null) {
+			currentBottom.next = null;
+			currentBottom = currentBottom.bottom;
+		}
+		// Flattening is done
+		// Now we have to sort it
+		// Insertion sort
 		return root;
 	}
 }

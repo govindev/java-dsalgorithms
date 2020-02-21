@@ -59,6 +59,17 @@ public class LinkedList {
 		return sb;
 	}
 
+	public StringBuilder getPrintStringTraversingViaBottom() {
+		StringBuilder sb = new StringBuilder();
+		Node current = head;
+		while (current.bottom != null) {
+			sb.append(current.data + " ");
+			current = current.bottom;
+		}
+		sb.append(current.data);
+		return sb;
+	}
+
 	public void roatate(int noOfRoatations) {
 		Node current = head;
 		while (current.next != null) {
