@@ -127,6 +127,26 @@ public class FlatteningALinkedList {
 		// Flattening is done
 		// Now we have to sort it
 		// Insertion sort
+		return sort(root);
+	}
+
+	private static Node sort(Node root) {
+		Node current = root;
+		while (current.bottom != null) {
+			Node element = current.bottom;
+
+			// Compare the element with all the previous elements
+			Node compare = root;
+			while (compare != element) {
+				if (element.data < compare.data) {
+					int temp = compare.data;
+					compare.data = element.data;
+					element.data = temp;
+				}
+				compare = compare.bottom;
+			}
+			current = element;
+		}
 		return root;
 	}
 }
