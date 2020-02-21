@@ -50,7 +50,7 @@ public class FindingMiddleElementInALinkedList {
 				linkedList.insertAtHead(Integer.parseInt(elements[j]));
 			}
 			int mid = length / 2;
-			Node head = linkedList.getHead();
+			Node head = linkedList.head;
 			for (int j = 0; j <= mid; j++) {
 				if (j == mid) {
 					output.append(head.getData() + "\n");

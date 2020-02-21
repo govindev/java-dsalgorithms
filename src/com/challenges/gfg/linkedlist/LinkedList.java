@@ -1,7 +1,7 @@
 package com.challenges.gfg.linkedlist;
 
 public class LinkedList {
-	private Node head;
+	public Node head;
 
 	public void insertAtHead(int data) {
 		Node newNode = new Node(data);
@@ -13,7 +13,4 @@ public class LinkedList {
 		}
 	}
 
-	public Node getHead() {
-		return this.head;
-	}
 }
