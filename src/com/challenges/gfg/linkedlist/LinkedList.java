@@ -2,6 +2,19 @@ package com.challenges.gfg.linkedlist;
 
 public class LinkedList {
 	public Node head;
+	public Node bottom;
+
+	public void insertAtBottom(int data) {
+		Node newNode = new Node(data);
+		if (this.head == null) {
+			this.head = newNode;
+		} else {
+			newNode.bottom = this.head;
+			newNode.next = this.head.next;
+			this.head.next = null;
+			this.head = newNode;
+		}
+	}
 
 	public void insertAtHead(int data) {
 		Node newNode = new Node(data);
@@ -21,6 +34,18 @@ public class LinkedList {
 			count++;
 		}
 		return count;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		Node current = head;
+		while (current.next != null) {
+			sb.append(current.data + "->");
+			current = current.next;
+		}
+		sb.append(current.data);
+		return sb.toString();
 	}
 
 	public StringBuilder getPrintString() {
