@@ -27,6 +27,8 @@ import java.io.IOException;
  * is 4 , 2 is 4 and for 4 ? since it doesn't exist hence -1.
  * 
  * @author Govind
+ * 
+ * Logic Youtube Video : https://www.google.com/search?q=next+larger+element+using+stack&rlz=1C5CHFA_enIN879IN879&oq=Next+larger+element+stack&aqs=chrome.1.0l2.5771j0j7&sourceid=chrome&ie=UTF-8#kpvalbx=_ODBRXrK-Lqyc4-EP8cCEmAM30
  *
  */
 public class NextLargerElement {
