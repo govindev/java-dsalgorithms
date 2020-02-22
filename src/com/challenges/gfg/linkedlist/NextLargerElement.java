@@ -37,31 +37,32 @@ public class NextLargerElement {
 		for (int i = 0; i < t; i++) {
 			int length = Integer.parseInt(br.readLine());
 			String[] elements = br.readLine().trim().split(" ");
+			long[] outputArray = new long[length];
 			MyStack stack = new MyStack();
-			stack.push(Integer.parseInt(elements[0]));
+			stack.push(0);
 			for (int j = 1; j < elements.length; j++) {
-				int value = Integer.parseInt(elements[j]);
+				long value = Long.parseLong(elements[j]);
 				while (true) {
 					if (stack.top != null) {
-						if (value > stack.top.data) {
+						if (value > Long.parseLong(elements[stack.top.data])) {
 							// Value is greater than the top
-							// output.append(stack.top.data + "->" + value + " ");
-							output.append(value + " ");
+							outputArray[stack.top.data] = value;
 							stack.pop();
 						} else {
-							stack.push(value);
+							stack.push(j);
 							break;
 						}
 					} else {
-						stack.push(value);
+						stack.push(j);
 						break;
 					}
 				}
 			}
 			while (stack.top != null) {
-				// output.append(stack.pop() + "->-1 ");
-				stack.pop();
-				output.append("-1 ");
+				outputArray[stack.pop()] = -1;
+			}
+			for (int j = 0; j <= length - 1; j++) {
+				output.append(outputArray[j] + " ");
 			}
 			output.append("\n");
 		}
