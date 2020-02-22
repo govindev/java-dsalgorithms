@@ -104,3 +104,13 @@ class MyQueue {
 		return -1;
 	}
 }
+
+class QueueNode {
+	int data;
+	QueueNode next;
+
+	QueueNode(int a) {
+		data = a;
+		next = null;
+	}
+}
