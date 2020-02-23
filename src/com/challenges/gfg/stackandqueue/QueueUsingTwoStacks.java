@@ -57,11 +57,11 @@ public class QueueUsingTwoStacks {
 			boolean lookForPushValue = false;
 			for (int j = 0; j <= data.length - 1; j++) {
 				int value = Integer.parseInt(data[j]);
-				if (value == 1) {
-					lookForPushValue = true;
-				} else if (lookForPushValue) {
+				if (lookForPushValue) {
 					queue.insert(value);
 					lookForPushValue = false;
+				} else if (value == 1) {
+					lookForPushValue = true;
 				} else if (value == 2) {
 					output.append(queue.remove() + " ");
 				}

@@ -51,11 +51,11 @@ public class StackUsingTwoQueues {
 			boolean lookForPushValue = false;
 			for (int j = 0; j <= data.length - 1; j++) {
 				int value = Integer.parseInt(data[j]);
-				if (value == 1) {
-					lookForPushValue = true;
-				} else if (lookForPushValue) {
+				if (lookForPushValue) {
 					stack.push(value);
 					lookForPushValue = false;
+				} else if (value == 1) {
+					lookForPushValue = true;
 				} else if (value == 2) {
 					output.append(stack.pop() + " ");
 				}
