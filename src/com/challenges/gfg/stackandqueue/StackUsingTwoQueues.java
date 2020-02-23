@@ -1,4 +1,4 @@
-package com.challenges.gfg.linkedlist;
+package com.challenges.gfg.stackandqueue;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

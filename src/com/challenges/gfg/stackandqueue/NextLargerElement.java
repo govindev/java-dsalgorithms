@@ -1,7 +1,8 @@
-package com.challenges.gfg.linkedlist;
+package com.challenges.gfg.stackandqueue;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+
 import java.io.IOException;
 
 /**
@@ -28,7 +29,8 @@ import java.io.IOException;
  * 
  * @author Govind
  * 
- * Logic Youtube Video : https://www.google.com/search?q=next+larger+element+using+stack&rlz=1C5CHFA_enIN879IN879&oq=Next+larger+element+stack&aqs=chrome.1.0l2.5771j0j7&sourceid=chrome&ie=UTF-8#kpvalbx=_ODBRXrK-Lqyc4-EP8cCEmAM30
+ *         Logic Youtube Video :
+ *         https://www.google.com/search?q=next+larger+element+using+stack&rlz=1C5CHFA_enIN879IN879&oq=Next+larger+element+stack&aqs=chrome.1.0l2.5771j0j7&sourceid=chrome&ie=UTF-8#kpvalbx=_ODBRXrK-Lqyc4-EP8cCEmAM30
  *
  */
 public class NextLargerElement {
@@ -69,5 +71,44 @@ public class NextLargerElement {
 			output.append("\n");
 		}
 		System.out.println(output);
+	}
+}
+
+class MyStack {
+
+	// Note that top is by default null
+	// in Java
+	StackNode top;
+
+	void push(int a) {
+		// Add your code here
+		StackNode newNode = new StackNode(a);
+		if (top != null) {
+			newNode.next = top;
+			top = newNode;
+		} else {
+			top = newNode;
+		}
+
+	}
+
+	int pop() {
+		// Add your code here
+		if (top != null) {
+			int value = top.data;
+			top = top.next;
+			return value;
+		}
+		return -1;
+	}
+}
+
+class StackNode {
+	int data;
+	StackNode next;
+
+	StackNode(int a) {
+		data = a;
+		next = null;
 	}
 }
