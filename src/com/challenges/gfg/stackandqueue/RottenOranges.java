@@ -2,6 +2,7 @@ package com.challenges.gfg.stackandqueue;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.io.IOException;
 
 /***
@@ -51,13 +52,16 @@ public class RottenOranges {
 			String[] lengths = br.readLine().trim().split(" ");
 			int r = Integer.parseInt(lengths[0]);
 			int c = Integer.parseInt(lengths[1]);
-			String[] elements = br.readLine().trim().split(" ");
+			// String[] elements = br.readLine().trim().split(" ");
+			int[] elements = Arrays.asList(br.readLine().trim().split(" ")).stream().mapToInt(Integer::parseInt)
+					.toArray();
 			int elementsIndex = 0;
 			int[][] array = new int[r][c];
 			int[][] ongoingArray = new int[r][c];
 			for (int p = 0; p < r; p++) {
 				for (int q = 0; q < c; q++) {
-					int value = Integer.parseInt(elements[elementsIndex]);
+					// int value = Integer.parseInt(elements[elementsIndex]);
+					int value = elements[elementsIndex];
 					array[p][q] = value;
 					ongoingArray[p][q] = value;
 					elementsIndex++;

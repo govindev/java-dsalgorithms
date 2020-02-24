@@ -3,6 +3,7 @@ package com.challenges.gfg.stackandqueue;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
+import java.util.Arrays;
 
 /***
  * https://practice.geeksforgeeks.org/problems/maximum-of-all-subarrays-of-size-k/0
@@ -40,10 +41,13 @@ public class MaximumOfAllSubarraysOfSizeK {
 			String[] lengths = br.readLine().trim().split(" ");
 			int arrayLength = Integer.parseInt(lengths[0]);
 			int windowLength = Integer.parseInt(lengths[1]);
-			String[] array = br.readLine().trim().split(" ");
+			// String[] array = br.readLine().trim().split(" ");
+			int[] array = Arrays.asList(br.readLine().trim().split(" ")).stream().mapToInt(Integer::parseInt).toArray();
+
 			Queue queue = new Queue();
 			for (int p = 0, q = 0; p < arrayLength; p++) {
-				int value = Integer.parseInt(array[p]);
+				// int value = Integer.parseInt(array[p]);
+				int value = array[p];
 				if (q >= windowLength) {
 					queue.remove();
 				} else {
