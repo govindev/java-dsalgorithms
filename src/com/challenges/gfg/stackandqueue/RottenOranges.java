@@ -41,6 +41,12 @@ import java.io.IOException;
  * Hence, total 2 unit of time is required to rot all oranges.
  * 
  * @author Govind
+ * 
+ * 
+ * 
+ * Other best time complexity solutions references
+ * https://github.com/bibhas-abhishek/projects/blob/master/MinTimeRotOranges/src/MinTimeRotOranges.java
+ * https://www.geeksforgeeks.org/minimum-time-required-so-that-all-oranges-become-rotten/
  *
  */
 public class RottenOranges {
