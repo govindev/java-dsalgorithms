@@ -97,18 +97,39 @@ class GfG {
 	int isBST(Node root) {
 		// Your code here
 		if (root != null) {
-			Node left = root.left;
-			Node right = root.right;
-			if (left != null && root.data < left.data) {
+			return isBST(root, null, null, null, null);
+		}
+		return 1;
+	}
+
+	int isBST(Node current, Node parent, Node parentsParent, Boolean isCurrentLeftChildOfParent,
+			Boolean isParentLeftChildOfParentsParent) {
+		if (current != null) {
+			Node left = current.left;
+			Node right = current.right;
+			if (left != null && current.data < left.data) {
 				return 0;
 			}
-			if (right != null && root.data > right.data) {
+			if (right != null && current.data > right.data) {
 				return 0;
 			}
-			if (isBST(left) == 0) {
+			if (parentsParent != null) {
+				if (isParentLeftChildOfParentsParent) {
+					// All the elements of the current should be less than the parent
+					if (current.data > parentsParent.data) {
+						return 0;
+					}
+				} else if (current.data < parentsParent.data) {
+					// All the elements of the current should be greater than the parent
+					return 0;
+				}
+			}
+			parentsParent = parent;
+			isParentLeftChildOfParentsParent = isCurrentLeftChildOfParent;
+			if (isBST(left, current, parentsParent, true, isParentLeftChildOfParentsParent) == 0) {
 				return 0;
 			}
-			if (isBST(right) == 0) {
+			if (isBST(right, current, parentsParent, false, isParentLeftChildOfParentsParent) == 0) {
 				return 0;
 			}
 		}
