@@ -1,7 +1,10 @@
 package com.challenges.gfg.tree;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Queue;
+import java.util.TreeMap;
 import java.io.*;
 
 /**
@@ -150,34 +153,79 @@ class VerticalTraversalOfBinaryTree {
  */
 
 class BinaryTree {
-	static StringBuilder output;
-	static Node rootNode;
+//	static Node rootNode;
+//
+//	static void verticalOrder(Node root) {
+//		// add your code here
+//		// I should print in the order of left, current, parent(Only if current is left
+//		// child of parent), right and continue
+//		output = new StringBuilder();
+//		rootNode = root;
+//		print(root, null, null);
+//		System.out.println(output);
+//	}
+
+//	static void print(Node current, Node parent, Boolean isCurrentLeftChildOfParent) {
+//		if (current != null) {
+//			Node left = current.left;
+//			Node right = current.right;
+//			if (left != null)
+//				print(left, current, true);
+//			// We have to figure out if this node was already printed. If so, don't print
+//			// again
+//			output.append(current.data + " ");
+//			if (left != null && parent != null && isCurrentLeftChildOfParent) {
+//				output.append(parent.data + " ");
+//			}
+//			if (right != null)
+//				print(right, current, false);
+//		}
+//		return;
+//	}
 
 	static void verticalOrder(Node root) {
-		// add your code here
-		// I should print in the order of left, current, parent(Only if current is left
-		// child of parent), right and continue
-		output = new StringBuilder();
-		rootNode = root;
-		print(root, null, null);
+		StringBuilder output = new StringBuilder();
+		// Using technique of Queue and TreeMap
+		// 1. Create the Queue
+		Queue<Pair> queue = new LinkedList<Pair>();
+		queue.add(new Pair(root, 0));
+
+		// 2. Create a tree map to consolidate all the horizontal distances of the nodes
+		Map<Integer, ArrayList<Integer>> distances = new TreeMap<Integer, ArrayList<Integer>>();
+		while (!queue.isEmpty()) {
+			Pair pair = queue.poll();
+			Node node = pair.node;
+			int hd = pair.horizontalDistance;
+			if (distances.containsKey(hd)) {
+				distances.get(hd).add(node.data);
+			} else {
+				ArrayList<Integer> nodes = new ArrayList<Integer>();
+				nodes.add(node.data);
+				distances.put(hd, nodes);
+			}
+			if (node.left != null) {
+				queue.add(new Pair(node.left, hd - 1));
+			}
+			if (node.right != null) {
+				queue.add(new Pair(node.right, hd + 1));
+			}
+		}
+
+		for (Integer key : distances.keySet()) {
+			for (Integer node : distances.get(key)) {
+				output.append(node + " ");
+			}
+		}
 		System.out.println(output);
 	}
+}
 
-	static void print(Node current, Node parent, Boolean isCurrentLeftChildOfParent) {
-		if (current != null) {
-			Node left = current.left;
-			Node right = current.right;
-			if (left != null)
-				print(left, current, true);
-			// We have to figure out if this node was already printed. If so, don't print
-			// again
-			output.append(current.data + " ");
-			if (left != null && parent != null && isCurrentLeftChildOfParent) {
-				output.append(parent.data + " ");
-			}
-			if (right != null)
-				print(right, current, false);
-		}
-		return;
+class Pair {
+	Node node;
+	int horizontalDistance;
+
+	public Pair(Node node, int horizontalDistance) {
+		this.node = node;
+		this.horizontalDistance = horizontalDistance;
 	}
 }
