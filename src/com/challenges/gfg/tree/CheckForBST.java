@@ -79,7 +79,7 @@ class CheckForBST {
 				n--;
 			}
 
-			GfG g = new GfG();
+			BST g = new BST();
 			System.out.println(g.isBST(root));
 			// ob.printInorder(root);
 			t--;
@@ -93,7 +93,7 @@ class CheckForBST {
  * 
  * Node(int item) { data = item; left = right = null; } }
  */
-class GfG {
+class BST {
 	int isBST(Node root) {
 		// Your code here
 		if (root != null) {
