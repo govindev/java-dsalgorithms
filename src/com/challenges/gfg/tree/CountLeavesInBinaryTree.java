@@ -108,12 +108,12 @@ class CountLeavesInBinaryTree {
 }
 
 class CountLeavesInBinaryTreeHelper {
-	int countLeaves(ENode ENode) {
-		if (ENode != null) {
-			if (ENode.left == null && ENode.right == null) {
+	int countLeaves(ENode node) {
+		if (node != null) {
+			if (node.left == null && node.right == null) {
 				return 1;
 			} else {
-				return (countLeaves(ENode.left) + countLeaves(ENode.right));
+				return (countLeaves(node.left) + countLeaves(node.right));
 			}
 		}
 		return 0;
