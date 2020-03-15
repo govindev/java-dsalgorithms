@@ -149,33 +149,20 @@ class DiameterOfATreeHelper {
 		int rightDiameter = diameter(root.right);
 		return max(diameter, max(leftDiameter, rightDiameter));
 	}
-
+	
 	static int max(int a, int b) {
 		if (a > b)
 			return a;
 		return b;
 	}
 
-	static int height = 0;
-
 	private static int findHeight(DNode root) {
-		height = 0;
 		if (root == null)
 			return 0;
-		else {
-			findHeight(root, 0);
-			return height;
-		}
-	}
-
-	private static int findHeight(DNode root, int level) {
-		if (root != null) {
-			findHeight(root.left, level + 1);
-			findHeight(root.right, level + 1);
-			if (level + 1 > height) {
-				height = level + 1;
-			}
-		}
-		return height;
+		int leftHeight = findHeight(root.left);
+		int rightHeight = findHeight(root.right);
+		int maxi = (leftHeight > rightHeight) ? leftHeight : rightHeight;
+		maxi++;
+		return maxi;
 	}
 }
