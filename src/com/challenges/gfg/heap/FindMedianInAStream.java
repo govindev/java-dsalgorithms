@@ -1,4 +1,4 @@
-package com.challenges.gfg.tree;
+package com.challenges.gfg.heap;
 
 import java.util.PriorityQueue;
 import java.util.Comparator;
