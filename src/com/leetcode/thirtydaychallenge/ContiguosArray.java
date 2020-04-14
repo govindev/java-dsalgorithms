@@ -8,6 +8,7 @@ import java.io.IOException;
  * Contiguous Array
  * 
  * https://leetcode.com/explore/challenge/card/30-day-leetcoding-challenge/529/week-2/3298/
+ * https://www.geeksforgeeks.org/largest-subarray-with-equal-number-of-0s-and-1s/
  * 
  * Given a binary array, find the maximum length of a contiguous subarray with
  * equal number of 0 and 1.
