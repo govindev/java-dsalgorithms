@@ -10,7 +10,7 @@ public class TrailingZerosInFactorial {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		Integer n = Integer.parseInt(br.readLine());
 		// System.out.println(trailingZeros(factorial(n)));
-		System.out.println(countTrailingZeros(n));
+		System.out.println(trailingZeros1(n));
 	}
 
 	private static int trailingZeros(int n) {
@@ -32,7 +32,7 @@ public class TrailingZerosInFactorial {
 		return fact;
 	}
 
-	static int countTrailingZeros(int n) {
+	static int trailingZeros1(int n) {
 		int res = 0;
 		for (int i = 5; i <= n; i = i * 5) {
 			res = res + n / i;
