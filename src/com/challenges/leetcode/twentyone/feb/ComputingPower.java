@@ -10,7 +10,21 @@ public class ComputingPower {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		Integer x = Integer.parseInt(br.readLine().trim());
 		Integer n = Integer.parseInt(br.readLine().trim());
-		System.out.println(recPow(x, n));
+		System.out.println(iterPow(x, n));
+	}
+
+	private static int iterPow(int x, int n) {
+		int result = 1;
+		// iterative solution
+		while (n > 0) {
+			if (n % 2 != 0) {
+				// Odd number
+				result = result * x;
+			}
+			x = x * x;
+			n = n / 2;
+		}
+		return result;
 	}
 
 	private static int recPow(int x, int y) {
