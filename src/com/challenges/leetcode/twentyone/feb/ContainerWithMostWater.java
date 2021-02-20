@@ -3,6 +3,8 @@ package com.challenges.leetcode.twentyone.feb;
 /**
  * https://leetcode.com/explore/challenge/card/february-leetcoding-challenge-2021/586/week-3-february-15th-february-21st/3643/
  * 
+ * Technique used : Two pointers approach
+ * 
  * @author Govind
  *
  */
