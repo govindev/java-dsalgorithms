@@ -1,5 +1,7 @@
 package com.challenges.leetcode.twentyone.feb;
 
+import java.util.Arrays;
+
 /***
  * https://leetcode.com/explore/challenge/card/february-leetcoding-challenge-2021/587/week-4-february-22nd-february-28th/3652/
  * 
@@ -9,7 +11,43 @@ package com.challenges.leetcode.twentyone.feb;
  *
  */
 public class ShortestUnsortedContinuousSubarray {
-	public int findUnsortedSubarray(int[] nums) {
+	public static void main(String[] args) {
+		int[] nums = { 2, 1 };
+		System.out.println(findUnsortedSubarray(nums));
+	}
+
+	/**
+	 * Accepted solution
+	 * 
+	 * @param nums
+	 * @return
+	 */
+	public static int findUnsortedSubarray(int[] nums) {
+		int[] sNums = nums.clone();
+		Arrays.sort(sNums);
+		int subArrStart = -1;
+		int subArrEnd = -1;
+		for (int i = 0; i < nums.length; i++) {
+			if (nums[i] != sNums[i]) {
+				if (subArrStart == -1) {
+					subArrStart = i;
+				}
+				subArrEnd = i;
+			}
+		}
+		if (subArrStart >= 0 && subArrEnd >= 0) {
+			return subArrEnd + 1 - subArrStart;
+		}
+		return 0;
+	}
+
+	/**
+	 * Fails for some of the test cases Unaccepted
+	 * 
+	 * @param nums
+	 * @return
+	 */
+	public int findUnsortedSubarray1(int[] nums) {
 		int sortingStart = -1;
 		int sortingEnd = -1;
 		int greatest = nums[0];
