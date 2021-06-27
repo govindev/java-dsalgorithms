@@ -6,7 +6,32 @@ public class LongestPalindromeSubstring {
 		// System.out.println(isPalindrome(s, 0, s.length() - 1));
 		// System.out.println(longestPalindromeBetter3(s));
 		// System.out.println(longestPalindromeBetter2(s, 0, s.length() - 1));
-		System.out.println(longestPalindromeDP(s));
+		// System.out.println(longestPalindromeDP(s));
+		System.out.println(longestPalindromeBest(s));
+	}
+
+	private static String longestPalindromeBest(String s) {
+		int[] maxStart = new int[1];
+		int[] maxEnd = new int[1];
+
+		for (int i = 0; i < s.length() - 1; i++) {
+			extend(s, i, i, maxStart, maxEnd);
+			extend(s, i, i + 1, maxStart, maxEnd);
+		}
+		return s.substring(maxStart[0], maxEnd[0] + 1);
+	}
+
+	private static void extend(String s, int i, int j, int[] maxStart, int[] maxEnd) {
+		while (i >= 0 && j < s.length() && s.charAt(i) == s.charAt(j)) {
+			i--;
+			j++;
+		}
+		i++;
+		j--;
+		if (j - i + 1 > maxEnd[0] - maxStart[0] + 1) {
+			maxStart[0] = i;
+			maxEnd[0] = j;
+		}
 	}
 
 	private static String longestPalindromeDP(String s) {
