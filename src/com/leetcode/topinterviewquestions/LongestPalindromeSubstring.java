@@ -2,7 +2,8 @@ package com.leetcode.topinterviewquestions;
 
 public class LongestPalindromeSubstring {
 	public static void main(String[] args) {
-		String s = "babaddtattarrattatddetartrateedredividerb";
+		// String s = "babaddtattarrattatddetartrateedredividerb";
+		String s = "aab";
 		// System.out.println(isPalindrome(s, 0, s.length() - 1));
 		// System.out.println(longestPalindromeBetter3(s));
 		// System.out.println(longestPalindromeBetter2(s, 0, s.length() - 1));
