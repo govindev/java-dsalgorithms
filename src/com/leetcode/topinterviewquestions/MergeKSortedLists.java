@@ -1,5 +1,7 @@
 package com.leetcode.topinterviewquestions;
 
+import java.util.PriorityQueue;
+
 public class MergeKSortedLists {
 	private static ListNodeC getHead(int[] array) {
 		ListNodeC head = new ListNodeC(array[0]);
@@ -27,7 +29,7 @@ public class MergeKSortedLists {
 		System.out.println(sb.toString());
 	}
 
-	public static ListNodeC mergeKLists(ListNodeC[] lists) {
+	public static ListNodeC mergeKListsNaive(ListNodeC[] lists) {
 		ListNodeC beforeHead = new ListNodeC(0);
 		ListNodeC current = beforeHead;
 
@@ -51,6 +53,24 @@ public class MergeKSortedLists {
 			lists[k] = lists[k].next;
 		}
 		return beforeHead.next;
+	}
+
+	public static ListNodeC mergeKLists(ListNodeC[] lists) {
+		// Using Priority Queue
+		PriorityQueue<Integer> queue = new PriorityQueue<>();
+		for (ListNodeC head : lists) {
+			while (head != null) {
+				queue.add(head.val);
+				head = head.next;
+			}
+		}
+		ListNodeC preHead = new ListNodeC(-1);
+		ListNodeC current = preHead;
+		while (!queue.isEmpty()) {
+			current.next = new ListNodeC(queue.remove());
+			current = current.next;
+		}
+		return preHead.next;
 	}
 }
 
