@@ -5,14 +5,14 @@ public class RemoveNthNodeFromEndOfList {
 	public static void main(String[] args) {
 		int[] array = new int[] { 1, 2, 3, 4, 5 };
 		int n = 2;
-		ListNode head = null;
-		ListNode current = null;
+		ListNodeA head = null;
+		ListNodeA current = null;
 		for (int i = 0; i < array.length; i++) {
 			if (current == null) {
-				current = new ListNode(array[i]);
+				current = new ListNodeA(array[i]);
 				head = current;
 			} else {
-				current.next = new ListNode(array[i]);
+				current.next = new ListNodeA(array[i]);
 				current = current.next;
 			}
 		}
@@ -25,12 +25,12 @@ public class RemoveNthNodeFromEndOfList {
 		System.out.println(sb.toString());
 	}
 
-	public static ListNode removeNthFromEnd(ListNode head, int n) {
+	public static ListNodeA removeNthFromEnd(ListNodeA head, int n) {
 		// Two pointer appraoch
 		int fast = 1;
-		ListNode slow = new ListNode(0);
+		ListNodeA slow = new ListNodeA(0);
 		slow.next = head;
-		ListNode current = head;
+		ListNodeA current = head;
 		while (fast < n) {
 			current = current.next;
 			fast++;
@@ -45,10 +45,10 @@ public class RemoveNthNodeFromEndOfList {
 		return head;
 	}
 
-	public static ListNode removeNthFromEndNaive(ListNode head, int n) {
+	public static ListNodeA removeNthFromEndNaive(ListNodeA head, int n) {
 		// Figure out the length of the linked list
 		int l = 0;
-		ListNode current = head;
+		ListNodeA current = head;
 		while (current != null) {
 			current = current.next;
 			l++;
@@ -69,19 +69,19 @@ public class RemoveNthNodeFromEndOfList {
 }
 
 //Definition for singly-linked list.
-//class ListNode {
-//	int val;
-//	ListNode next;
-//
-//	ListNode() {
-//	}
-//
-//	ListNode(int val) {
-//		this.val = val;
-//	}
-//
-//	ListNode(int val, ListNode next) {
-//		this.val = val;
-//		this.next = next;
-//	}
-//}
+class ListNodeA {
+	int val;
+	ListNodeA next;
+
+	ListNodeA() {
+	}
+
+	ListNodeA(int val) {
+		this.val = val;
+	}
+
+	ListNodeA(int val, ListNodeA next) {
+		this.val = val;
+		this.next = next;
+	}
+}
