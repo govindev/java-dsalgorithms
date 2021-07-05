@@ -1,12 +1,39 @@
 package com.leetcode.topinterviewquestions;
 
+import java.util.Arrays;
+
 public class FirstMissingPositive {
 	public static void main(String[] args) {
 
 	}
 
 	public int firstMissingPositive(int[] nums) {
-		// This works in a scenario where 
+		Arrays.sort(nums);
+		int i = 0;
+		while (i < nums.length && nums[i] < 1) {
+			i++;
+		}
+		if (i >= nums.length || nums[i] != 1)
+			return 1;
+		int j = 2;
+		i++;
+		while (i < nums.length) {
+			if (nums[i] == nums[i - 1]) {
+				i++;
+				continue;
+			}
+			if (j == nums[i]) {
+				j++;
+				i++;
+			} else {
+				return j;
+			}
+		}
+		return j;
+	}
+
+	public int firstMissingPositiveNaive(int[] nums) {
+		// This works in a scenario where
 		// 1. There is only one missing number in the given positive numbers
 		int smallest = Integer.MAX_VALUE;
 		int highest = Integer.MIN_VALUE;
