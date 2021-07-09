@@ -7,6 +7,32 @@ public class PlusOne {
 	}
 
 	public static int[] plusOne(int[] digits) {
+		int overflow = 1;
+		for (int i = digits.length - 1; i >= 0; i--) {
+			int v = digits[i] + overflow;
+			if (v > 9) {
+				digits[i] = 0;
+				overflow = 1;
+			} else {
+				digits[i] = v;
+				overflow = 0;
+				break;
+			}
+		}
+		if (overflow == 1) {
+			int[] output = new int[digits.length + 1];
+			output[0] = 1;
+			for (int i = 0; i < digits.length; i++) {
+				output[i + 1] = digits[i];
+			}
+			return output;
+		} else {
+			return digits;
+		}
+
+	}
+
+	public static int[] plusOneNaive(int[] digits) {
 		// Doesn't work if there is a big number
 		long sum = 0;
 		for (int i = 0; i < digits.length; i++) {
