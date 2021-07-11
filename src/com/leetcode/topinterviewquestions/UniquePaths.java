@@ -8,6 +8,18 @@ public class UniquePaths {
 
 	}
 
+	public static int uniquePathsUsingCombinations(int m, int n) {
+		int N = (m - 1) + (n - 1);
+		int r = m - 1; // n - 1;
+		// Now find NCr
+		// Formuale is N * N - 1 * N - 2 / r * r - 1 * r - 2 ==== If r is 3;
+        double res = 1;
+        for (int i = 1; i <= r; i++) {
+            res = res * (N - r + i) / i;
+        }
+		return (int) res;
+	}
+
 	public static int uniquePaths(int m, int n) {
 //		return uniquePaths(m - 1, n - 1, 0, 0);
 
