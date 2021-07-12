@@ -2,6 +2,30 @@ package com.leetcode.topinterviewquestions;
 
 public class SortColors {
 	public void sortColors(int[] nums) {
+		// Dutch National Flag Algorithm
+		int low = 0, mid = 0, high = nums.length - 1;
+		while (mid <= high) {
+			if (nums[mid] == 0) {
+				// Swap with low
+				int temp = nums[mid];
+				nums[mid] = nums[low];
+				nums[low] = temp;
+				low++;
+				mid++;
+			} else if (nums[mid] == 1) {
+				mid++;
+			} else if (nums[mid] == 2) {
+				// Swap with high
+				int temp = nums[mid];
+				nums[mid] = nums[high];
+				nums[high] = temp;
+				high--;
+			}
+		}
+	}
+
+	public void sortColors2Passes(int[] nums) {
+		// 2 passes
 		int redCount = 0;
 		int whiteCount = 0;
 		int blueCount = 0;
