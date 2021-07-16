@@ -15,6 +15,34 @@ public class BinaryTreeLevelOrderTraversal {
 	}
 
 	public static List<List<Integer>> levelOrder(TreeNodeE root) {
+		// This is using a single queue
+		List<List<Integer>> list = new ArrayList<>();
+		if (root == null)
+			return list;
+
+		Queue<TreeNodeE> queue = new LinkedList<>();
+		queue.add(root);
+
+		while (!queue.isEmpty()) {
+			int size = queue.size();
+			List<Integer> currentLevel = new ArrayList<>();
+			for (int i = 0; i < size; i++) {
+				TreeNodeE current = queue.remove();
+				currentLevel.add(current.val);
+				if (current.left != null) {
+					queue.add(current.left);
+				}
+				if (current.right != null) {
+					queue.add(current.right);
+				}
+			}
+			list.add(currentLevel);
+		}
+		return list;
+	}
+
+	public static List<List<Integer>> levelOrder2Qs(TreeNodeE root) {
+		// This is using two queues approach
 		List<List<Integer>> list = new ArrayList<>();
 		if (root == null)
 			return list;
@@ -35,7 +63,7 @@ public class BinaryTreeLevelOrderTraversal {
 			TreeNodeE node = queue.remove();
 			current.add(node.val);
 			if (node.left != null) {
-				newQueue.add(node.left);
+				queue.add(node.left);
 			}
 			if (node.right != null) {
 				newQueue.add(node.right);
