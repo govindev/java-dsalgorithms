@@ -2,12 +2,11 @@ package com.gfg.dsalgo;
 
 import java.util.*;
 
-public class TopologicalSorting {
+public class TopologicalSortingUsingBooleanArray {
 // Directed Graph
 
-	private static void addEdge(List<List<Integer>> adj, int v1, int v2, int[] indegree) {
+	private static void addEdge(List<List<Integer>> adj, int v1, int v2) {
 		adj.get(v1).add(v2);
-		indegree[v2]++;
 	}
 
 	public static void main(String[] args) {
@@ -21,10 +20,6 @@ public class TopologicalSorting {
 			adj.add(new ArrayList<>());
 		}
 
-		// Figure out the zero in degree vertices
-		int[] indegree = new int[V];
-		Arrays.fill(indegree, 0);
-
 //		addEdge(adj, 0, 2);
 //		addEdge(adj, 0, 3);
 //		addEdge(adj, 1, 3);
@@ -36,26 +31,35 @@ public class TopologicalSorting {
 //		addEdge(adj, 2, 3);
 //		addEdge(adj, 3, 4);
 //		addEdge(adj, 3, 5);
+		
+		addEdge(adj, 0, 2);
+		addEdge(adj, 0, 3);
+		addEdge(adj, 2, 3);
+		addEdge(adj, 1, 3);
+		addEdge(adj, 1, 4);
 
-		addEdge(adj, 0, 2, indegree);
-		addEdge(adj, 0, 3, indegree);
-		addEdge(adj, 2, 3, indegree);
-		addEdge(adj, 1, 3, indegree);
-		addEdge(adj, 1, 4, indegree);
-
-		for (int elem : topologicalSort(adj, V, indegree)) {
+		for (int elem : topologicalSort(adj, V)) {
 			System.out.print(elem + ", ");
 		}
 	}
 
-	private static int[] topologicalSort(List<List<Integer>> adj, int V, int[] indegree) {
+	private static int[] topologicalSort(List<List<Integer>> adj, int V) {
 		boolean[] visited = new boolean[V];
 		int[] sort = new int[V];
 		Arrays.fill(visited, false);
 
+		// Figure out the zero in degree vertices
+		boolean[] indegree = new boolean[V];
+		Arrays.fill(indegree, true);
 		Queue<Integer> q = new LinkedList<>();
+		for (int i = 0; i < V; i++) {
+			for (int v : adj.get(i)) {
+				indegree[v] = false;
+			}
+		}
+
 		for (int i = 0; i < indegree.length; i++) {
-			if (indegree[i] == 0) {
+			if (indegree[i]) {
 				q.offer(i);
 			}
 		}
@@ -68,8 +72,7 @@ public class TopologicalSorting {
 				sort[s++] = c;
 			}
 			for (int v : adj.get(c)) {
-				indegree[v]--;
-				if (!visited[v] && indegree[v] == 0)
+				if (!visited[v])
 					q.offer(v);
 			}
 		}
