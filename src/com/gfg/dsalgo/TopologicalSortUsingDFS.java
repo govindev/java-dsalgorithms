@@ -11,8 +11,6 @@ public class TopologicalSortUsingDFS {
 
 	public static void main(String[] args) {
 		// Construct the Graph
-		// int V = 5;
-		// int V = 6;
 		int V = 5;
 
 		List<List<Integer>> adj = new ArrayList<>();
