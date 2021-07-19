@@ -3,17 +3,39 @@ package com.gfg.dsalgo;
 public class GasStation {
 
 	public int canCompleteCircuit(int[] gas, int[] cost) {
-		int extraGasReq = 0;
+		// Optimal solution
+		int tank = 0;
+		for (int i = 0; i < gas.length; i++)
+			tank += gas[i] - cost[i];
+		if (tank < 0)
+			return -1;
+
+		int start = 0;
+		int accumulate = 0;
 		for (int i = 0; i < gas.length; i++) {
-			if (canCompleteCircuit(gas, cost, i, extraGasReq)) {
+			int curGain = gas[i] - cost[i];
+			if (accumulate + curGain < 0) {
+				start = i + 1;
+				accumulate = 0;
+			} else
+				accumulate += curGain;
+		}
+
+		return start;
+	}
+
+	public int canCompleteCircuitNaive(int[] gas, int[] cost) {
+		int gasReqBefPath = 0;
+		for (int i = 0; i < gas.length; i++) {
+			if (canCompleteCircuit(gas, cost, i, gasReqBefPath)) {
 				return i;
 			}
-			extraGasReq += cost[i] - gas[i];
+			gasReqBefPath += cost[i] - gas[i];
 		}
 		return -1;
 	}
 
-	public boolean canCompleteCircuit(int[] gas, int[] cost, int point, int extraGasReq) {
+	public boolean canCompleteCircuit(int[] gas, int[] cost, int point, int gasReqBefPath) {
 		int count = 0;
 		int gasRem = 0;
 		while (count <= gas.length) {
@@ -22,7 +44,7 @@ public class GasStation {
 				return false;
 			gasRem -= cost[point];
 			if (point == gas.length - 1) {
-				if (gasRem >= extraGasReq)
+				if (gasRem >= gasReqBefPath)
 					return true;
 				else
 					return false;
