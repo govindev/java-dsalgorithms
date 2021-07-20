@@ -21,8 +21,9 @@ public class WordBreak {
 		// Giving timeout
 		if (ssEnd > s.length())
 			return false;
-		if (wordDict.contains(s.substring(0, ssEnd))) {
-			wordDict.add(s.substring(0, ssEnd));
+		if (dfsIm(s, wordDict, ++ssEnd))
+			return true;
+		if (wordDict.contains(s.substring(0, --ssEnd))) {
 			if (ssEnd == s.length())
 				return true;
 			// Match
@@ -31,7 +32,7 @@ public class WordBreak {
 				return true;
 			}
 		}
-		return dfsIm(s, wordDict, ++ssEnd);
+		return false;
 	}
 
 	public static boolean dfsDm(String s, Set<String> wordDict, int ssEnd) {
