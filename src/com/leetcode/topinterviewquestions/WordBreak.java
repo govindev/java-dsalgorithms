@@ -13,7 +13,29 @@ public class WordBreak {
 	public static boolean wordBreak(String s, List<String> wordDict) {
 		Set<String> set = new HashSet<>(wordDict);
 		// return dfsIm(s, set, 1);
-		return dfsDm(s, set, s.length());
+		// return dfsDm(s, set, s.length());
+
+		int[] dp = new int[301];
+		Arrays.fill(dp, -1);
+		return (dfs(0, s, set, dp) == 1) ? true : false;
+	}
+
+	public static int dfs(int ssStart, String s, Set<String> wordDict, int[] dp) {
+		// With the help of DP
+		// Memorizing results of already visited paths
+		if (ssStart == s.length())
+			return 1;
+		if (dp[ssStart] != -1)
+			return dp[ssStart];
+		String temp = "";
+		for (int i = ssStart; i < s.length(); i++) {
+			temp += s.charAt(i);
+			if (wordDict.contains(temp)) {
+				if (dfs(i + 1, s, wordDict, dp) == 1)
+					return dp[ssStart] = 1;
+			}
+		}
+		return dp[ssStart] = 0;
 	}
 
 	public static boolean dfsIm(String s, Set<String> wordDict, int ssEnd) {
