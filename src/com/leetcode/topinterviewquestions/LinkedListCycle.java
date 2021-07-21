@@ -1,5 +1,7 @@
 package com.leetcode.topinterviewquestions;
 
+import java.util.*;
+
 public class LinkedListCycle {
 	public boolean hasCycle(ListNode head) {
 		if (head == null)
