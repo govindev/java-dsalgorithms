@@ -72,7 +72,7 @@ import java.io.IOException;
  */
 class DecryptMessage {
 
-	static String decrypt(String word) throws Exception {
+	static String decrypt(String word) {
 		if (word == null || word.equals("")) {
 			return word;
 		}
