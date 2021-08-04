@@ -1,13 +1,50 @@
 package com.leetcode.topinterviewquestions;
 
+import java.util.*;
+
 public class FractionToRecurringDecimal {
 	public static void main(String[] args) {
-		int numerator = 1;
-		int denominator = 6;
+		int numerator = -50;
+		int denominator = 8;
 		System.out.println(fractionToDecimal(numerator, denominator));
 	}
 
 	public static String fractionToDecimal(int numerator, int denominator) {
+		boolean isNegative = ((numerator > 0 && denominator < 0) || (numerator < 0 && denominator > 0));
+		StringBuilder decimal = new StringBuilder();
+		Map<Long, Integer> quos = new HashMap<>();
+		long numeratorL = Math.abs((long)numerator);
+		long denominatorL = Math.abs((long)denominator);
+		long quo = numeratorL / denominatorL;
+		decimal.append(quo);
+		numeratorL = numeratorL % denominatorL;
+		if (numeratorL != 0) {
+			decimal.append(".");
+		}
+
+		int quoIndex = 0;
+		while (numeratorL != 0) {
+			numeratorL *= 10;
+			quo = numeratorL / denominatorL;
+			if (!quos.containsKey(numeratorL)) {
+				decimal.append(quo);
+				quos.put(numeratorL, ++quoIndex);
+			} else {
+				int index = quos.get(numeratorL) + decimal.indexOf(".");
+				decimal.insert(index, "(");
+				decimal.append(")");
+				break;
+			}
+			numeratorL = numeratorL % denominatorL;
+		}
+		if (isNegative)
+			decimal.insert(0, '-');
+
+		return decimal.toString();
+
+	}
+
+	public static String fractionToDecimalImproved(int numerator, int denominator) {
 		String res = (double) numerator / denominator + "";
 		String fraction = res.substring(res.indexOf('.') + 1, res.length());
 
