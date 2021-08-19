@@ -14,5 +14,5 @@ public class ReverseBits {
 			i++;
 		}
 		return result;
-	}
+	}	
 }
