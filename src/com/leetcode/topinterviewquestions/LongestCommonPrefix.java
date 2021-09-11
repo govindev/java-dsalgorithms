@@ -6,27 +6,45 @@ public class LongestCommonPrefix {
 
 	public static void main(String[] args) {
 		String[] strs = { "flower", "flow", "flight" };
-		System.out.println(longestCommonPrefix(strs));
+		System.out.println(new LongestCommonPrefix().longestCommonPrefix(strs));
 	}
 
-	public static String longestCommonPrefixNaive(String[] strs) {
-		int ssi = 0;
-		if (strs.length == 1)
-			return strs[0];
+	public String longestCommonPrefix(String[] strs) {
+		String prefix = strs[0];
+		for (int index = 1; index < strs.length; index++) {
+			while (strs[index].indexOf(prefix) != 0) {
+				prefix = prefix.substring(0, prefix.length() - 1);
+			}
+		}
+		return prefix;
+	}
 
-		while (true) {
-			for (int ai = 1; ai < strs.length; ai++) {
-				if ((strs[ai].length() <= ssi || strs[0].length() <= ssi)
-						|| (strs[0].charAt(ssi) != strs[ai].charAt(ssi))) {
-					return strs[0].substring(0, ssi);
+	public String longestCommonPrefixMyBest(String[] strs) {
+		// Best approach
+		String prefix = strs[0];
+		for (int i = 1; i < strs.length; i++) {
+			String current = strs[i];
+			if (current.length() < prefix.length()) {
+				current = prefix;
+				prefix = strs[i];
+			}
+			int j = 0;
+			for (; j < prefix.length(); j++) {
+				if (prefix.charAt(j) != current.charAt(j)) {
+					break;
 				}
 			}
-			ssi++;
+			if (j < prefix.length()) {
+				prefix = prefix.substring(0, j);
+			}
+			if (j == 0)
+				break;
 		}
+		return prefix;
 	}
 
-	public static String longestCommonPrefix(String[] strs) {
-		// Clean Code
+	public String longestCommonPrefixSortingApproach(String[] strs) {
+		//
 		if (strs.length == 1)
 			return strs[0];
 		Arrays.sort(strs);
@@ -42,5 +60,21 @@ public class LongestCommonPrefix {
 		}
 		return firstStr.substring(0, i);
 
+	}
+
+	public String longestCommonPrefixNaive(String[] strs) {
+		int ssi = 0;
+		if (strs.length == 1)
+			return strs[0];
+
+		while (true) {
+			for (int ai = 1; ai < strs.length; ai++) {
+				if ((strs[ai].length() <= ssi || strs[0].length() <= ssi)
+						|| (strs[0].charAt(ssi) != strs[ai].charAt(ssi))) {
+					return strs[0].substring(0, ssi);
+				}
+			}
+			ssi++;
+		}
 	}
 }
