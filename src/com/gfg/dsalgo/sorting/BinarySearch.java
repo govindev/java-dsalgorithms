@@ -19,7 +19,7 @@ public class BinarySearch {
         System.out.println("Element found at : " + binarySearch(arr, k));
     }
 
-    public static int binarySearch(int[] nums, int target) {
+    private static int binarySearch(int[] nums, int target) {
         if (nums.length == 1 && nums[0] == target) return 0;
         int left = 0, right = nums.length - 1;
         while (left <= right) {
@@ -33,5 +33,18 @@ public class BinarySearch {
             }
         }
         return -1;
+    }
+
+    private static int recBinarySearch(int[] nums, int target, int left, int right) {
+        if (left > right) return -1;
+        // Recursive Binary Search
+        int mid = (left+right) / 2;
+        if (target == nums[mid]) {
+            return mid;
+        } else if (target > nums[mid]) {
+            return recBinarySearch(nums, target, mid+1, right);
+        } else {
+            return recBinarySearch(nums, target, left, mid-1);
+        }
     }
 }
