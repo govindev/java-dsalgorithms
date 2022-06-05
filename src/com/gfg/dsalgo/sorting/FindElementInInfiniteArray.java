@@ -23,6 +23,7 @@ public class FindElementInInfiniteArray {
 
     private static int findPosition(int[] arr, int x) {
         // Thing here is we shouldn't be using the arr.length().
+        // unbounded binary search
         if (arr[0] == x) return 0;
         int i = 1;
         while(arr[i] < x) {
@@ -31,7 +32,7 @@ public class FindElementInInfiniteArray {
         if (arr[i] == x) return i;
 
         // Do the binary search
-        int left = 0, right = i;
+        int left = i/2+1, right = i;
         while(left <= right) {
             int mid = (left+right)/2;
             if(arr[mid] == x) return mid;
