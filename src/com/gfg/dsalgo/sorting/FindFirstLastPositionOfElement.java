@@ -40,4 +40,45 @@ public class FindFirstLastPositionOfElement {
         }
         return new int[] {-1,-1};
     }
+
+    private static int[] searchRangeEfficient(int[] nums, int target) {
+        // Right Approach
+         return new int[] {findFirstOccurance(nums,target), findLastOccurance(nums,target)};
+    }
+
+    private static int findFirstOccurance(int[] nums, int target) {
+        int left = 0, right = nums.length - 1;
+        while (left <= right) {
+            int mid = (left+right) / 2;
+            if (target == nums[mid]) {
+                if (mid == 0 || nums[mid-1] != target) {
+                    return mid;
+                }
+                right = mid-1;
+            } else if (target > nums[mid]) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return -1;
+    }
+
+    private static int findLastOccurance(int[] nums, int target) {
+        int left = 0, right = nums.length - 1;
+        while (left <= right) {
+            int mid = (left+right) / 2;
+            if (target == nums[mid]) {
+                if (mid == nums.length-1 || nums[mid+1] != target) {
+                    return mid;
+                }
+                left = mid+1;
+            } else if (target > nums[mid]) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return -1;
+    }
 }
