@@ -3,6 +3,8 @@ package com.gfg.dsalgo.arrays;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LogestSubArrayWithEqual1sAnd0s {
     public static void main(String[] args) throws IOException {
@@ -17,22 +19,18 @@ public class LogestSubArrayWithEqual1sAnd0s {
         longestSubArrayWithEqual1sAnd0s(arr);
     }
 
-    private static void longestSubArrayWithEqual1sAnd0s(int[] arr) {
-        // TODO Below code doesn't work. Need to work on the logic
-        int count0s = 0;
-        int count1s = 0;
-        int subArrayEnd = 0;
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == 0) {
-                count0s++;
-            }
-            if (arr[i] == 1) {
-                count1s++;
-            }
-            if (count0s == count1s) {
-                subArrayEnd = i;
+    private static void longestSubArrayWithEqual1sAnd0s(int[] nums) {
+        Map<Integer,Integer> counts = new HashMap<>();
+        int count = 0, maxLength = 0;
+        counts.put(0, -1);
+        for (int i = 0; i < nums.length; i++) {
+            count += (nums[i] == 0) ? -1 : 1;
+            if (counts.containsKey(count)) {
+                maxLength = Math.max(maxLength, i - counts.get(count));
+            } else {
+                counts.put(count, i);
             }
         }
-        System.out.println("Maximum sub array with equal number of 1s and 0s starts at : 0 and ends at " + subArrayEnd);
+        System.out.println("Maximum sub array length with equal number of 1s and 0s is " + maxLength);
     }
 }

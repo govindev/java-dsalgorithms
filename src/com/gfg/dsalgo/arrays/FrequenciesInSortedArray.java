@@ -28,4 +28,5 @@ public class FrequenciesInSortedArray {
         }
         System.out.println("Frequency of : " + array[array.length-1] + " is : " + count);
     }
+
 }

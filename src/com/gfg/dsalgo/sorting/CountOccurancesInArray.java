@@ -21,6 +21,7 @@ public class CountOccurancesInArray {
 
     }
     private static int countOccurances(int[] nums, int target) {
+        // Number of occurrence
         int last = findLastOccurance(nums,target);
         if (last == -1) return 0;
         int first = findFirstOccurance(nums, target);
