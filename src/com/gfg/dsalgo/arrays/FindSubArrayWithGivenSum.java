@@ -3,6 +3,7 @@ package com.gfg.dsalgo.arrays;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class FindSubArrayWithGivenSum {
     public static void main(String[] args) throws IOException {
@@ -62,5 +63,38 @@ public class FindSubArrayWithGivenSum {
         }
         System.out.println("There exists no sub array with the given sum ");
         return false;
+    }
+
+
+    static ArrayList<Integer> subarraySum(int[] arr, int n, int s)
+    {
+        // Subarray with given sum
+        ArrayList<Integer> list = new ArrayList<>();
+        int left = 0, right = 0, sum = 0;
+        while (left < n && right < n) {
+            if (left == right) sum = arr[left];
+            if (sum == s) {
+                list.add(left+1);list.add(right+1); return list;
+            }
+            if (sum > s) {
+                if (left == right) {
+                    left++;
+                    right++;
+                } else {
+                    sum -= arr[left];
+                    left++;
+                }
+            }
+            if (sum < s) {
+                if (right+1 < n) {
+                    right++;
+                    sum += arr[right];
+                } else {
+                    break;
+                }
+            }
+        }
+        list.add(-1);
+        return list;
     }
 }

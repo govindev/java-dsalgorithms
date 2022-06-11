@@ -9,8 +9,8 @@ public class LCM {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int a = Integer.parseInt(br.readLine());
         int b = Integer.parseInt(br.readLine());
-//        System.out.println("LCM of " + a + " and " + b + " is : " + lcm(a, b));
-        System.out.println("LCM of " + a + " and " + b + " is : " + lcmOptimized(a, b));
+//        System.out.println("Ruf of " + a + " and " + b + " is : " + lcm(a, b));
+        System.out.println("Ruf of " + a + " and " + b + " is : " + lcmOptimized(a, b));
     }
 
     private static int lcm(int a, int b) {
