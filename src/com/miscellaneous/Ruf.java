@@ -18,8 +18,98 @@ public class Ruf {
         // printDivisors(55);
         // count();
       //  printPrimeFactors(12);
-        power();
-        checkIfArrayIsSorted();
+//        power();
+//        checkIfArrayIsSorted();
+//        int longest = longest(new int[]{10, 12, 14, 7, 8});
+//        System.out.println("longest : " + longest);
+        // int min = minimumFlips(new int[]{1,0,0,0, 1, 1,0,0, 1});
+        // System.out.println("Minimum number of flips required are : " + min);
+        // printFibonaci(10);
+        // printNBonaci(4, 9);
+    }
+
+    private static int findElementInInfiniteArray(int[] arr, int s) {
+        if (arr[0] == s) return 0;
+        int h = 1;
+        while (arr[h] < s) {
+            h = h*2;
+        }
+        if (arr[h] == s) return h;
+        int low = h/2 + 1, high = h-1;
+        while (low <= high) {
+            int mid = (low+high)/2;
+            if (arr[mid] == s) return mid;
+            if (arr[mid] > s) high = mid-1;
+            else low = mid+1;
+        }
+        return -1;
+    }
+
+    private static void printNBonaci(int n, int k) {
+        int[] nums = new int[k];
+        nums[n-1] = 1;
+        int sum = 1;
+        for (int i = n; i < k; i++) {
+            nums[i] = sum;
+            sum -= nums[i-n];
+            sum += nums[i];
+        }
+
+        // Print
+        for (int i = 0; i < k; i++) {
+            System.out.print(nums[i] + ", ");
+        }
+    }
+
+    private static void printFibonaci(int k) {
+        int first = 0, second = 1;
+        System.out.print("0, 1, ");
+        for (int i = 2; i < k; i++) {
+            int newSecond = first+second;
+            first = second;
+            second = newSecond;
+            System.out.print(newSecond + ", ");
+        }
+    }
+
+    private static int minimumFlipsEfficient(int[] arr) {
+        int i = 1;
+        for (; i < arr.length; i++) {
+            if (arr[i] != arr[0]) break;
+        }
+        if (i == arr.length-1) return 0;
+        int flipCount = 1;
+        for (int j = i+1; j < arr.length ; j++) {
+            if (arr[j] != arr[j-1] && arr[j] == arr[i]) {
+                flipCount++;
+            }
+        }
+        return flipCount;
+    }
+
+    private static int minimumFlips(int[] arr) {
+        int zeroFlipCount = 0;
+        int oneFliptCount = 0;
+        if (arr[0] == 1) oneFliptCount++;
+        else zeroFlipCount++;
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i-1] != arr[i]) {
+                if (arr[i] == 1) oneFliptCount++;
+                else zeroFlipCount++;
+            }
+        }
+        return Math.min(oneFliptCount, zeroFlipCount);
+    }
+
+    private static int longest(int[] arr) {
+        int res = 1;
+        int count = 1;
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i-1]%2 != arr[i]%2) count++;
+            else count = 1;
+            res = Math.max(count, res);
+        }
+        return res;
     }
 
     private static void checkIfArrayIsSorted() {

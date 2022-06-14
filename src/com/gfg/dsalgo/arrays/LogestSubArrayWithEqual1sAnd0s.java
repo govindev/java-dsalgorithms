@@ -20,6 +20,7 @@ public class LogestSubArrayWithEqual1sAnd0s {
     }
 
     private static void longestSubArrayWithEqual1sAnd0s(int[] nums) {
+        // Contiguous Array
         Map<Integer,Integer> counts = new HashMap<>();
         int count = 0, maxLength = 0;
         counts.put(0, -1);
