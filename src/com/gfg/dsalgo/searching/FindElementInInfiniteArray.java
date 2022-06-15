@@ -1,9 +1,8 @@
-package com.gfg.dsalgo.sorting;
+package com.gfg.dsalgo.searching;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 
 public class FindElementInInfiniteArray {
 

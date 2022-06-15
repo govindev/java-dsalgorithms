@@ -1,11 +1,11 @@
-package com.gfg.dsalgo.sorting;
+package com.gfg.dsalgo.searching;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
-public class CountOccurancesInArray {
+public class FindFirstLastPositionOfElement {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Enter the size of the array : ");
@@ -17,15 +17,33 @@ public class CountOccurancesInArray {
         }
         System.out.println("Enter the element to be searched : ");
         int k = Integer.parseInt(br.readLine());
-        System.out.println("Number of times element appears is : " + countOccurances(arr, k));
-
+        System.out.println("Search range is : ");
+        Arrays.stream(searchRange(arr, k)).forEach(value -> System.out.print(value + " "));
     }
-    private static int countOccurances(int[] nums, int target) {
-        // Number of occurrence
-        int last = findLastOccurance(nums,target);
-        if (last == -1) return 0;
-        int first = findFirstOccurance(nums, target);
-        return (last - first) + 1;
+    private static int[] searchRange(int[] nums, int target) {
+        int left = 0, right = nums.length - 1;
+        while (left <= right) {
+            int mid = (left+right) / 2;
+            if (target == nums[mid]) {
+                // todo
+                int first = mid;
+                int last = mid;
+                while (first-1 > -1 && nums[first-1] == target) {first--;}
+                while (last+1 < nums.length && nums[last+1] == target) {last++;}
+
+                return new int[]{first, last};
+            } else if (target > nums[mid]) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return new int[] {-1,-1};
+    }
+
+    private static int[] searchRangeEfficient(int[] nums, int target) {
+        // Right Approach
+         return new int[] {findFirstOccurance(nums,target), findLastOccurance(nums,target)};
     }
 
     private static int findFirstOccurance(int[] nums, int target) {
