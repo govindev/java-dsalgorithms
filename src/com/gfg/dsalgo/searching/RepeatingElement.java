@@ -24,4 +24,21 @@ public class RepeatingElement {
         int extra = total - sum;
         return extra / (arr.length-1-max);
     }
+
+
+    public int findDuplicate(int[] nums) {
+        // Given an array of integers nums containing n + 1 integers where each integer is in the range [1, n] inclusive.
+        // There is only one repeated number in nums, return this repeated number.
+        int slow = nums[0], fast = slow;
+        do {
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        } while (slow != fast);
+        slow = nums[0];
+        while (slow != fast) {
+            slow = nums[slow];
+            fast = nums[fast];
+        }
+        return slow;
+    }
 }
