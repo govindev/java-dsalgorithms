@@ -26,6 +26,69 @@ public class Ruf {
         // System.out.println("Minimum number of flips required are : " + min);
         // printFibonaci(10);
         // printNBonaci(4, 9);
+
+//        System.out.println(findRightInd(new int[] {1, 1, 2, 2, 2, 2, 3}, 7, 2));
+//        System.out.println(findLeftInd(new int[] {1, 1, 2, 2, 2, 2, 3}, 7, 2));
+        // printSeries(4, 9);
+        minGroupFlips("00011110001110");
+    }
+    static int minGroupFlips(String arr) {
+        int count = 0;
+        for (int i = 1; i < arr.length(); i++) {
+            if (arr.charAt(i) != arr.charAt(0) && arr.charAt(i) != arr.charAt(i-1)) {
+                count++;
+            }
+        }
+        System.out.println("Minimum number of group flips required are : " + count);
+        return count;
+    }
+
+    static void printSeries(int n, int m) {
+        m++;
+        int[] series = new int[m];
+        for (int i = 0; i < n-1; i++) {
+            series[i] = 0;
+        }
+        series[n-1] = 1;
+        int sum = 1;
+        for (int i = n; i < m; i++) {
+            series[i] = sum;
+            sum = sum + series[i] - series[i-n];
+        }
+        // Print
+        for (int i = 0; i < m; i++) {
+            System.out.print(series[i] + ",");
+        }
+    }
+
+
+
+    private static int findLeftInd(int[] arr, int n, int x) {
+        int left = 0, right = n-1;
+        while (left <= right) {
+            int mid = (left+right)/2;
+            if (arr[mid] >= x) {
+                if (mid != 0 && arr[mid-1] == x)
+                    right = mid-1;
+                else return mid;
+            }
+            else left = mid+1;
+        }
+        return -1;
+    }
+
+    private static int findRightInd(int[] arr, int n, int x) {
+        int left = 0, right = n-1;
+        while (left < right) {
+            int mid = (left+right)/2;
+            if (arr[mid] > x) right = mid-1;
+            else {
+                if (mid != n-1 && arr[mid+1] == x)
+                    left = mid+1;
+                else return mid;
+            }
+        }
+        return -1;
     }
 
     private static int findElementInInfiniteArray(int[] arr, int s) {
