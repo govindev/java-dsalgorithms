@@ -1,18 +1,15 @@
 package com.sdesheet.blind.arraysandhashing;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class ContainsDuplicate {
-    public int findDuplicate(int[] nums) {
-        // Fast and Slow pointer
-        int slow = nums[0], fast = slow;
-        do {
-            slow = nums[slow];
-            fast = nums[nums[fast]];
-        } while(slow != fast);
-        slow = nums[0];
-        while (slow != fast) {
-            slow = nums[slow];
-            fast = nums[fast];
+    public boolean containsDuplicate(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (set.contains(nums[i])) return true;
+            set.add(nums[i]);
         }
-        return slow;
+        return false;
     }
 }
