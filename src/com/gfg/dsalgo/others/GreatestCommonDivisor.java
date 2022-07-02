@@ -24,7 +24,7 @@ public class GreatestCommonDivisor {
 	}
 
 	private static int gcd1(int a, int b) {
-		// Eucliclean Algorithm
+		// Euclidean Algorithm
 		while (a != b) {
 			if (a > b) {
 				a = a - b;
