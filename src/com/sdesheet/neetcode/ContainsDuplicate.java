@@ -1,4 +1,4 @@
-package com.sdesheet.neetcode.arraysandhashing;
+package com.sdesheet.neetcode;
 
 import java.util.HashSet;
 import java.util.Set;

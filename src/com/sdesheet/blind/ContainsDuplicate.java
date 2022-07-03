@@ -1,4 +1,4 @@
-package com.sdesheet.blind.arraysandhashing;
+package com.sdesheet.blind;
 
 import java.util.HashSet;
 import java.util.Set;

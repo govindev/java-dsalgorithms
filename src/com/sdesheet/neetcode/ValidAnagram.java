@@ -1,4 +1,4 @@
-package com.sdesheet.neetcode.arraysandhashing;
+package com.sdesheet.neetcode;
 
 public class ValidAnagram {
     public boolean isAnagram(String s, String t) {

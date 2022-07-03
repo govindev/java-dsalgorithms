@@ -1,4 +1,4 @@
-package com.sdesheet.striver.arrays;
+package com.sdesheet.striver;
 
 public class NextPermutation {
     public void nextPermutation(int[] nums) {
