@@ -1,5 +1,7 @@
 package com.miscellaneous;
 
+import java.util.ArrayList;
+
 public class Ruf {
     public static void main(String[] args) {
         int a = 4, b = 6;
@@ -30,8 +32,38 @@ public class Ruf {
 //        System.out.println(findRightInd(new int[] {1, 1, 2, 2, 2, 2, 3}, 7, 2));
 //        System.out.println(findLeftInd(new int[] {1, 1, 2, 2, 2, 2, 3}, 7, 2));
         // printSeries(4, 9);
-        minGroupFlips("00011110001110");
+        // minGroupFlips("00011110001110");
+        subarraySum(new int[] {1,2,3,7,5}, 5, 12);
     }
+    static ArrayList<Integer> subarraySum(int[] arr, int n, int s)
+    {
+        ArrayList<Integer> list = new ArrayList<>();
+
+        int curr =  0;
+        int start = 0, end = 0;
+        while (start <= end && end < n) {
+            if (start == end) curr = arr[start];
+            if (curr == s) {
+                list.add(++start);
+                list.add(++end);
+                return list;
+            }
+            if (curr > s) {
+                curr -= arr[start];
+                start++;
+            } else {
+                end++;
+                if (end < n)
+                    curr += arr[end];
+            }
+        }
+
+
+        list.add(-1);
+        return list;
+    }
+
+
     static int minGroupFlips(String arr) {
         int count = 0;
         for (int i = 1; i < arr.length(); i++) {
