@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class GetInversions {
     public static void main(String[] args) {
-        int[] arr = {1, 20, 6, 4, 5};
+        long[] arr = {1, 20, 6, 4, 5};
         System.out.println("Inversions possible are : " + getInversions(arr, 5));
     }
 
