@@ -1,0 +1,16 @@
+
+s	java:S135,"YReduce the total number of break and continue statements in this loop to use at most one.(˜ïˆžÿÿÿÿÿ
+M	java:S106"9Replace this use of System.out or System.err by a logger.(Þ¦¼A
+N	java:S106"9Replace this use of System.out or System.err by a logger.(’ê€
+N	java:S106"9Replace this use of System.out or System.err by a logger.(û¦îµ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(éË§Ë
+>
+java:S1659"#Declare "start" on a separate line.(Ý»ÏÍÿÿÿÿÿ
+:
+java:S1659+"Declare "i" on a separate line.(§‘¤»ýÿÿÿÿ
+N	java:S106<"9Replace this use of System.out or System.err by a logger.(ÝùŠ³
+S	java:S106@"9Replace this use of System.out or System.err by a logger.(Ì­´Õÿÿÿÿÿ
+g
+java:S3776E"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(çŸ„>
+W
+java:S1659I"BDeclare "right" and all following declarations on a separate line.(œú¢\
