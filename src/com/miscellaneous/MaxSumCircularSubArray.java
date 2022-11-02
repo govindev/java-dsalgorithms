@@ -6,7 +6,7 @@ public class MaxSumCircularSubArray {
         System.out.println("max sum : "+ maxSubarraySumCircular(nums));
     }
 
-    public int maxSum(int[] nums) {
+    public static int maxSum(int[] nums) {
         int maxSum = nums[0];
         int currSum = nums[0];
         for (int i = 1; i < nums.length; i++) {
@@ -16,7 +16,7 @@ public class MaxSumCircularSubArray {
         return maxSum;
     }
 
-    public int maxSubarraySumCircular(int[] nums) {
+    public static int maxSubarraySumCircular(int[] nums) {
         int maxSum = maxSum(nums);
 
         if (maxSum < 0) return maxSum;
