@@ -17,3 +17,9 @@ T
 $src/com/sdesheet/blind/ThreeSum.java,9/f/9f62a460a6a447f0c5ca21824a5979325b53fb1b
 W
 'src/com/sdesheet/neetcode/ThreeSum.java,a/a/aa06fa08696a0647aa454085e1363d46369cd192
+g
+7src/com/gfg/dsalgo/searching/Count1sInASortedArray.java,c/0/c02db7c6f652e617efa63ba247835f790da6af02
+N
+src/com/miscellaneous/Ruf.java,2/0/209d249d7825e89aa8976dca1b060b9ec14d0b03
+T
+$src/com/miscellaneous/CountOnes.java,5/0/503aff974025367d850251ad2ef528b15d90f92a
