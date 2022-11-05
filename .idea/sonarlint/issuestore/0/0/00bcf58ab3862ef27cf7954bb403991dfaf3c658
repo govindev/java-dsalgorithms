@@ -1,0 +1,8 @@
+
+s	java:S135"YReduce the total number of break and continue statements in this loop to use at most one.(ÆÓËÚşÿÿÿÿ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(óòµ³
+7
+java:S1659
+"!Declare "end" on a separate line.(®ŸÍ
+\
+java:S1126("AReplace this if-then-else statement by a single return statement.(í÷¤Ïıÿÿÿÿ
