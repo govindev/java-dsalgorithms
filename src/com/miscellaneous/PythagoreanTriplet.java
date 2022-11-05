@@ -1,5 +1,7 @@
 package com.miscellaneous;
 
+import java.util.Arrays;
+
 public class PythagoreanTriplet {
     boolean checkTripletNaive(int[] arr, int n) {
         for (int i = 0; i < n-2; i++) {
