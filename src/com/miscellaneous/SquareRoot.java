@@ -14,7 +14,7 @@ public class SquareRoot {
         return (int)res-1;
     }
 
-    public static int mySqrt(int x) {
+    public int mySqrt1(int x) {
         long res = 1;
         while (res*res <= x) {
             res *= 2;
@@ -30,5 +30,16 @@ public class SquareRoot {
             else left = mid+1;
         }
         return (left*left <= x) ? (int) left : (int) left-1;
+    }
+    public int mySqrt(int x) {
+        if (x <= 1) return 1;
+        int left = 1, right = x/2;
+        while (left <= right) {
+            int mid = (left+right) / 2;
+            if (mid == x/mid) return mid;
+            else if (mid > x/mid) right = mid-1;
+            else left = mid+1;
+        }
+        return left - 1;
     }
 }
