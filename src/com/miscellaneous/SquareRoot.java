@@ -32,7 +32,7 @@ public class SquareRoot {
         return (left*left <= x) ? (int) left : (int) left-1;
     }
     public int mySqrt(int x) {
-        if (x <= 1) return 1;
+        if (x <= 1) return x;
         int left = 1, right = x/2;
         while (left <= right) {
             int mid = (left+right) / 2;
