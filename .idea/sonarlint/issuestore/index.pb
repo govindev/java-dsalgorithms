@@ -51,3 +51,17 @@ T
 $src/com/miscellaneous/Factorial.java,d/4/d41176440436f0ce34c602d8f7e7c0304292eb68
 W
 'src/com/sdesheet/neetcode/ThreeSum.java,a/a/aa06fa08696a0647aa454085e1363d46369cd192
+Z
+*src/com/miscellaneous/MajorityElement.java,a/1/a1b1bac55e40926e034ff38d34bbd7aad47a9707
+d
+4src/com/miscellaneous/BestTimeToBuyAndSellStock.java,e/8/e8585dfcb22456f04e9638d2afdb871ac08d431c
+U
+%src/com/miscellaneous/CountZeros.java,c/a/cabd484ac563a0f76bea09ac9cedca7716d4eed8
+\
+,src/com/miscellaneous/NumberOfOccurance.java,7/c/7c8d4253f3add4fe071cfe8af1a24f22313e8351
+U
+%src/com/miscellaneous/SquareRoot.java,d/4/d4167b31179df242b4cc6fc470f6e888ce988d15
+e
+5src/com/miscellaneous/BestTimeToBuyAndSellStock1.java,f/e/fe6ea109c3cc74f70a9842e473b01b7795ef3130
+Q
+!src/com/miscellaneous/TwoSum.java,9/6/96f543c0655790c620436cfa76ea35741e7c9a4f
