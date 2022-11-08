@@ -9,8 +9,6 @@ _
 ,src/com/sdesheet/striver/RepeatedNumber.java,0/1/01535111737c0404b11d8d0bf95415e8859243cd
 [
 +src/com/sdesheet/striver/GetInversions.java,5/3/53fc763940bcba9552009a99189e4fdf26a398ab
-U
-%src/com/sdesheet/neetcode/TwoSum.java,8/e/8ec220770658f75c7cb799a7751081d937104e1d
 d
 4src/com/leetcode/topinterviewquestions/ThreeSum.java,b/1/b1d050a7eb3c059021f71d3d744bc74b780eb17c
 T
