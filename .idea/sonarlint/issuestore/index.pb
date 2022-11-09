@@ -17,8 +17,6 @@ g
 7src/com/gfg/dsalgo/searching/Count1sInASortedArray.java,c/0/c02db7c6f652e617efa63ba247835f790da6af02
 N
 src/com/miscellaneous/Ruf.java,2/0/209d249d7825e89aa8976dca1b060b9ec14d0b03
-T
-$src/com/miscellaneous/CountOnes.java,5/0/503aff974025367d850251ad2ef528b15d90f92a
 a
 1src/com/miscellaneous/MaxSumCircularSubArray.java,f/6/f6eb8dc09350cea2b12167f7f11716844b6c701c
 [
