@@ -4,7 +4,7 @@ public class FindPeakElement {
     public static void main(String[] args) {
         System.out.println(" peak is : " + findPeakElement(new int[] {1,2,3,1}));
     }
-    public int findPeakElement(int[] nums) {
+    public static int findPeakElement(int[] nums) {
         int left = 0, right = nums.length-1;
         while (left <= right) {
             int mid = (left+right)/2;
