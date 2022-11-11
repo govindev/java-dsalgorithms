@@ -6,30 +6,34 @@ public class MaxSumCircularSubArray {
         System.out.println("max sum : "+ maxSubarraySumCircular(nums));
     }
 
-    public static int maxSum(int[] nums) {
-        int maxSum = nums[0];
-        int currSum = nums[0];
+    static int maxSubArraySum(int[] nums) {
+        int max = nums[0], curr = nums[0];
         for (int i = 1; i < nums.length; i++) {
-            currSum = (nums[i] > nums[i]+currSum) ? nums[i] : currSum + nums[i];
-            maxSum = Math.max(currSum, maxSum);
+            curr = Math.max(curr+nums[i], nums[i]);
+            max = Math.max(curr, max);
         }
-        return maxSum;
+        return max;
     }
-
     public static int maxSubarraySumCircular(int[] nums) {
-        int maxSum = maxSum(nums);
+        // 1. calculate the max of the subarray
+        int maxSum = maxSubArraySum(nums);
 
+        // 2. If it smaller than 0 then it is the max possible for the circular subarray
         if (maxSum < 0) return maxSum;
 
+        // 3. Calcualte the prefix sum
         int totalSum = 0;
         for (int i = 0; i < nums.length; i++) {
             totalSum += nums[i];
             nums[i] = -nums[i];
         }
 
-        int minSum = maxSum(nums);
+        // 4. Calculate the minium sum
+        int minSum = maxSubArraySum(nums);
 
-        return Math.max(maxSum, totalSum + minSum);
+        // 5. Max will be either maxSum or the total sum subtracted with negative max sum
+        return Math.max(maxSum, totalSum+minSum);
+
     }
 
     public static int maxSubarraySumCircularNaive(int[] nums) {
