@@ -17,8 +17,6 @@ g
 7src/com/gfg/dsalgo/searching/Count1sInASortedArray.java,c/0/c02db7c6f652e617efa63ba247835f790da6af02
 N
 src/com/miscellaneous/Ruf.java,2/0/209d249d7825e89aa8976dca1b060b9ec14d0b03
-[
-+src/com/miscellaneous/RemoveDuplicates.java,3/3/3335eba90ab4fb8a47ea52a8657785cdc5b279cb
 V
 &src/com/sdesheet/striver/ThreeSum.java,1/c/1c77d543c49df7cb4f22f27a9f4a3a250b18edd4
 r
@@ -77,3 +75,11 @@ V
 &src/com/miscellaneous/CountPrimes.java,f/0/f063428edb3e1046b2b6b3f0be83865c9725d518
 U
 %src/com/miscellaneous/GeekNumber.java,e/0/e0600bbedf376cd8bae69d813bb6072625475b14
+T
+$src/com/miscellaneous/CountOnes.java,5/0/503aff974025367d850251ad2ef528b15d90f92a
+_
+/src/com/miscellaneous/CheckIfArrayIsSorted.java,d/a/da4162a52a294452d8a314012596559cb5a72882
+Y
+)src/com/miscellaneous/LeadersInArray.java,b/7/b757dab860a94cc0368683edbe9785de22142f58
+\
+,src/com/miscellaneous/MaxOccuredInteger.java,c/4/c49c1cec5c64fee62bd0b4859c717944e5a83d1a
