@@ -1,8 +1,0 @@
-
-M	java:S106
-"9Replace this use of System.out or System.err by a logger.(Ş¦¼A
-N	java:S106"9Replace this use of System.out or System.err by a logger.(³¦Ù¿
-S	java:S106"9Replace this use of System.out or System.err by a logger.(¤¬Šúÿÿÿÿ
-S	java:S106"9Replace this use of System.out or System.err by a logger.(É¡‰üÿÿÿÿ
-=
-java:S1659""Declare "high" on a separate line.(ƒºĞáüÿÿÿÿ

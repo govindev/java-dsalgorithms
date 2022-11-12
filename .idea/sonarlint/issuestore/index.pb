@@ -31,8 +31,6 @@ e
 .src/com/sdesheet/neetcode/ValidPalindrome.java,9/6/96c40cbb2872deb38c9a0e59a130c10e216343a3
 l
 <src/com/gfg/dsalgo/searching/FindElementInInfiniteArray.java,1/5/153eb2d3b342444e22edb228a5fd8529cf311ed5
-e
-5src/com/miscellaneous/FindElementInInfiniteArray.java,c/3/c374daf5331800ec89b44d1b385661361730a18a
 _
 /src/com/sdesheet/neetcode/MergeSortedArray.java,1/b/1bf9ef38e3a5ec2b84d714ae1cc06384ed8b7aed
 \
