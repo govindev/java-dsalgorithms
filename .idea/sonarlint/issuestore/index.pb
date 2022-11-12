@@ -77,3 +77,11 @@ Y
 )src/com/miscellaneous/LeadersInArray.java,b/7/b757dab860a94cc0368683edbe9785de22142f58
 \
 ,src/com/miscellaneous/MaxOccuredInteger.java,c/4/c49c1cec5c64fee62bd0b4859c717944e5a83d1a
+]
+-src/com/miscellaneous/MaxConsecutiveOnes.java,a/a/aaa630910ea1c82102c59abcc781c8c1040c5f14
+X
+(src/com/miscellaneous/ReverseString.java,3/8/38dbd324d54596e43a3df574e83a4edd1025050d
+X
+(src/com/miscellaneous/SecondLargest.java,2/4/246fc5fd1c6fb2e16aa8ceb3967cb154b6bcf7eb
+\
+,src/com/miscellaneous/TrappingRainWater.java,0/6/06931bc3664870bf210414b999da799adbc42dd5
