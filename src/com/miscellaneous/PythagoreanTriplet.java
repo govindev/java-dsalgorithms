@@ -17,16 +17,17 @@ public class PythagoreanTriplet {
     }
 
     boolean checkTriplet(int[] arr, int n) {
-        for (int i = 0; i < n; i++) {
-            arr[i] = arr[i]*arr[i];
-        }
         Arrays.sort(arr);
-        for (int i = n-1; i >=2; i--) {
-            int start = 0, end = i-1;
-            while (start < end) {
-                if (arr[i] == arr[start]+arr[end]) return true;
-                if (arr[start]+arr[end] > arr[i]) end--;
-                else start++;
+        for (int i = 0; i < n; i++) {
+            arr[i] *= arr[i];
+        }
+
+        for (int i = n-1; i >= 2; i--) {
+            int low = 0, high = i-1;
+            while (low < high) {
+                if (arr[low]+arr[high] == arr[i]) return true;
+                if (arr[low]+arr[high] > arr[i]) high--;
+                else low++;
             }
         }
         return false;
