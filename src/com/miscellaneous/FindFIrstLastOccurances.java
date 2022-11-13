@@ -1,5 +1,7 @@
 package com.miscellaneous;
 
+import java.util.ArrayList;
+
 public class FindFIrstLastOccurances {
     public ArrayList<Integer> firstAndLast(int arr[], int n, int x){
         ArrayList<Integer> list = new ArrayList<>();
