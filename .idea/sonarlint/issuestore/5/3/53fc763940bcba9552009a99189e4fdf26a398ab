@@ -1,10 +1,0 @@
-
-S	java:S106"9Replace this use of System.out or System.err by a logger.(œƒ“òûÿÿÿÿ
-E
-java:S1197"*Move the array designators [] to the type.(øöºúÿÿÿÿ
-T
-java:S1659"">Declare "j" and all following declarations on a separate line.(Ãë³‹
-@
-java:S1197N"*Move the array designators [] to the type.(ê«óÞ
-=
-java:S1905P"'Remove this unnecessary cast to "long".(Ê»¦…
