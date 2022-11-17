@@ -85,8 +85,6 @@ Z
 *src/com/miscellaneous/FindPeakElement.java,2/7/27d231418601e079ea8e22a7259f4f3c211d3611
 a
 1src/com/miscellaneous/CountPairsWithGivenSum.java,9/d/9d298b937e46311b942a3d1346f94ff130dabba7
-W
-'src/com/miscellaneous/ValidAnagram.java,b/6/b6d91ecb28ed66ca32782f1bd0485fc208aed08b
 :
 
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
@@ -126,3 +124,11 @@ X
 (src/com/miscellaneous/MinGroupFlips.java,1/4/14873ac60f2719460b02a0430023734aa2b65ebe
 Y
 )src/com/miscellaneous/MoveZerosToEnd.java,d/a/da05e138b0ef5fbfed6e0daa902bf6ecb88c842f
+c
+3src/com/challenges/gfg/arrays/RepeatingElement.java,b/d/bd69eebb4d9c5554f215c5da848124a51c95e379
+c
+3src/com/challenges/gfg/arrays/InversionOfArray.java,c/6/c62bcb207d2e3a53e4d37f08316308a78f374599
+a
+1src/com/miscellaneous/RepeatAndMissingNumber.java,2/c/2cae07d5a7c3b4c0a363e77bec5d609af706d360
+\
+,src/com/sdesheet/striver/RepeatedNumber.java,0/1/01535111737c0404b11d8d0bf95415e8859243cd

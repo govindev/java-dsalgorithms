@@ -6,39 +6,42 @@ public class ValidPalindrome {
         System.out.println("Is valid palindrome" + isPalindrome(s));
     }
     public static boolean isPalindrome(String s) {
-        int left = 0, right = s.length()-1;
+        int left = 0, right = s.length() - 1;
         while (left < right) {
             char lch = s.charAt(left);
-            if (!isValidChar(lch)) {
+            char rch = s.charAt(right);
+
+            if (!isAlphaNumeric(lch)) {
                 left++;
                 continue;
             }
-            char rch = s.charAt(right);
-            if (!isValidChar(rch)) {
+            if (!isAlphaNumeric(rch)) {
                 right--;
                 continue;
             }
-            if (transform(lch) == transform(rch)) {
-                left++; right--; continue;
-            }
-            return false;
+            lch = smallCase(lch);
+            rch = smallCase(rch);
+            if (lch != rch) return false;
+            left++;
+            right--;
         }
         return true;
     }
 
-    private static char transform(char ch) {
-        if ((ch >= '0' && ch <= '9')
-                || (ch >= 'a' && ch <= 'z'))
-            return ch;
-        return (char) (ch+('a'-'A'));
+    private static boolean isAlphaNumeric(char ch) {
+        if ((ch >= '0' && ch <= '9') ||
+                (ch >= 'A' && ch <= 'Z') ||
+                (ch >= 'a' && ch <= 'z'))
+            return true;
+
+        return false;
     }
 
-    private static boolean isValidChar(char ch) {
-        if ((ch >= 'a' && ch <= 'z')
-                || (ch >= 'A' && ch <= 'Z')
-                || (ch >= '0' && ch <= '9')) {
-            return true;
-        }
-        return false;
+    private static char smallCase(char ch) {
+        if ((ch >= '0' && ch <= '9') ||
+                (ch >= 'a' && ch <= 'z'))
+            return ch;
+
+        return ('A' > 'a') ? (char)(ch+('A'-'a')) : (char)(ch+('a'-'A'));
     }
 }
