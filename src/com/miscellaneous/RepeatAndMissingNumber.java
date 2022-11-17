@@ -13,7 +13,49 @@ public class RepeatAndMissingNumber {
     }
 
     private static ArrayList<Integer> repeatedNumber(final List<Integer> A) {
+        int xor1;
+        int set_bit_no;
+        int i, x = 0, y = 0;
 
+        xor1 = A.get(0);
+
+        for (i = 1; i < A.size(); i++) {
+            xor1 = xor1 ^ A.get(i);
+        }
+
+        for (i = 1; i <= A.size(); i++) {
+            xor1 = xor1 ^ i;
+        }
+
+        set_bit_no = xor1 & ~(xor1 - 1);
+
+        for (i = 0; i < A.size(); i++) {
+            if ((A.get(i) & set_bit_no) != 0)
+                x = x ^ A.get(i);
+            else
+                y = y ^ A.get(i);
+        }
+        for (i = 1; i <= A.size(); i++) {
+            if ((i & set_bit_no) != 0)
+                x = x ^ i;
+            else
+                y = y ^ i;
+        }
+
+        ArrayList<Integer> res = new ArrayList<>();
+        for (i = 0; i < A.size(); i++) {
+            if (A.get(i) == x) {
+                res.add(x);
+                res.add(y);
+                return res;
+            }
+            if (A.get(i) == y) {
+                res.add(y);
+                res.add(x);
+                return res;
+            }
+        }
+        return null;
     }
 
     private static ArrayList<Integer> repeatedNumberOptimalButOverflows(final List<Integer> A) {
