@@ -1,5 +1,7 @@
 package com.miscellaneous;
 
+import java.util.*;
+
 public class GroupAnagrams {
     public List<List<String>> groupAnagrams(String[] strs) {
         List<List<String>> res = new ArrayList<>();
