@@ -132,3 +132,7 @@ a
 1src/com/miscellaneous/RepeatAndMissingNumber.java,2/c/2cae07d5a7c3b4c0a363e77bec5d609af706d360
 \
 ,src/com/sdesheet/striver/RepeatedNumber.java,0/1/01535111737c0404b11d8d0bf95415e8859243cd
+[
++src/com/sdesheet/striver/GetInversions.java,5/3/53fc763940bcba9552009a99189e4fdf26a398ab
+X
+(src/com/miscellaneous/GetInversions.java,c/9/c902bf7e3228c0dbb98049a758de542c055b43bf
