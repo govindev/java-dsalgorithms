@@ -136,3 +136,13 @@ a
 +src/com/sdesheet/striver/GetInversions.java,5/3/53fc763940bcba9552009a99189e4fdf26a398ab
 X
 (src/com/miscellaneous/GetInversions.java,c/9/c902bf7e3228c0dbb98049a758de542c055b43bf
+W
+'src/com/miscellaneous/ValidAnagram.java,b/6/b6d91ecb28ed66ca32782f1bd0485fc208aed08b
+Z
+*src/com/miscellaneous/ValidPalindrome.java,5/8/5838308f83fd1032959a78f75c04fb5e361ee241
+Z
+*src/com/miscellaneous/NextPermutation.java,9/3/93a44ad7a02e074ab28efdc2a0340ff41d49f2fb
+X
+(src/com/miscellaneous/FindDuplicate.java,d/6/d61334b58c98b6a9b884644c3a82614cbab9cbfb
+Y
+)src/com/miscellaneous/MergeIntervals.java,2/f/2f469f1b250bafb93e7708154db5a674b8682c0e
