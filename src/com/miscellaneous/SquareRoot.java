@@ -6,40 +6,15 @@ public class SquareRoot {
         System.out.println(mySqrt(2147395600));
     }
 
-    public static int mySqrtNaive(int x) {
-        long res = 1;
-        while (res*res <= x) {
-            res++;
-        }
-        return (int)res-1;
-    }
-
-    public int mySqrt1(int x) {
-        long res = 1;
-        while (res*res <= x) {
-            res *= 2;
-        }
-        // between res/2 and res
-        long left = res/2, right = res;
-        if (left*left == x) return (int) left;
-        if (right*right == x) return (int) right;
-        while (left < right) {
-            long mid = (left+right)/2;
-            if (mid*mid == x) return (int)mid;
-            else if (mid*mid > x) right = mid-1;
-            else left = mid+1;
-        }
-        return (left*left <= x) ? (int) left : (int) left-1;
-    }
     public static int mySqrt(int x) {
-        if (x <= 1) return x;
-        int left = 1, right = x/2;
-        while (left <= right) {
-            int mid = (left+right) / 2;
+        if (x == 1) return 1;
+        int low = 1, high = x/2;
+        while (low <= high) {
+            int mid = (low+high)/2;
             if (mid == x/mid) return mid;
-            else if (mid > x/mid) right = mid-1;
-            else left = mid+1;
+            if (mid > x/mid) high = mid-1;
+            else low = mid+1;
         }
-        return left - 1;
+        return low-1;
     }
 }

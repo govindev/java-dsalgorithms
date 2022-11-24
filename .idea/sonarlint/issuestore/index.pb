@@ -43,8 +43,6 @@ U
 %src/com/miscellaneous/CountZeros.java,c/a/cabd484ac563a0f76bea09ac9cedca7716d4eed8
 \
 ,src/com/miscellaneous/NumberOfOccurance.java,7/c/7c8d4253f3add4fe071cfe8af1a24f22313e8351
-U
-%src/com/miscellaneous/SquareRoot.java,d/4/d4167b31179df242b4cc6fc470f6e888ce988d15
 e
 5src/com/miscellaneous/BestTimeToBuyAndSellStock1.java,f/e/fe6ea109c3cc74f70a9842e473b01b7795ef3130
 Q
