@@ -14,18 +14,12 @@ public class ThreeSum {
             while (left < right) {
                 if (nums[i]+nums[left]+nums[right] == 0) {
                     triplets.add(List.of(nums[i], nums[left], nums[right]));
-                    while (right > 0 && nums[right] == nums[right-1]) right--;
-                    right--;
-                    while (left < nums.length-1 && nums[left] == nums[left+1]) left++;
-                    left++;
-                }
-                else if (nums[i]+nums[left]+nums[right] > 0) {
-                    while (right > 0 && nums[right] == nums[right-1]) right--;
-                    right--;
-                }
-                else {
-                    while (left < nums.length-1 && nums[left] == nums[left+1]) left++;
-                    left++;
+                    while (left < nums.length-1 && nums[left] == nums[left+1]) left++; left++;
+                    while (right > 0 && nums[right] == nums[right-1]) right--; right--;
+                } else if (nums[i]+nums[left]+nums[right] > 0) {
+                    while (right > 0 && nums[right] == nums[right-1]) right--; right--;
+                } else {
+                    while (left < nums.length-1 && nums[left] == nums[left+1]) left++; left++;
                 }
             }
         }
