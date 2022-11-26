@@ -90,8 +90,6 @@ a
 +src/com/miscellaneous/RemoveDuplicates.java,3/3/3335eba90ab4fb8a47ea52a8657785cdc5b279cb
 e
 5src/com/miscellaneous/FindElementInInfiniteArray.java,c/3/c374daf5331800ec89b44d1b385661361730a18a
-b
-2src/com/miscellaneous/MedianOfTwoSortedArrays.java,0/4/04114541bc14c01926084f935baa711653f7b300
 ]
 -src/com/miscellaneous/PythagoreanTriplet.java,2/5/258b4707bca905dc3aaa50001187f44efdac8122
 _
@@ -152,3 +150,13 @@ V
 &src/com/miscellaneous/RotateImage.java,5/8/58019521240d4628506fd230f61e7bd16bd8489b
 [
 +src/com/miscellaneous/SubArrayWith0Sum.java,0/9/098e8a07f34d289e17097857cbb3e7da7feed282
+]
+-src/com/miscellaneous/ThreePartsEqualSum.java,0/9/09da6ae29fe8378c6af4f0ae70d95f4ba4351e20
+c
+3src/com/miscellaneous/MaxLengthEvenOddSubArray.java,5/0/50fd62c8d15235b686b122b6b8ec063ecd467b35
+Z
+*src/com/miscellaneous/DigitsOfANumber.java,3/b/3b3b25a442dd6a4e947331577b33888e57b6160a
+W
+'src/com/gfg/dsalgo/mathematics/LCM.java,8/c/8ccd39390369dad3cf25121bf3bc6b239b85ff7b
+N
+src/com/miscellaneous/LCM.java,c/e/ced08a0ede7ed0a10aa1d789545fcb4eb952a4a5
