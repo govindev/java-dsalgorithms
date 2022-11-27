@@ -118,8 +118,6 @@ c
 3src/com/challenges/gfg/arrays/RepeatingElement.java,b/d/bd69eebb4d9c5554f215c5da848124a51c95e379
 c
 3src/com/challenges/gfg/arrays/InversionOfArray.java,c/6/c62bcb207d2e3a53e4d37f08316308a78f374599
-a
-1src/com/miscellaneous/RepeatAndMissingNumber.java,2/c/2cae07d5a7c3b4c0a363e77bec5d609af706d360
 \
 ,src/com/sdesheet/striver/RepeatedNumber.java,0/1/01535111737c0404b11d8d0bf95415e8859243cd
 [
