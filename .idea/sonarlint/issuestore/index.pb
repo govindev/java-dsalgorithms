@@ -156,3 +156,19 @@ W
 'src/com/gfg/dsalgo/mathematics/LCM.java,8/c/8ccd39390369dad3cf25121bf3bc6b239b85ff7b
 N
 src/com/miscellaneous/LCM.java,c/e/ced08a0ede7ed0a10aa1d789545fcb4eb952a4a5
+Z
+*src/com/miscellaneous/PascalsTriangle.java,e/f/ef3f6215a30a5445fba78059c8b41fd840701d42
+P
+ src/com/miscellaneous/Power.java,4/a/4a4f361b59afa05542293866c617796159db818a
+U
+%src/com/miscellaneous/SquareRoot.java,d/4/d4167b31179df242b4cc6fc470f6e888ce988d15
+Y
+)src/com/miscellaneous/MergeIntervals.java,2/f/2f469f1b250bafb93e7708154db5a674b8682c0e
+[
++src/com/miscellaneous/MergeSortedArray.java,5/2/5268d7878539a8a32e47fc84b447b5dbc8703cbd
+\
+,src/com/miscellaneous/TripletSumInArray.java,2/5/25a4ecf92acb78c49e26a32e5fce8bea31815be2
+S
+#src/com/miscellaneous/ThreeSum.java,4/b/4b841c9beddcf32ae0f67076ed581aa8425cf9b5
+a
+1src/com/miscellaneous/ContainerWithMostWater.java,2/c/2c4b40e83337ae5950dd3733f9e8aa2dd7316ebc
