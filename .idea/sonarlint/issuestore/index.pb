@@ -116,14 +116,8 @@ Y
 )src/com/miscellaneous/MoveZerosToEnd.java,d/a/da05e138b0ef5fbfed6e0daa902bf6ecb88c842f
 c
 3src/com/challenges/gfg/arrays/RepeatingElement.java,b/d/bd69eebb4d9c5554f215c5da848124a51c95e379
-c
-3src/com/challenges/gfg/arrays/InversionOfArray.java,c/6/c62bcb207d2e3a53e4d37f08316308a78f374599
 \
 ,src/com/sdesheet/striver/RepeatedNumber.java,0/1/01535111737c0404b11d8d0bf95415e8859243cd
-[
-+src/com/sdesheet/striver/GetInversions.java,5/3/53fc763940bcba9552009a99189e4fdf26a398ab
-X
-(src/com/miscellaneous/GetInversions.java,c/9/c902bf7e3228c0dbb98049a758de542c055b43bf
 W
 'src/com/miscellaneous/ValidAnagram.java,b/6/b6d91ecb28ed66ca32782f1bd0485fc208aed08b
 Z
@@ -172,3 +166,11 @@ S
 #src/com/miscellaneous/ThreeSum.java,4/b/4b841c9beddcf32ae0f67076ed581aa8425cf9b5
 a
 1src/com/miscellaneous/ContainerWithMostWater.java,2/c/2c4b40e83337ae5950dd3733f9e8aa2dd7316ebc
+b
+2src/com/miscellaneous/MedianOfTwoSortedArrays.java,0/4/04114541bc14c01926084f935baa711653f7b300
+e
+5src/com/miscellaneous/BestTimeToBuyAndSellStock2.java,1/8/18ba852fe6c7b2e1a7e99f28419ebe0836a4ab78
+a
+1src/com/miscellaneous/RepeatAndMissingNumber.java,2/c/2cae07d5a7c3b4c0a363e77bec5d609af706d360
+]
+-src/com/sdesheet/striver/SearchA2DMatrix.java,f/1/f199530848eeb87a895e5257ff1145cb6a46e778

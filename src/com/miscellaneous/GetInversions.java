@@ -12,35 +12,35 @@ public class GetInversions {
         return mergeSortAndCount(arr, 0, n-1);
     }
 
-    static long mergeSortAndCount(long[] arr, int l, int r) {
-        long count = 0;
-        if (l < r) {
-            int m = (l+r)/2;
-            count += mergeSortAndCount(arr, l, m);
-            count += mergeSortAndCount(arr, m+1, r);
-            count += mergeAndCount(arr, l, m, r);
+    private static int mergeSortAndCount(long[] arr, int left, int right) {
+        int count = 0;
+        if (left < right) {
+            int mid = (left+right)/2;
+            count += mergeSortAndCount(arr, left, mid);
+            count += mergeSortAndCount(arr, mid+1, right);
+            count += mergeAndCount(arr, left, mid, right);
         }
         return count;
     }
 
-    static long mergeAndCount(long[] arr, int l, int m, int r) {
-        long[] left = Arrays.copyOfRange(arr, l, m+1);
-        long[] right = Arrays.copyOfRange(arr, m+1, r+1);
+    private static int mergeAndCount(long[] arr, int left, int mid, int right) {
+        long[] leftArr = Arrays.copyOfRange(arr, left, mid+1);
+        long[] rightArr = Arrays.copyOfRange(arr, mid+1, right+1);
 
-        int i = 0, j = 0, k = l;
-        long swaps = 0;
-        while (i < left.length && j < right.length) {
-            if (left[i] <= right[j])
-                arr[k++] = left[i++];
-            else {
-                arr[k++] = right[j++];
-                swaps += (m+1) - (l+i);
+        int i = 0, j = 0, k = left;
+        int swaps = 0;
+        while (i < leftArr.length && j < rightArr.length) {
+            if (leftArr[i] <= rightArr[j]) {
+                arr[k++] = leftArr[i++];
+            } else {
+                arr[k++] = rightArr[j++];
+                swaps += (mid+1) - (left+i);
             }
         }
-        while (i < left.length)
-            arr[k++] = left[i++];
-        while (j < right.length)
-            arr[k++] = right[j++];
+        while (i < leftArr.length)
+            arr[k++] = leftArr[i++];
+        while (j < rightArr.length)
+            arr[k++] = rightArr[j++];
 
         return swaps;
     }
