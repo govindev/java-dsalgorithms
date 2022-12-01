@@ -2,29 +2,39 @@ package com.miscellaneous;
 
 public class NextPermutation {
     public void nextPermutation(int[] nums) {
-        if (nums.length <= 1) return;
-        int i = nums.length - 2;
-        while (i >= 0 && nums[i] >= nums[i+1]) i--;
-
-        if (i >= 0) {
-            int j = nums.length - 1;
-            while (j >= 0 && nums[i] >= nums[j]) j--;
-            swap(nums, i, j);
+        // 1. Find the index1
+        int index1 = -1;
+        for (int i = nums.length-2; i >= 0; i--) {
+            if (nums[i] < nums[i+1]) {
+                index1 = i;
+                break;
+            }
         }
+        // 2. Find the index2
+        int index2 = -1;
+        if (index1 >= 0)
+            for (int i = nums.length-1; i >= 0; i--) {
+                if (nums[i] > nums[index1]) {
+                    index2 = i;
+                    break;
+                }
+            }
+        // 3. Swap index1 and index2 values
+        if (index1 >= 0 && index2 >= 0)
+            swap(nums, index1, index2);
 
+        // 4. Reverse all the elements after index1
+        int left = index1+1, right = nums.length - 1;
+        while (left < right) {
+            swap(nums, left, right);
+            left++; right--;
 
-        reverse(nums, i+1, nums.length-1);
+        }
     }
 
-    private void swap(int[] nums, int i1, int i2) {
-        int temp = nums[i1];
-        nums[i1] = nums[i2];
-        nums[i2] = temp;
-    }
-
-    private void reverse(int[] nums, int start, int end) {
-        while (start < end) {
-            swap(nums, start++, end--);
-        }
+    private void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
     }
 }

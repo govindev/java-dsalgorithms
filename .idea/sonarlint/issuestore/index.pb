@@ -122,8 +122,6 @@ W
 'src/com/miscellaneous/ValidAnagram.java,b/6/b6d91ecb28ed66ca32782f1bd0485fc208aed08b
 Z
 *src/com/miscellaneous/ValidPalindrome.java,5/8/5838308f83fd1032959a78f75c04fb5e361ee241
-Z
-*src/com/miscellaneous/NextPermutation.java,9/3/93a44ad7a02e074ab28efdc2a0340ff41d49f2fb
 X
 (src/com/miscellaneous/FindDuplicate.java,d/6/d61334b58c98b6a9b884644c3a82614cbab9cbfb
 X
@@ -174,3 +172,5 @@ a
 1src/com/miscellaneous/RepeatAndMissingNumber.java,2/c/2cae07d5a7c3b4c0a363e77bec5d609af706d360
 ]
 -src/com/sdesheet/striver/SearchA2DMatrix.java,f/1/f199530848eeb87a895e5257ff1145cb6a46e778
+f
+6src/com/sdesheet/striver/LengthOfLongestSubstring.java,b/b/bb8029975a9fc0dae24f817e02c0b292e25358a7
