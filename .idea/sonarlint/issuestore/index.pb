@@ -178,3 +178,17 @@ d
 4src/com/sdesheet/blind/LengthOfLongestSubstring.java,8/f/8ff6df2619f7c3d043db695058d4f0372d74db2f
 g
 7src/com/sdesheet/neetcode/LengthOfLongestSubstring.java,3/8/38483e2e20023b571786cfbcad6f0f910cc2af4c
+p
+@src/com/sdesheet/blind/LongestRepeatingCharacterReplacement.java,4/7/47ce2f67a25c4318f368e4a23d20aceeb7d98ae6
+c
+3src/com/challenges/gfg/arrays/InversionOfArray.java,c/6/c62bcb207d2e3a53e4d37f08316308a78f374599
+[
++src/com/sdesheet/striver/GetInversions.java,5/3/53fc763940bcba9552009a99189e4fdf26a398ab
+X
+(src/com/miscellaneous/GetInversions.java,c/9/c902bf7e3228c0dbb98049a758de542c055b43bf
+b
+2src/com/sdesheet/striver/MajorityElementsNBy3.java,3/7/37eed8fac4fd1465312c5ef95e1d40d5685ee3f8
+Z
+*src/com/miscellaneous/NextPermutation.java,9/3/93a44ad7a02e074ab28efdc2a0340ff41d49f2fb
+s
+Csrc/com/sdesheet/striver/SearchInRowWiseColumnWiseSortedMatrix.java,4/4/443f0ac102c0399ccb9321f22949d4cb7c137bc9
