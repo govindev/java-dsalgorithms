@@ -4,20 +4,22 @@ import java.util.*;
 
 public class GroupAnagrams {
     public List<List<String>> groupAnagrams(String[] strs) {
-        List<List<String>> res = new ArrayList<>();
         Map<String, List<String>> anagrams = new HashMap<>();
         for (int i = 0; i < strs.length; i++) {
             char[] arr = strs[i].toCharArray();
             Arrays.sort(arr);
-            String sorted = new String(arr);
-            if (!anagrams.containsKey(sorted)) {
-                anagrams.put(sorted, new ArrayList<String>());
+            String sortedStr = new String(arr);
+
+            if (!anagrams.containsKey(sortedStr)) {
+                anagrams.put(sortedStr, new ArrayList<String>());
             }
-            anagrams.get(sorted).add(strs[i]);
+            anagrams.get(sortedStr).add(strs[i]);
         }
+        List<List<String>> res = new ArrayList<>();
         res.addAll(anagrams.values());
         return res;
     }
+
     public List<List<String>> groupAnagramsBruteForce(String[] strs) {
         List<List<String>> res = new ArrayList<>();
         Set<Integer> set = new HashSet<>();
