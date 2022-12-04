@@ -126,8 +126,6 @@ X
 (src/com/miscellaneous/FindDuplicate.java,d/6/d61334b58c98b6a9b884644c3a82614cbab9cbfb
 _
 /src/com/miscellaneous/TopKFrequentElements.java,a/0/a0f7ceb01414786e5a38bff2a78e41d870bad1e8
-V
-&src/com/miscellaneous/ValidSudoku.java,b/b/bb0c4943da5e613e660a51d818bef10d61a5fcb3
 `
 0src/com/sdesheet/neetcode/ProductExceptSelf.java,e/f/eff66f37744d7b234bae5272864e72c73cc10b26
 U
