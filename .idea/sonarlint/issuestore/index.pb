@@ -196,3 +196,5 @@ U
 %src/com/sdesheet/striver/FourSum.java,b/0/b00d6eb853b2e22734e84c9727da3c3877354e5d
 ^
 .src/com/sdesheet/blind/LongestConsecutive.java,0/6/0669f101848ff460344303eee1ff99a2e9a4f646
+`
+0src/com/sdesheet/striver/LongestConsecutive.java,9/f/9f3139f7a9fde42c7c91138941693e10082859ea
