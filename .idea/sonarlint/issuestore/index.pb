@@ -128,8 +128,6 @@ _
 /src/com/miscellaneous/TopKFrequentElements.java,a/0/a0f7ceb01414786e5a38bff2a78e41d870bad1e8
 `
 0src/com/sdesheet/neetcode/ProductExceptSelf.java,e/f/eff66f37744d7b234bae5272864e72c73cc10b26
-V
-&src/com/miscellaneous/RotateImage.java,5/8/58019521240d4628506fd230f61e7bd16bd8489b
 [
 +src/com/miscellaneous/SubArrayWith0Sum.java,0/9/098e8a07f34d289e17097857cbb3e7da7feed282
 ]
