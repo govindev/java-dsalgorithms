@@ -5,7 +5,31 @@ public class SortColors {
         int[] nums = new int[] {2,0,2,1,1,0};
         sortColors(nums);
     }
+
     public static void sortColors(int[] nums) {
+        int zeroCount = 0, oneCount = 0, twoCount = 0;
+        for (int num : nums) {
+            if (num == 0) zeroCount++;
+            else if (num == 1) oneCount++;
+            else twoCount++;
+        }
+        for (int i = 0; i < nums.length; i++) {
+            if (zeroCount > 0) {
+                nums[i] = 0;
+                zeroCount--;
+            } else if (oneCount > 0) {
+                nums[i] = 1;
+                oneCount--;
+            } else {
+                nums[i] = 2;
+                twoCount--;
+            }
+        }
+    }
+
+
+
+    public static void sortColorsBefore(int[] nums) {
         int len = nums.length, left = 0, mid = 0, right = len-1, red = 0, white = 1, blue = 2;
         print(nums, left, mid, right);
         while (mid <= right) {
