@@ -1,5 +1,8 @@
 package com.miscellaneous;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class SubarrayWithZeroSum {
     //Function to check whether there is a subarray present with 0-sum or not.
     static boolean findsum(int arr[],int n)
