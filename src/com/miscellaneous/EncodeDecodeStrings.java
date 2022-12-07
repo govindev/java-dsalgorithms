@@ -7,10 +7,11 @@ public class EncodeDecodeStrings {
 
     public static void main(String[] args) {
         List<String> strs = List.of("lint", "code", "love", "you");
-        String encoded = encode(strs);
+        String encoded = encodeBetter(strs);
         System.out.println("encoded string : " + encoded);
-        List<String> decodedStrs = decode(encoded);
+        List<String> decodedStrs = decodeBetter(encoded);
         System.out.println("size: " + decodedStrs.size());
+        System.out.println("strings: " + decodedStrs);
     }
 
     /*
@@ -42,5 +43,46 @@ public class EncodeDecodeStrings {
             ind = next+1+len;
         }
         return list;
+    }
+
+
+    /*
+     * @param strs: a list of strings
+     * @return: encodes a list of strings to a single string.
+     */
+    public static String encodeBetter(List<String> strs) {
+        StringBuilder sb = new StringBuilder();
+        for (String str : strs) {
+            sb.append(str.length());
+            sb.append(':');
+        }
+        sb.append(';');
+        for (String str : strs) {
+            sb.append(str);
+        }
+        return sb.toString();
+    }
+
+    /*
+     * @param str: A string
+     * @return: dcodes a single string to a list of strings
+     */
+    public static List<String> decodeBetter(String str) {
+        List<String> res = new ArrayList<>();
+
+        int sepOcc = str.indexOf(';');
+        String countStr = str.substring(0, sepOcc-1);
+        String[] counts = countStr.split(":");
+
+        String concStr = str.substring(sepOcc+1, str.length());
+
+        int start = 0;
+        for (String currCnt : counts) {
+            int count = Integer.parseInt(currCnt);
+            String currStr = concStr.substring(start, start+count);
+            res.add(currStr);
+            start += count;
+        }
+        return res;
     }
 }
