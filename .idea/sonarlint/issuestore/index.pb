@@ -112,8 +112,6 @@ _
 /src/com/miscellaneous/SearchInRotatedArray.java,7/c/7cda40f0bee7975c827a514935415ca2b2f53c68
 X
 (src/com/miscellaneous/MinGroupFlips.java,1/4/14873ac60f2719460b02a0430023734aa2b65ebe
-Y
-)src/com/miscellaneous/MoveZerosToEnd.java,d/a/da05e138b0ef5fbfed6e0daa902bf6ecb88c842f
 c
 3src/com/challenges/gfg/arrays/RepeatingElement.java,b/d/bd69eebb4d9c5554f215c5da848124a51c95e379
 \

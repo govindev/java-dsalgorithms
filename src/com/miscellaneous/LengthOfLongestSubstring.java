@@ -1,5 +1,8 @@
 package com.miscellaneous;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class LengthOfLongestSubstring {
     public int lengthOfLongestSubstring(String s) {
         Map<Character, Integer> lastOccurances = new HashMap<>();
