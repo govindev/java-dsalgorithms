@@ -252,8 +252,6 @@ c
 3src/com/sdesheet/striver/MiddleOfTheLinkedList.java,e/b/ebed8e1829fbd1eab6dd005b9d8c9a0dd0de21b9
 g
 7src/com/sdesheet/striver/MergeTwoSortedLinkedLists.java,c/3/c334e5c9b84d4b6107727eacdc77e2ffc3a38a64
-_
-/src/com/sdesheet/striver/ReverseLinkedList.java,9/3/9354042390b79bb80aae7ea1d1c1d6c341a09052
 h
 8src/com/sdesheet/neetcode/MergeTwoSortedLinkedLists.java,4/e/4eb6754c19e208b57e8799131b7b8b3082bae0a1
 e
@@ -272,3 +270,17 @@ Q
 !src/com/miscellaneous/TwoSum.java,9/6/96f543c0655790c620436cfa76ea35741e7c9a4f
 Z
 *src/com/sdesheet/striver/ReversePairs.java,2/b/2b3fdae05efdc1aaec28d2f662fa5a7df37910f0
+^
+.src/com/sdesheet/striver/RemoveNthFromEnd.java,0/c/0c2b2c5334bae28036f8c1bad4eae7446e62299d
+_
+/src/com/sdesheet/neetcode/RemoveNthFromEnd.java,4/3/433ad72d619d625728325a00ce9271ef4a8a9b04
+d
+4src/com/sdesheet/striver/DeleteNodeInLinkedList.java,4/8/48e5f30a45a065742f2a8fd401710f145a593571
+[
++src/com/sdesheet/striver/AddTwoNumbers.java,4/3/434008ecba66779800dfdcefed5cba5337d43b31
+\
+,src/com/sdesheet/neetcode/AddTwoNumbers.java,c/0/c021bee9e1a1888546e8015d3958ef7ac9804931
+\
+,src/com/sdesheet/blind/RemoveNthFromEnd.java,f/c/fc22c47aa859b18fd51bd43fb7f84596b73c26d2
+b
+2src/com/sdesheet/striver/FindIntersectionNode.java,7/4/744ddc30520a98100de2f773417925c7c71a404c
