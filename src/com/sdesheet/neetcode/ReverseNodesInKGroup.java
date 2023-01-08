@@ -1,4 +1,4 @@
-package com.sdesheet.striver;
+package com.sdesheet.neetcode;
 
 public class ReverseNodesInKGroup {
     static ListNode reverse(ListNode start, ListNode end) {
@@ -34,7 +34,7 @@ public class ReverseNodesInKGroup {
         if (head == null || head.next == null || k == 1) return head;
         ListNode dummy = new ListNode(-1);
         dummy.next = head;
-        ListNode  end = head, beforeStart = dummy;
+        ListNode end = head, beforeStart = dummy;
         int i = 0;
         while (end != null) {
             i++;
