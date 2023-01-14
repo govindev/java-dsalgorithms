@@ -170,8 +170,6 @@ c
 +src/com/sdesheet/striver/GetInversions.java,5/3/53fc763940bcba9552009a99189e4fdf26a398ab
 X
 (src/com/miscellaneous/GetInversions.java,c/9/c902bf7e3228c0dbb98049a758de542c055b43bf
-b
-2src/com/sdesheet/striver/MajorityElementsNBy3.java,3/7/37eed8fac4fd1465312c5ef95e1d40d5685ee3f8
 Z
 *src/com/miscellaneous/NextPermutation.java,9/3/93a44ad7a02e074ab28efdc2a0340ff41d49f2fb
 s
