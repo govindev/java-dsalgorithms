@@ -2,21 +2,21 @@ package com.miscellaneous;
 
 public class TrappingRainWater {
     public int trap(int[] height) {
-        int[] lmax = new int[height.length];
-        int[] rmax = new int[height.length];
-        lmax[0] = 0;
-        for (int i = 1; i < height.length; i++) {
-            lmax[i] = Math.max(height[i-1], lmax[i-1]);
+        int n = height.length;
+        int[] lMax = new int[n], rMax = new int[n];
+        lMax[0] = 0;
+        for (int i = 1; i < n; i++) {
+            lMax[i] = Math.max(lMax[i-1], height[i-1]);
         }
-        rmax[height.length-1] = 0;
-        for (int i = height.length-2; i >= 0; i--) {
-            rmax[i] = Math.max(height[i+1], rmax[i+1]);
+        rMax[n-1] = 0;
+        for (int i = n-2; i >= 0; i--) {
+            rMax[i] = Math.max(rMax[i+1], height[i+1]);
         }
-        int sum = 0;
-        for (int i = 0; i < height.length; i++) {
-            int water = Math.min(lmax[i], rmax[i]) - height[i];
-            sum = Math.max(sum+water, sum);
+
+        int maxWater = 0;
+        for (int i = 0; i < n; i++) {
+            maxWater += Math.max(Math.min(lMax[i], rMax[i]) - height[i], 0);
         }
-        return sum;
+        return maxWater;
     }
 }
