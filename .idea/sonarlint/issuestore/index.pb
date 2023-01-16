@@ -29,8 +29,6 @@ l
 <src/com/gfg/dsalgo/searching/FindElementInInfiniteArray.java,1/5/153eb2d3b342444e22edb228a5fd8529cf311ed5
 _
 /src/com/sdesheet/neetcode/MergeSortedArray.java,1/b/1bf9ef38e3a5ec2b84d714ae1cc06384ed8b7aed
-\
-,src/com/gfg/dsalgo/searching/TripletSum.java,d/4/d4d75b778c7e77a8bc6c7fb0a13f418a34e93df7
 T
 $src/com/miscellaneous/Factorial.java,d/4/d41176440436f0ce34c602d8f7e7c0304292eb68
 W
@@ -146,8 +144,6 @@ Y
 )src/com/miscellaneous/MergeIntervals.java,2/f/2f469f1b250bafb93e7708154db5a674b8682c0e
 [
 +src/com/miscellaneous/MergeSortedArray.java,5/2/5268d7878539a8a32e47fc84b447b5dbc8703cbd
-\
-,src/com/miscellaneous/TripletSumInArray.java,2/5/25a4ecf92acb78c49e26a32e5fce8bea31815be2
 S
 #src/com/miscellaneous/ThreeSum.java,4/b/4b841c9beddcf32ae0f67076ed581aa8425cf9b5
 a
