@@ -176,8 +176,6 @@ U
 -src/com/sdesheet/neetcode/MergeIntervals.java,7/8/7897c9151f7a2ca1e458f92bdb7ff156c7056f45
 Z
 *src/com/sdesheet/blind/MergeIntervals.java,e/4/e4158c6801b225a1f1544ec823e014a2a312ac5d
-p
-@src/com/sdesheet/striver/CountNumberOfSubArraysWithGivenXOR.java,d/e/de0289de0728cfaa4c68d381357d8c6788a8dcc4
 b
 2src/com/sdesheet/neetcode/PermutationInString.java,8/1/812e7815c3dfdcad1a77185f40db6c0a20b8d90b
 N
