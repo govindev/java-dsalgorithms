@@ -1,19 +1,16 @@
 package com.miscellaneous;
 
 public class BestTimeToBuyAndSellStock1 {
-    public int maxProfit1(int[] prices) {
+    public int maxProfit(int[] prices) {
         int boughtAt = prices[0], maxProfit = 0;
         for (int i = 1; i < prices.length; i++) {
-            if (prices[i] < boughtAt) {
-                boughtAt = prices[i];
-            } else {
-                maxProfit = Math.max(maxProfit, prices[i] - boughtAt);
-            }
+            maxProfit = Math.max(maxProfit, prices[i] - boughtAt);
+            boughtAt = Math.min(boughtAt, prices[i]);
         }
         return maxProfit;
     }
 
-    public int maxProfit(int[] prices) {
+    public int maxProfit1(int[] prices) {
         if (prices.length <= 1) return 0;
         int maxProfit = 0;
         int left = 0, right = 1;
