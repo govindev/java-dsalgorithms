@@ -1,4 +1,4 @@
-package com.sdesheet.neetcode;
+package com.sdesheet.blind;
 
 import java.util.HashMap;
 import java.util.Map;

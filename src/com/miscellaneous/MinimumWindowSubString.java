@@ -1,7 +1,6 @@
-package com.sdesheet.neetcode;
+package com.miscellaneous;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class MinimumWindowSubString {
     public static void main(String[] args) {

@@ -182,8 +182,6 @@ N
 src/com/miscellaneous/GCD.java,b/7/b7dcf159e7dabff394623f9fbaf7412a55cc3aab
 g
 7src/com/gfg/dsalgo/arrays/MaxLengthEvenOddSubArray.java,9/c/9c8327237f342686bbf51f16534f4136f35f1703
-e
-5src/com/sdesheet/neetcode/MinimumWindowSubString.java,3/f/3f11e822d8ebbefbcbb552d8d1e0ac26afaf83e2
 i
 9src/com/sdesheet/neetcode/SearchInRotatedSortedArray.java,b/b/bb24c197969d74388a1a9bc1bb4be84a6de71110
 f
