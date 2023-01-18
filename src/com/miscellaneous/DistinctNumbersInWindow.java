@@ -13,6 +13,30 @@ public class DistinctNumbersInWindow {
     }
 
     public static ArrayList<Integer> dNums(List<Integer> A, int B) {
+        Map<Integer, Integer> counts = new HashMap<>();
+        ArrayList<Integer> windowCounts = new ArrayList<>();
+        int start = 0, end = 0;
+        while (start <= end && end < A.size()) {
+            int windowLength = (end-start) + 1;
+            if (windowLength <= B) {
+                int endNum = A.get(end);
+                counts.put(endNum, counts.getOrDefault(endNum,0)+1);
+                end++;
+
+                if (windowLength == B) windowCounts.add(counts.size());
+            } else if (windowLength > B) {
+                // Remove the left
+                int startNum = A.get(start);
+                int startCount = counts.getOrDefault(startNum, 0);
+                if (startCount == 1) counts.remove(startNum);
+                else counts.put(startNum, startCount-1);
+                start++;
+            }
+        }
+        return windowCounts;
+    }
+
+    public static ArrayList<Integer> dNums1(List<Integer> A, int B) {
         Map<Integer, Integer> map = new HashMap<>();
         int left = 0, right = 0;
         for (right = 0; right < B; right++) {
