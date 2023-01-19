@@ -27,8 +27,6 @@ e
 .src/com/sdesheet/neetcode/ValidPalindrome.java,9/6/96c40cbb2872deb38c9a0e59a130c10e216343a3
 l
 <src/com/gfg/dsalgo/searching/FindElementInInfiniteArray.java,1/5/153eb2d3b342444e22edb228a5fd8529cf311ed5
-_
-/src/com/sdesheet/neetcode/MergeSortedArray.java,1/b/1bf9ef38e3a5ec2b84d714ae1cc06384ed8b7aed
 T
 $src/com/miscellaneous/Factorial.java,d/4/d41176440436f0ce34c602d8f7e7c0304292eb68
 W
@@ -128,8 +126,6 @@ P
  src/com/miscellaneous/Power.java,4/a/4a4f361b59afa05542293866c617796159db818a
 Y
 )src/com/miscellaneous/MergeIntervals.java,2/f/2f469f1b250bafb93e7708154db5a674b8682c0e
-[
-+src/com/miscellaneous/MergeSortedArray.java,5/2/5268d7878539a8a32e47fc84b447b5dbc8703cbd
 b
 2src/com/miscellaneous/MedianOfTwoSortedArrays.java,0/4/04114541bc14c01926084f935baa711653f7b300
 e
