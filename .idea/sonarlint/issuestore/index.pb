@@ -130,8 +130,6 @@ Z
 *src/com/miscellaneous/PascalsTriangle.java,e/f/ef3f6215a30a5445fba78059c8b41fd840701d42
 P
  src/com/miscellaneous/Power.java,4/a/4a4f361b59afa05542293866c617796159db818a
-U
-%src/com/miscellaneous/SquareRoot.java,d/4/d4167b31179df242b4cc6fc470f6e888ce988d15
 Y
 )src/com/miscellaneous/MergeIntervals.java,2/f/2f469f1b250bafb93e7708154db5a674b8682c0e
 [
