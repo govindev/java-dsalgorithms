@@ -82,8 +82,6 @@ _
 .src/com/miscellaneous/FindMaxSumKElements.java,8/9/89305cfb6abb3ad76cb25627c17daa8b5b322aeb
 Z
 *src/com/miscellaneous/SubarrayWithSum.java,4/1/415571bb4a86c1e9b3c0ffacea2b906d74aeef7a
-b
-2src/com/miscellaneous/FindFIrstLastOccurances.java,0/5/05ca0262cabbb895e8a5e6597a58b8b1ba9c6123
 V
 &src/com/miscellaneous/RotateArray.java,6/7/6710ba7923d4a63ecc0a2f2a0796c3eeb5ed6c6f
 j
