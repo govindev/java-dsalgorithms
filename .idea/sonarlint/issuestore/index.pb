@@ -178,8 +178,6 @@ Z
 *src/com/sdesheet/blind/MergeIntervals.java,e/4/e4158c6801b225a1f1544ec823e014a2a312ac5d
 b
 2src/com/sdesheet/neetcode/PermutationInString.java,8/1/812e7815c3dfdcad1a77185f40db6c0a20b8d90b
-N
-src/com/miscellaneous/GCD.java,b/7/b7dcf159e7dabff394623f9fbaf7412a55cc3aab
 g
 7src/com/gfg/dsalgo/arrays/MaxLengthEvenOddSubArray.java,9/c/9c8327237f342686bbf51f16534f4136f35f1703
 i
