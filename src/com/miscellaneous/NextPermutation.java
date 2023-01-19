@@ -10,8 +10,10 @@ public class NextPermutation {
                 break;
             }
         }
+
         // 2. Find the index2
         int index2 = -1;
+        // check if the index1 is valid
         if (index1 >= 0)
             for (int i = nums.length-1; i >= 0; i--) {
                 if (nums[i] > nums[index1]) {
@@ -19,16 +21,17 @@ public class NextPermutation {
                     break;
                 }
             }
-        // 3. Swap index1 and index2 values
-        if (index1 >= 0 && index2 >= 0)
-            swap(nums, index1, index2);
 
-        // 4. Reverse all the elements after index1
-        int left = index1+1, right = nums.length - 1;
-        while (left < right) {
+        // 3. Swap the index1 and index2 values
+        if (index1 >= 0 && index2 >= 0) {
+            swap(nums, index1, index2);
+        }
+
+        // 4. Reverse all the numbers after the index1
+        int left = index1 + 1, right = nums.length - 1;
+        while (left <= right) {
             swap(nums, left, right);
             left++; right--;
-
         }
     }
 
