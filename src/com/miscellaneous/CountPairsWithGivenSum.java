@@ -31,15 +31,14 @@ public class CountPairsWithGivenSum {
     }
 
     static int getPairsCount(int[] arr, int n, int k) {
-        Map<Integer, Integer> map = new HashMap<>();
-        int total = 0;
-        for (int curr : arr) {
-            if (map.containsKey(k-curr)) {
-                total += map.getOrDefault(k-curr, 0);
+        Map<Integer, Integer> counts = new HashMap<>();
+        int count = 0;
+        for (int num : arr) {
+            if (counts.containsKey(k-num)) {
+                count += counts.get(k-num);
             }
-            int count = map.getOrDefault(curr, 0);
-            map.put(curr, ++count);
+            counts.put(num, counts.getOrDefault(num, 0)+1);
         }
-        return total;
+        return count;
     }
 }
