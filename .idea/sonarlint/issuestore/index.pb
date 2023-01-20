@@ -98,8 +98,6 @@ c
 ,src/com/sdesheet/striver/RepeatedNumber.java,0/1/01535111737c0404b11d8d0bf95415e8859243cd
 W
 'src/com/miscellaneous/ValidAnagram.java,b/6/b6d91ecb28ed66ca32782f1bd0485fc208aed08b
-Z
-*src/com/miscellaneous/ValidPalindrome.java,5/8/5838308f83fd1032959a78f75c04fb5e361ee241
 X
 (src/com/miscellaneous/FindDuplicate.java,d/6/d61334b58c98b6a9b884644c3a82614cbab9cbfb
 _
