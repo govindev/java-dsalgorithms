@@ -62,8 +62,6 @@ R
 :
 
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
-[
-+src/com/miscellaneous/PalindromeNumber.java,b/9/b922bcf2563c705f34d43153362f1642da671904
 a
 1src/com/miscellaneous/MaxSumCircularSubArray.java,f/6/f6eb8dc09350cea2b12167f7f11716844b6c701c
 [

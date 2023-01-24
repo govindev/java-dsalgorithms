@@ -6,8 +6,8 @@ public class PalindromeNumber {
         int rev = 0, temp = x;
         while (temp > 0) {
             rev *= 10;
-            rev += temp%10;
-            temp /= 10;
+            rev += temp % 10;
+            temp = temp / 10;
         }
         return (x == rev);
     }
