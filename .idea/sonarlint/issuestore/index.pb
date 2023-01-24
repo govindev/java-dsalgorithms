@@ -120,8 +120,6 @@ Z
 *src/com/miscellaneous/PascalsTriangle.java,e/f/ef3f6215a30a5445fba78059c8b41fd840701d42
 P
  src/com/miscellaneous/Power.java,4/a/4a4f361b59afa05542293866c617796159db818a
-Y
-)src/com/miscellaneous/MergeIntervals.java,2/f/2f469f1b250bafb93e7708154db5a674b8682c0e
 b
 2src/com/miscellaneous/MedianOfTwoSortedArrays.java,0/4/04114541bc14c01926084f935baa711653f7b300
 e
