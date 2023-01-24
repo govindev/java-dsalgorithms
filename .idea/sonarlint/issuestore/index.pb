@@ -53,8 +53,6 @@ X
 (src/com/miscellaneous/ReverseString.java,3/8/38dbd324d54596e43a3df574e83a4edd1025050d
 X
 (src/com/miscellaneous/SecondLargest.java,2/4/246fc5fd1c6fb2e16aa8ceb3967cb154b6bcf7eb
-R
-"src/com/miscellaneous/TwoSum2.java,e/c/ecc303e5f76a26a231ceb355b586e87aa077cddd
 :
 
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
