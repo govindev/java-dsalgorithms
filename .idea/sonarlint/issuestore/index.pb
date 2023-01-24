@@ -222,8 +222,6 @@ d
 +src/com/sdesheet/striver/AddTwoNumbers.java,4/3/434008ecba66779800dfdcefed5cba5337d43b31
 \
 ,src/com/sdesheet/neetcode/AddTwoNumbers.java,c/0/c021bee9e1a1888546e8015d3958ef7ac9804931
-\
-,src/com/sdesheet/blind/RemoveNthFromEnd.java,f/c/fc22c47aa859b18fd51bd43fb7f84596b73c26d2
 b
 2src/com/sdesheet/striver/FindIntersectionNode.java,7/4/744ddc30520a98100de2f773417925c7c71a404c
 _
