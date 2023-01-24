@@ -20,17 +20,21 @@ public class FindElementInInfiniteArray {
     }
 
     private static int findElementPositionInArray(int[] array, int element) {
-        int x = 1;
-        while (array[x] < element) {
-            x *= 2;
+        int left = 0, right = 1;
+        while (array[right] < element) {
+            left = right;
+            right *= 2;
         }
-        if (array[x] == element) return x;
-        int left = x/2, right = x;
-        while (left < right) {
+        if (array[right] == element) return right;
+        while (left <= right) {
             int mid = (left+right)/2;
-            if (array[mid] == element) return mid+1;
-            if (array[mid] < element) left = mid+1;
-            else right = mid-1;
+            if (array[mid] == element) {
+                return mid;
+            } else if (array[mid] > element) {
+                right = mid-1;
+            } else {
+                left = mid+1;
+            }
         }
         return -1;
     }

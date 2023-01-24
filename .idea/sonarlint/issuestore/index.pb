@@ -25,8 +25,6 @@ e
 +src/com/sdesheet/blind/ValidPalindrome.java,0/0/00bcf58ab3862ef27cf7954bb403991dfaf3c658
 ^
 .src/com/sdesheet/neetcode/ValidPalindrome.java,9/6/96c40cbb2872deb38c9a0e59a130c10e216343a3
-l
-<src/com/gfg/dsalgo/searching/FindElementInInfiniteArray.java,1/5/153eb2d3b342444e22edb228a5fd8529cf311ed5
 T
 $src/com/miscellaneous/Factorial.java,d/4/d41176440436f0ce34c602d8f7e7c0304292eb68
 W
@@ -66,8 +64,6 @@ a
 1src/com/miscellaneous/MaxSumCircularSubArray.java,f/6/f6eb8dc09350cea2b12167f7f11716844b6c701c
 [
 +src/com/miscellaneous/RemoveDuplicates.java,3/3/3335eba90ab4fb8a47ea52a8657785cdc5b279cb
-e
-5src/com/miscellaneous/FindElementInInfiniteArray.java,c/3/c374daf5331800ec89b44d1b385661361730a18a
 ]
 -src/com/miscellaneous/PythagoreanTriplet.java,2/5/258b4707bca905dc3aaa50001187f44efdac8122
 _
