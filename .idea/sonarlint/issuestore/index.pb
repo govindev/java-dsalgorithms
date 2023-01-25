@@ -120,8 +120,6 @@ c
 3src/com/challenges/gfg/arrays/InversionOfArray.java,c/6/c62bcb207d2e3a53e4d37f08316308a78f374599
 [
 +src/com/sdesheet/striver/GetInversions.java,5/3/53fc763940bcba9552009a99189e4fdf26a398ab
-X
-(src/com/miscellaneous/GetInversions.java,c/9/c902bf7e3228c0dbb98049a758de542c055b43bf
 s
 Csrc/com/sdesheet/striver/SearchInRowWiseColumnWiseSortedMatrix.java,4/4/443f0ac102c0399ccb9321f22949d4cb7c137bc9
 ^

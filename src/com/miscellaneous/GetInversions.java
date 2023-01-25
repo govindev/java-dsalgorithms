@@ -9,39 +9,42 @@ public class GetInversions {
         System.out.println(getInversions(arr, arr.length));
     }
     public static long getInversions(long arr[], int n) {
-        return mergeSortAndCount(arr, 0, n-1);
+        // Write your code here.
+        return mergeSort(arr, 0, n-1);
     }
 
-    private static int mergeSortAndCount(long[] arr, int left, int right) {
-        int count = 0;
-        if (left < right) {
-            int mid = (left+right)/2;
-            count += mergeSortAndCount(arr, left, mid);
-            count += mergeSortAndCount(arr, mid+1, right);
-            count += mergeAndCount(arr, left, mid, right);
-        }
+    public static long mergeSort(long[] arr, int left, int right) {
+        if (left >= right) return 0;
+        int mid = (left + right) / 2;
+        long count = mergeSort(arr, left, mid);
+        count += mergeSort(arr, mid+1, right);
+        count += merge(arr, left, mid, right);
         return count;
     }
 
-    private static int mergeAndCount(long[] arr, int left, int mid, int right) {
+    public static long merge(long[] arr, int left, int mid, int right) {
+        long count = 0;
         long[] leftArr = Arrays.copyOfRange(arr, left, mid+1);
         long[] rightArr = Arrays.copyOfRange(arr, mid+1, right+1);
 
         int i = 0, j = 0, k = left;
-        int swaps = 0;
         while (i < leftArr.length && j < rightArr.length) {
             if (leftArr[i] <= rightArr[j]) {
                 arr[k++] = leftArr[i++];
             } else {
                 arr[k++] = rightArr[j++];
-                swaps += (mid+1) - (left+i);
+                count += (mid+1) - (left+i);
             }
         }
-        while (i < leftArr.length)
-            arr[k++] = leftArr[i++];
-        while (j < rightArr.length)
-            arr[k++] = rightArr[j++];
 
-        return swaps;
+        while (i < leftArr.length) {
+            arr[k++] = leftArr[i++];
+        }
+
+        while (j < rightArr.length) {
+            arr[k++] = rightArr[j++];
+        }
+
+        return count;
     }
 }
