@@ -39,8 +39,6 @@ U
 0src/com/sdesheet/neetcode/ContainsDuplicate.java,5/9/59dcae63cacfdbfc6db3b236d456a9fe1236d961
 U
 %src/com/sdesheet/neetcode/TwoSum.java,8/e/8ec220770658f75c7cb799a7751081d937104e1d
-U
-%src/com/miscellaneous/GeekNumber.java,e/0/e0600bbedf376cd8bae69d813bb6072625475b14
 T
 $src/com/miscellaneous/CountOnes.java,5/0/503aff974025367d850251ad2ef528b15d90f92a
 _
