@@ -7,38 +7,37 @@ public class RotateImage {
     }
 
     public void rotateLatest(int[][] matrix) {
-        int len = matrix.length;
-        for (int col = 0; col < len; col++) {
-            for (int row = col; row < len; row++) {
-                int temp = matrix[row][col];
-                matrix[row][col] = matrix[col][row];
-                matrix[col][row] = temp;
+        // Method 2 : Rotate one element at a time
+        int left = 0, right = matrix.length-1;
+        while (left < right) {
+            int top = left, bottom = right;
+            for (int i = 0; i < right-left; i++) {
+                int temp = matrix[top][left + i];
+                matrix[top][left + i] = matrix[bottom - i][left];
+                matrix[bottom - i][left] = matrix[bottom][right - i];
+                matrix[bottom][right - i] = matrix[top + i][right];
+                matrix[top + i][right] = temp;
             }
-        }
-        for (int i = 0; i < len; i++) {
-            int left = 0, right = len-1;
-            while (left < right) {
-                int temp = matrix[i][left];
-                matrix[i][left] = matrix[i][right];
-                matrix[i][right] = temp;
-                left++; right--;
-            }
+            left++; right--;
         }
     }
 
     public static void rotate(int[][] matrix) {
-        // 1. Transpose the Matrix
+        // Method 1 : Using the Transpose approach
+        // Step 1 : Transpose the Matrix
         for (int i = 0; i < matrix.length; i++) {
-            for (int j = i; j < matrix[i].length; j++) {
+            for (int j = i; j < matrix.length; j++) {
+                // swap
                 int temp = matrix[i][j];
                 matrix[i][j] = matrix[j][i];
                 matrix[j][i] = temp;
             }
         }
-        // 2. Rever the matrix
+        // Step 2 : Reverse all the rows
         for (int i = 0; i < matrix.length; i++) {
-            int left = 0, right = matrix[i].length-1;
+            int left = 0, right = matrix.length - 1;
             while (left < right) {
+                // swap
                 int temp = matrix[i][left];
                 matrix[i][left] = matrix[i][right];
                 matrix[i][right] = temp;
