@@ -9,10 +9,16 @@ public class CombinationSum1 {
         Arrays.sort(candidates);
         List<List<Integer>> combinations = new ArrayList<>();
 
-        return combinationSum(candidates, target, 0, new ArrayList<>(), combinations);
+        // Method 1
+        // combinationSum(candidates, target, 0, new ArrayList<>(), combinations);
+
+        // Method 2
+        findCombinations(0, candidates, target, combinations, new ArrayList<>());
+
+        return combinations;
     }
 
-    public List<List<Integer>> combinationSum(int[] candidates, int target, int start, List<Integer> prevComb, List<List<Integer>> combinations) {
+    private void combinationSum(int[] candidates, int target, int start, List<Integer> prevComb, List<List<Integer>> combinations) {
 
         for (int i = start; i < candidates.length; i++) {
             if (i != start && candidates[i] == candidates[i-1]) continue;
@@ -25,10 +31,24 @@ public class CombinationSum1 {
                     combinations.add(combination);
                     break;
                 }
-                combinations = combinationSum(candidates, target-x, i+1, combination, combinations);
+                combinationSum(candidates, target-x, i+1, combination, combinations);
                 x += candidates[i];
             }
         }
-        return combinations;
+    }
+
+    private void findCombinations(int ind, int[] arr, int target, List<List<Integer>> ans, List<Integer> ds) {
+        if (ind == arr.length) {
+            if (target == 0) {
+                ans.add(new ArrayList<>(ds));
+            }
+            return;
+        }
+        if (arr[ind] <= target) {
+            ds.add(arr[ind]);
+            findCombinations(ind, arr, target-arr[ind], ans, ds);
+            ds.remove(ds.size()-1);
+        }
+        findCombinations(ind+1, arr, target, ans, ds);
     }
 }
