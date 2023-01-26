@@ -8,27 +8,70 @@ public class ProductExceptSelf {
 
     }
 
-
     public static int[] productExceptSelf(int[] nums) {
-        int length = nums.length;
-        int[] prefixProduct = new int[length];
-        int[] postfixProduct = new int[length];
-        int[] res = new int[length];
+        // Most optimum approach
 
-        prefixProduct[0] = 1;
-        for (int i = 1; i < length; i++) {
-            prefixProduct[i] = prefixProduct[i-1] * nums[i-1];
+        int[] res = new int[nums.length];
+
+        // Store prefix products in the res
+        res[0] = 1;
+        for (int i = 1; i < nums.length; i++) {
+            res[i] = res[i-1] * nums[i-1];
         }
 
-        postfixProduct[length-1] = 1;
-        for (int i = length-2; i >= 0; i--) {
-            postfixProduct[i] = postfixProduct[i+1] * nums[i+1];
+        // Calculate the postfix products and parallaly compute the prefix * postfix
+        int postfix = 1;
+        for (int i = nums.length - 1; i >= 0; i--) {
+            res[i] = postfix * res[i];
+            postfix *= nums[i];
         }
 
-        for (int i = 0; i < length; i++) {
-            res[i] = prefixProduct[i] * postfixProduct[i];
+        return res;
+    }
+
+    public int[] productExceptSelfExtraSpace(int[] nums) {
+        // Extra space is required
+        int len = nums.length;
+        int[] prefix = new int[len];
+        int[] postfix = new int[len];
+        int[] res = new int[len];
+
+        prefix[0] = 1;
+        for (int i = 1; i < len; i++) {
+            prefix[i] = prefix[i-1] * nums[i-1];
         }
 
+        postfix[len - 1] = 1;
+        for (int i = len - 2; i >= 0; i--) {
+            postfix[i] = postfix[i+1] * nums[i+1];
+        }
+
+        for (int i = 0; i < len; i++) {
+            res[i] = prefix[i] * postfix[i];
+        }
+        return res;
+    }
+    public int[] productExceptSelfCasting(int[] nums) {
+        // Type casting is required
+        int zeroCount = 0;
+        long product = 1;
+        int[] res = new int[nums.length];
+        for (int num : nums) {
+            if (num == 0) zeroCount++;
+            else product *= num;
+            if (zeroCount > 1) return res;
+        }
+        if (zeroCount == 1) {
+            for (int i = 0; i < nums.length; i++) {
+                if (nums[i] == 0) {
+                    res[i] = (int) product;
+                    return res;
+                }
+            }
+        }
+        for (int i = 0; i < nums.length; i++) {
+            res[i] = (int) (product / nums[i]);
+        }
         return res;
     }
 }
