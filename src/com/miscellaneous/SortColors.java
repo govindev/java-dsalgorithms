@@ -7,78 +7,44 @@ public class SortColors {
     }
 
     public static void sortColors(int[] nums) {
-        int zeroCount = 0, oneCount = 0, twoCount = 0;
-        for (int num : nums) {
-            if (num == 0) zeroCount++;
-            else if (num == 1) oneCount++;
-            else twoCount++;
-        }
-        for (int i = 0; i < nums.length; i++) {
-            if (zeroCount > 0) {
-                nums[i] = 0;
-                zeroCount--;
-            } else if (oneCount > 0) {
-                nums[i] = 1;
-                oneCount--;
-            } else {
-                nums[i] = 2;
-                twoCount--;
-            }
-        }
-    }
-
-
-
-    public static void sortColorsBefore(int[] nums) {
-        int len = nums.length, left = 0, mid = 0, right = len-1, red = 0, white = 1, blue = 2;
-        print(nums, left, mid, right);
-        while (mid <= right) {
-            if (nums[mid] == red) {
-                nums[mid] = nums[left];
-                nums[left] = red;
-                left++; mid++;
-                print(nums, left, mid, right);
-            } else if (nums[mid] == blue) {
-                nums[mid] = nums[right];
-                nums[right] = blue;
+        // One Pass algorithm
+        int left = 0, right = nums.length-1, i = 0;
+        while (i <= right) {
+            if (nums[i] == 0) {
+                swap(nums, i, left);
+                left++;
+            } else if (nums[i] == 2) {
+                swap(nums, i, right);
                 right--;
-                print(nums, left, mid, right);
-            } else {
-                mid++;
-                print(nums, left, mid, right);
+                i--;
             }
+            i++;
         }
     }
-    public static void print(int[] nums, int left, int mid, int right) {
-        String numsStr = "";
-        for (int num : nums) {
-            numsStr += num;
-        }
-        System.out.println("Nums: " + numsStr + ", left: " + left + ", mid: " + mid + ", right: " + right);
+    private static void swap(int[] nums, int left, int right) {
+        int temp = nums[left];
+        nums[left] = nums[right];
+        nums[right] = temp;
     }
 
-    public void sortColorsWithMultiPasses(int[] nums) {
-        int red = 0, white = 0, blue = 0;
+    public void sortColorsTwoPass(int[] nums) {
+        // Two pass algorithm
+        int zeros = 0, ones = 0, twos = 0;
         for (int num : nums) {
-            if (num == 0) red++;
-            else if (num == 1) white++;
-            else if (num == 2) blue++;
+            if (num == 0) zeros++;
+            else if (num == 1) ones++;
+            else twos++;
         }
-        int i = 0;
-        while (red > 0) {
-            nums[i] = 0;
-            i++;
-            red--;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (zeros > 0) {
+                nums[i] = 0; zeros--;
+            } else if (ones > 0) {
+                nums[i] = 1; ones--;
+            } else {
+                nums[i] = 2; twos--;
+            }
         }
-        while (white > 0) {
-            nums[i] = 1;
-            i++;
-            white--;
-        }
-        while (blue > 0) {
-            nums[i] = 2;
-            i++;
-            blue--;
-        }
+
     }
 }
