@@ -76,8 +76,6 @@ c
 3src/com/challenges/gfg/arrays/RepeatingElement.java,b/d/bd69eebb4d9c5554f215c5da848124a51c95e379
 \
 ,src/com/sdesheet/striver/RepeatedNumber.java,0/1/01535111737c0404b11d8d0bf95415e8859243cd
-W
-'src/com/miscellaneous/ValidAnagram.java,b/6/b6d91ecb28ed66ca32782f1bd0485fc208aed08b
 X
 (src/com/miscellaneous/FindDuplicate.java,d/6/d61334b58c98b6a9b884644c3a82614cbab9cbfb
 _
