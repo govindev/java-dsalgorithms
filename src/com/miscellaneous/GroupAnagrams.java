@@ -4,20 +4,40 @@ import java.util.*;
 
 public class GroupAnagrams {
     public List<List<String>> groupAnagrams(String[] strs) {
-        Map<String, List<String>> anagrams = new HashMap<>();
-        for (int i = 0; i < strs.length; i++) {
-            char[] arr = strs[i].toCharArray();
-            Arrays.sort(arr);
-            String sortedStr = new String(arr);
-
-            if (!anagrams.containsKey(sortedStr)) {
-                anagrams.put(sortedStr, new ArrayList<String>());
-            }
-            anagrams.get(sortedStr).add(strs[i]);
+        Map<String, List<String>> groups = new HashMap<>();
+        for (String str : strs) {
+            String key = getKey(str);
+            // String key = getKeyWithoutSort(str);
+            List<String> group = groups.getOrDefault(key, new ArrayList<>());
+            group.add(str);
+            groups.put(key, group);
         }
         List<List<String>> res = new ArrayList<>();
-        res.addAll(anagrams.values());
+        for (List<String> group : groups.values()) {
+            res.add(group);
+        }
         return res;
+    }
+
+    public String getKey(String str) {
+        // With sorting
+        char[] chs = str.toCharArray();
+        Arrays.sort(chs);
+        return new String(chs);
+    }
+    public String getKeyWithoutSort(String str) {
+        // Without sorting
+        int[] count = new int[26];
+        for (int i = 0; i < str.length(); i++) {
+            count[str.charAt(i)-'a']++;
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < count.length; i++) {
+            if (count[i] > 0)
+                sb.append(('a'+i));
+            sb.append(count[i]);
+        }
+        return sb.toString();
     }
 
     public List<List<String>> groupAnagramsBruteForce(String[] strs) {
