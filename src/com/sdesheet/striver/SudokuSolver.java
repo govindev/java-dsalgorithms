@@ -7,6 +7,56 @@ import java.util.Set;
 
 public class SudokuSolver {
 
+    public void solveSudoku2(char[][] board) {
+        sudoku2(board, 0, 0);
+    }
+
+    public static boolean sudoku2(char[][] board, int row, int col) {
+        if (col == board.length) {
+            // finished with the entire row
+            // go to the next row
+            return sudoku2(board, row+1, 0);
+        }
+
+
+        if (row > board.length-1) {
+            // Traversed the entire matrix
+            // We have the result
+            // Simply return it
+            return true;
+        }
+
+        // Move on to the next cell if the current is filled
+        if (board[row][col] != '.') {
+            return sudoku2(board, row, col+1);
+        }
+
+        // Here we have an empty cell and want to put some number
+        for (char i = '1'; i <= '9'; i++) {
+            // Check whether we can put this here or not
+
+            if (isValid(i, board, row, col)) {
+                board[row][col] = i;
+
+                if (sudoku2(board, row, col+1)) {
+                    return true;
+                }
+                board[row][col] = '.';
+            }
+        }
+        return false;
+    }
+
+
+    private static boolean isValid(char ch, char[][] board, int row, int col) {
+        for (int i = 0; i < 9; i++) {
+            if ((board[row][i] == ch) || (board[i][col] == ch) || (board[3*(row/3) + i/3][3*(col/3) + i%3] == ch)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     // 1. We can solve it using the Backtracking approach
     // 2. Place a certain number at certain place and check whether this number is already there either in the row / column / grid
     // 3. If it exists we will not add the number and proceed to add the next number
