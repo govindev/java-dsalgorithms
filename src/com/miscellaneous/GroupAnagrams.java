@@ -4,19 +4,14 @@ import java.util.*;
 
 public class GroupAnagrams {
     public List<List<String>> groupAnagrams(String[] strs) {
-        Map<String, List<String>> groups = new HashMap<>();
+        Map<String, List<String>> anagrams = new HashMap<>();
         for (String str : strs) {
             String key = getKey(str);
-            // String key = getKeyWithoutSort(str);
-            List<String> group = groups.getOrDefault(key, new ArrayList<>());
+            List<String> group = anagrams.getOrDefault(key, new ArrayList<>());
             group.add(str);
-            groups.put(key, group);
+            anagrams.put(key, group);
         }
-        List<List<String>> res = new ArrayList<>();
-        for (List<String> group : groups.values()) {
-            res.add(group);
-        }
-        return res;
+        return new ArrayList<>(anagrams.values());
     }
 
     public String getKey(String str) {
