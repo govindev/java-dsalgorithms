@@ -11,6 +11,7 @@ public class GroupAnagrams {
             group.add(str);
             anagrams.put(key, group);
         }
+
         return new ArrayList<>(anagrams.values());
     }
 
