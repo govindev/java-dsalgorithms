@@ -33,7 +33,13 @@ public class Ruf {
 //        System.out.println(findLeftInd(new int[] {1, 1, 2, 2, 2, 2, 3}, 7, 2));
         // printSeries(4, 9);
         // minGroupFlips("00011110001110");
-        subarraySum(new int[] {1,2,3,7,5}, 5, 12);
+//        subarraySum(new int[] {1,2,3,7,5}, 5, 12);
+
+        getGrid(2,2);
+    }
+
+    private static int getGrid(int row, int col) {
+        return (row / 3) * 3 + (col / 3);
     }
     static ArrayList<Integer> subarraySum(int[] arr, int n, int s)
     {

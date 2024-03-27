@@ -1,8 +1,8 @@
 
 ^
-java:S3973„"GUse indentation to denote the code conditionally executed by this "if".(Šµì¨
+java:S3973Š"GUse indentation to denote the code conditionally executed by this "if".(Šµì¨
 c
-java:S3973¨"GUse indentation to denote the code conditionally executed by this "if".(Â’³áûÿÿÿÿ
+java:S3973®"GUse indentation to denote the code conditionally executed by this "if".(Â’³áûÿÿÿÿ
 P
 java:S1854"5Remove this useless assignment to local variable "b".( ¬À ýÿÿÿÿ
 P
@@ -18,67 +18,67 @@ V	java:S125"<This block of commented-out lines of code should be removed.(ù†ê
 V	java:S125"<This block of commented-out lines of code should be removed.(ùüû¹ûÿÿÿÿ
 V	java:S125 "<This block of commented-out lines of code should be removed.(ñäå‘ýÿÿÿÿ
 <
-java:S1659+"!Declare "end" on a separate line.(Û‚ÌÎøÿÿÿÿ
-S	java:S106J"9Replace this use of System.out or System.err by a logger.(Èƒö˜üÿÿÿÿ
-S	java:S106\"9Replace this use of System.out or System.err by a logger.(ý¸¯»ÿÿÿÿÿ
+java:S16591"!Declare "end" on a separate line.(Û‚ÌÎøÿÿÿÿ
+E	java:S106P"+Replace this use of System.out by a logger.(Èƒö˜üÿÿÿÿ
+E	java:S106b"+Replace this use of System.out by a logger.(ý¸¯»ÿÿÿÿÿ
 9
-java:S1659c"#Declare "right" on a separate line.(µÁ¹’
+java:S1659i"#Declare "right" on a separate line.(µÁ¹’
 9
-java:S1659q"#Declare "right" on a separate line.(µÁ¹’
+java:S1659w"#Declare "right" on a separate line.(µÁ¹’
 9
-java:S1659…""Declare "high" on a separate line.(Þ”´Ž
-O	java:S106›"9Replace this use of System.out or System.err by a logger.(ÔªýØ
+java:S1659‹""Declare "high" on a separate line.(Þ”´Ž
+A	java:S106¡"+Replace this use of System.out by a logger.(ÔªýØ
 @
-java:S1659 "$Declare "second" on a separate line.(¦ñªºÿÿÿÿÿ
-T	java:S106¡"9Replace this use of System.out or System.err by a logger.(â˜¢™ûÿÿÿÿ
-T	java:S106¦"9Replace this use of System.out or System.err by a logger.(áŸ¶ýÿÿÿÿ
+java:S1659¦"$Declare "second" on a separate line.(¦ñªºÿÿÿÿÿ
+F	java:S106§"+Replace this use of System.out by a logger.(â˜¢™ûÿÿÿÿ
+F	java:S106¬"+Replace this use of System.out by a logger.(áŸ¶ýÿÿÿÿ
 U
-java:S1854Ó"9Remove this useless assignment to local variable "array".(ñó¶§úÿÿÿÿ
+java:S1854Ù"9Remove this useless assignment to local variable "array".(ñó¶§úÿÿÿÿ
 F
-java:S1481Ó"*Remove this unused "array" local variable.(ñó¶§úÿÿÿÿ
+java:S1481Ù"*Remove this unused "array" local variable.(ñó¶§úÿÿÿÿ
 ;
-java:S1659×"Declare "n" on a separate line.(¨Áö¹ýÿÿÿÿ
-T	java:S106Ü"9Replace this use of System.out or System.err by a logger.(¸šñÙüÿÿÿÿ
-T	java:S106ý"9Replace this use of System.out or System.err by a logger.(´‹¹öþÿÿÿÿ
-T	java:S106†"9Replace this use of System.out or System.err by a logger.(´‹¹öþÿÿÿÿ
-W	java:S125—"<This block of commented-out lines of code should be removed.(œÍÉåÿÿÿÿÿ
+java:S1659Ý"Declare "n" on a separate line.(¨Áö¹ýÿÿÿÿ
+F	java:S106â"+Replace this use of System.out by a logger.(¸šñÙüÿÿÿÿ
+F	java:S106ƒ"+Replace this use of System.out by a logger.(´‹¹öþÿÿÿÿ
+F	java:S106Œ"+Replace this use of System.out by a logger.(´‹¹öþÿÿÿÿ
+W	java:S125"<This block of commented-out lines of code should be removed.(œÍÉåÿÿÿÿÿ
 i
-java:S3776¦"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(õÆà
-T	java:S106©"9Replace this use of System.out or System.err by a logger.(´‹¹öþÿÿÿÿ
-T	java:S106°"9Replace this use of System.out or System.err by a logger.(´‹¹öþÿÿÿÿ
-N	java:S106²"9Replace this use of System.out or System.err by a logger.(Ù­Ïx
-T	java:S106¼"9Replace this use of System.out or System.err by a logger.(´‹¹öþÿÿÿÿ
-N	java:S106Á"9Replace this use of System.out or System.err by a logger.(Ù­Ïx
+java:S3776¬"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(õÆà
+F	java:S106¯"+Replace this use of System.out by a logger.(´‹¹öþÿÿÿÿ
+F	java:S106¶"+Replace this use of System.out by a logger.(´‹¹öþÿÿÿÿ
+@	java:S106¸"+Replace this use of System.out by a logger.(Ù­Ïx
+F	java:S106Â"+Replace this use of System.out by a logger.(´‹¹öþÿÿÿÿ
+@	java:S106Ç"+Replace this use of System.out by a logger.(Ù­Ïx
 @
-java:S1481Æ")Remove this unused "fact" local variable.(Ä»ò
-O	java:S106Ó"9Replace this use of System.out or System.err by a logger.(ÍáÚ
-T	java:S106Ú"9Replace this use of System.out or System.err by a logger.(Ž³ð¸ûÿÿÿÿ
-T	java:S106ã"9Replace this use of System.out or System.err by a logger.(Î¾¹«ùÿÿÿÿ
+java:S1481Ì")Remove this unused "fact" local variable.(Ä»ò
+A	java:S106Ù"+Replace this use of System.out by a logger.(ÍáÚ
+F	java:S106à"+Replace this use of System.out by a logger.(Ž³ð¸ûÿÿÿÿ
+F	java:S106é"+Replace this use of System.out by a logger.(Î¾¹«ùÿÿÿÿ
 F
-java:S1144b"0Remove this unused private "findLeftInd" method.(áäÜó
+java:S1144h"0Remove this unused private "findLeftInd" method.(áäÜó
 G
-java:S1144p"1Remove this unused private "findRightInd" method.(®Ÿ¾©
-U
-java:S1144~"?Remove this unused private "findElementInInfiniteArray" method.(¹êâü
+java:S1144v"1Remove this unused private "findRightInd" method.(®Ÿ¾©
+V
+java:S1144„"?Remove this unused private "findElementInInfiniteArray" method.(¹êâü
 H
-java:S1144"1Remove this unused private "printNBonaci" method.(ÿ”Ò‚
+java:S1144•"1Remove this unused private "printNBonaci" method.(ÿ”Ò‚
 I
-java:S1144Ÿ"2Remove this unused private "printFibonaci" method.(˜ú²Ä
+java:S1144¥"2Remove this unused private "printFibonaci" method.(˜ú²Ä
 Q
-java:S1144ª":Remove this unused private "minimumFlipsEfficient" method.(ÙÊÆ¨
+java:S1144°":Remove this unused private "minimumFlipsEfficient" method.(ÙÊÆ¨
 H
-java:S1144¹"1Remove this unused private "minimumFlips" method.(è¡Ì¹
+java:S1144¿"1Remove this unused private "minimumFlips" method.(è¡Ì¹
 C
-java:S1144Ç",Remove this unused private "longest" method.(òÆ©­
+java:S1144Í",Remove this unused private "longest" method.(òÆ©­
 U
-java:S1144Ò"9Remove this unused private "checkIfArrayIsSorted" method.(÷ÌÇÃûÿÿÿÿ
+java:S1144Ø"9Remove this unused private "checkIfArrayIsSorted" method.(÷ÌÇÃûÿÿÿÿ
 A
-java:S1144Ö"*Remove this unused private "power" method.(åºÐ
+java:S1144Ü"*Remove this unused private "power" method.(åºÐ
 H
-java:S1144ë"1Remove this unused private "powIterative" method.(‡Ëžþ
+java:S1144ñ"1Remove this unused private "powIterative" method.(‡Ëžþ
 R
-java:S1144ø"6Remove this unused private "printPrimeFactors" method.(„¬ŒÉüÿÿÿÿ
+java:S1144þ"6Remove this unused private "printPrimeFactors" method.(„¬ŒÉüÿÿÿÿ
 I
-java:S1144¦"2Remove this unused private "printDivisors" method.(õÆà
+java:S1144¬"2Remove this unused private "printDivisors" method.(õÆà
 F
-java:S1144Ï"*Remove this unused private "count" method.(ûˆ¸’øÿÿÿÿ
+java:S1144Õ"*Remove this unused private "count" method.(ûˆ¸’øÿÿÿÿ
