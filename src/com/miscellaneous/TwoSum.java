@@ -1,5 +1,6 @@
 package com.miscellaneous;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ public class TwoSum {
                 if (nums[i]+nums[j] == target) return new int[] {i, j};
             }
         }
+        Arrays.asList(1,2,3);
         return new int[2];
     }
 
