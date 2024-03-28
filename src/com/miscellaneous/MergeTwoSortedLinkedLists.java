@@ -2,25 +2,25 @@ package com.miscellaneous;
 
 public class MergeTwoSortedLinkedLists {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        ListNode head = new ListNode(0);
-        ListNode current = head;
+        ListNode dummyNode = new ListNode();
+        ListNode merged = dummyNode;
         while (list1 != null && list2 != null) {
-            if (list1.val <= list2.val) {
-                current.next = list1;
+            if (list1.val < list2.val) {
+                merged.next = new ListNode(list1.val);
                 list1 = list1.next;
             } else {
-                current.next = list2;
+                merged.next = new ListNode(list2.val);
                 list2 = list2.next;
             }
-            current = current.next;
+            merged = merged.next;
         }
         if (list1 != null) {
-            current.next = list1;
+            merged.next = list1;
         }
         if (list2 != null) {
-            current.next = list2;
+            merged.next = list2;
         }
-        return head.next;
+        return dummyNode.next;
     }
 }
 
