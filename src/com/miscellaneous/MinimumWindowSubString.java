@@ -8,7 +8,8 @@ public class MinimumWindowSubString {
 
         System.out.println("String is : " + minWindow(s, t));
     }
-    public static String minWindow(String s, String t) {
+
+    private static String minWindow(String s, String t) {
         Map<Character, Integer> tCounts = new HashMap<>();
         Map<Character, Integer> windowCounts = new HashMap<>();
 
@@ -22,31 +23,32 @@ public class MinimumWindowSubString {
         while (start <= end) {
             if (need == have) {
                 if ((end-start) < minWindow) {
-                    res = s.substring(start, end);
                     minWindow = end-start;
+                    res = s.substring(start, end);
                 }
-                // Shrink window from start
+                // Shrink the window
                 Character ch = s.charAt(start);
                 if (tCounts.containsKey(ch)) {
                     int prevCount = windowCounts.getOrDefault(ch, 0);
-                    if (prevCount >= tCounts.get(ch) && prevCount-1 < tCounts.get(ch)) {
+                    if (prevCount == tCounts.get(ch)) {
                         have--;
                     }
-                    windowCounts.put(ch, Math.max(prevCount-1, 0));
+                    windowCounts.put(ch, prevCount-1);
                 }
                 start++;
-            } else {
+            }
+            else {
                 if (end == s.length()) {
                     return res;
                 }
                 Character ch = s.charAt(end);
-                // We don't care characters which are not in the t string
+                // We don't care about character that are not in the t string
                 if (tCounts.containsKey(ch)) {
                     int prevCount = windowCounts.getOrDefault(ch, 0);
-                    if (prevCount < tCounts.get(ch) && prevCount+1 >= tCounts.get(ch)) {
+                    if (prevCount+1 == tCounts.get(ch)) {
                         have++;
                     }
-                    windowCounts.put(ch, prevCount + 1);
+                    windowCounts.put(ch, prevCount+1);
                 }
                 end++;
             }
