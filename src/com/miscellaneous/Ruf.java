@@ -1,42 +1,51 @@
 package com.miscellaneous;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class Ruf {
     public static void main(String[] args) {
-        int a = 4, b = 6;
-//        int res = Math.max(a, b);
-//        while(true) {
-//            if(res%a == 0 && res%b == 0) {
-//                System.out.println(res);
-//                break;
-//            }
-//            res++;
-//        }
-
-//        int lcm = (a*b) / gcdEuclidian(a,b);
-//        System.out.println(lcm);
-
-        // printDivisors(55);
-        // count();
-      //  printPrimeFactors(12);
-//        power();
-//        checkIfArrayIsSorted();
-//        int longest = longest(new int[]{10, 12, 14, 7, 8});
-//        System.out.println("longest : " + longest);
-        // int min = minimumFlips(new int[]{1,0,0,0, 1, 1,0,0, 1});
-        // System.out.println("Minimum number of flips required are : " + min);
-        // printFibonaci(10);
-        // printNBonaci(4, 9);
-
-//        System.out.println(findRightInd(new int[] {1, 1, 2, 2, 2, 2, 3}, 7, 2));
-//        System.out.println(findLeftInd(new int[] {1, 1, 2, 2, 2, 2, 3}, 7, 2));
-        // printSeries(4, 9);
-        // minGroupFlips("00011110001110");
-//        subarraySum(new int[] {1,2,3,7,5}, 5, 12);
-
-        getGrid(2,2);
+        char[][] board = {
+                {'5', '3', '.', '.', '7', '.', '.', '.', '.'},
+                {'6', '.', '.', '1', '9', '5', '.', '.', '.'},
+                {'.', '9', '8', '.', '.', '.', '.', '6', '.'},
+                {'8', '.', '.', '.', '6', '.', '.', '.', '3'},
+                {'4', '.', '.', '8', '.', '3', '.', '.', '1'},
+                {'7', '.', '.', '.', '2', '.', '.', '.', '6'},
+                {'.', '6', '.', '.', '.', '.', '2', '8', '.'},
+                {'.', '.', '.', '4', '1', '9', '.', '.', '5'},
+                {'.', '.', '.', '.', '8', '.', '.', '7', '9'}
+        };
+        System.out.println("Is valid sudoku" + isValidSudoku(board));
     }
+
+    private  static  boolean isValidSudoku(char[][] board) {
+        Map<Integer, Set<Character>> rows = new HashMap<>();
+        Map<Integer, Set<Character>> columns = new HashMap<>();
+        Map<Integer, Set<Character>> box = new HashMap<>();
+
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                if (board[i][j] == '.') continue;
+                int boxIndex = (i / 3) * 3 + (j / 3);
+                if (rows.get(i) == null) rows.put(i, new HashSet<>());
+                if (columns.get(j) == null) columns.put(j, new HashSet<Character>());
+                if (box.get(boxIndex) == null) box.put(boxIndex, new HashSet<Character>());
+
+                if (rows.get(i).contains(board[i][j]) ||
+                        columns.get(j).contains(board[i][j]) ||
+                        box.get(boxIndex).contains(board[i][j])) {
+                    return false;
+                }
+
+                rows.get(i).add(board[i][j]);
+                columns.get(j).add(board[i][j]);
+                box.get(boxIndex).add(board[i][j]);
+            }
+        }
+        return true;
+    }
+
+
 
     private static int getGrid(int row, int col) {
         return (row / 3) * 3 + (col / 3);
