@@ -85,4 +85,48 @@ public class EncodeDecodeStrings {
         }
         return res;
     }
+
+
+    public String encodeLastTried(List<String> strs) {
+        StringBuilder sb = new StringBuilder().append("<size>").append(strs.size()).append("</size>").append("<lengths>");
+        StringBuilder sumStr = new StringBuilder();
+
+        for (String str : strs) {
+            sumStr.append(str);
+            sb.append(str.length()).append(",");
+        }
+
+        sb.deleteCharAt(sb.length() - 1); // Remove the last comma
+        sb.append("</lengths>");
+        sb.append(sumStr.toString());
+
+        return sb.toString();
+    }
+
+    public List<String> decodeLastTried(String str) {
+        // Extract the size
+        String sizeStr = str.substring(str.indexOf("<size>") + 6, str.indexOf("</size>"));
+        Integer size = Integer.parseInt(sizeStr);
+        if (size == 0) return new ArrayList<>();
+
+        // Extract the lengths
+        String lengthsStr = str.substring(str.indexOf("<lengths>") + 9, str.indexOf("</lengths>"));
+        String[] lengths = lengthsStr.split(",");
+
+        // Extract the concatenated strings
+        String sumStr = str.substring(str.indexOf("</lengths>") + 10);
+
+        // Decode the original strings
+        List<String> strings = new ArrayList<>();
+        int previousEnd = 0;
+        for (int i = 0; i < size; i++) {
+            int length = Integer.parseInt(lengths[i]);
+            String res = sumStr.substring(previousEnd, previousEnd + length);
+            previousEnd += length;
+            strings.add(res);
+        }
+
+        return strings;
+    }
+
 }
