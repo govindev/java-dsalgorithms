@@ -7,9 +7,9 @@ public class EncodeDecodeStrings {
 
     public static void main(String[] args) {
         List<String> strs = List.of("lint", "code", "love", "you");
-        String encoded = encodeBetter(strs);
+        String encoded = encodeNeetCode(strs);
         System.out.println("encoded string : " + encoded);
-        List<String> decodedStrs = decodeBetter(encoded);
+        List<String> decodedStrs = decodeNeetCode(encoded);
         System.out.println("size: " + decodedStrs.size());
         System.out.println("strings: " + decodedStrs);
     }
@@ -74,7 +74,7 @@ public class EncodeDecodeStrings {
         String countStr = str.substring(0, sepOcc-1);
         String[] counts = countStr.split(":");
 
-        String concStr = str.substring(sepOcc+1, str.length());
+        String concStr = str.substring(sepOcc+1);
 
         int start = 0;
         for (String currCnt : counts) {
@@ -87,46 +87,35 @@ public class EncodeDecodeStrings {
     }
 
 
-    public String encodeLastTried(List<String> strs) {
-        StringBuilder sb = new StringBuilder().append("<size>").append(strs.size()).append("</size>").append("<lengths>");
-        StringBuilder sumStr = new StringBuilder();
-
+    /*
+     * @param strs: a list of strings
+     * @return: encodes a list of strings to a single string.
+     */
+    public static String encodeNeetCode(List<String> strs) {
+        StringBuilder sb = new StringBuilder();
         for (String str : strs) {
-            sumStr.append(str);
-            sb.append(str.length()).append(",");
+            sb.append(str.length());
+            sb.append(",");
+            sb.append(str);
         }
-
-        sb.deleteCharAt(sb.length() - 1); // Remove the last comma
-        sb.append("</lengths>");
-        sb.append(sumStr.toString());
-
         return sb.toString();
     }
 
-    public List<String> decodeLastTried(String str) {
-        // Extract the size
-        String sizeStr = str.substring(str.indexOf("<size>") + 6, str.indexOf("</size>"));
-        Integer size = Integer.parseInt(sizeStr);
-        if (size == 0) return new ArrayList<>();
-
-        // Extract the lengths
-        String lengthsStr = str.substring(str.indexOf("<lengths>") + 9, str.indexOf("</lengths>"));
-        String[] lengths = lengthsStr.split(",");
-
-        // Extract the concatenated strings
-        String sumStr = str.substring(str.indexOf("</lengths>") + 10);
-
-        // Decode the original strings
-        List<String> strings = new ArrayList<>();
-        int previousEnd = 0;
-        for (int i = 0; i < size; i++) {
-            int length = Integer.parseInt(lengths[i]);
-            String res = sumStr.substring(previousEnd, previousEnd + length);
-            previousEnd += length;
-            strings.add(res);
+    /*
+     * @param str: A string
+     * @return: decodes a single string to a list of strings
+     */
+    public static List<String> decodeNeetCode(String str) {
+        List<String> strs = new ArrayList<>();
+        int i = 0;
+        while (i < str.length()) {
+            int j = str.indexOf(",", i);
+            String lenStr = str.substring(i, j);
+            int len = Integer.parseInt(lenStr);
+            strs.add(str.substring(j + 1, j + 1 + len));
+            i = j + 1 + len;
         }
-
-        return strings;
+        return strs;
     }
-
 }
+
