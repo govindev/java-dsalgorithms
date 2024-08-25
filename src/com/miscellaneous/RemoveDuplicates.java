@@ -18,4 +18,19 @@ public class RemoveDuplicates {
         }
         return slow;
     }
+
+    public int removeDuplicatesNew(int[] nums) {
+        if (nums.length <= 1) return nums.length;
+        int vPtr = 0;
+        int cPtr = 1;
+        while (cPtr < nums.length) {
+            if (nums[vPtr] == nums[cPtr]) {
+                cPtr++;
+                continue;
+            }
+            // Put cPtr element at vPtr+1 index
+            nums[++vPtr] = nums[cPtr++];
+        }
+        return vPtr+1;
+    }
 }
