@@ -1,33 +1,30 @@
 package com.miscellaneous;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PascalsTriangle {
     public List<List<Integer>> generate(int numRows) {
-        List<List<Integer>> rows = new ArrayList<>();
-        if (numRows < 1) return rows;
-
-        List<Integer> currRow = List.of(1);
-        rows.add(currRow);
-
-        for (int i = 1; i < numRows; i++) {
-            currRow = nextRow(currRow);
-            rows.add(currRow);
+        if (numRows <= 0) return Collections.emptyList();
+        if (numRows == 1) {
+            List<List<Integer>> rows = new ArrayList<>();
+            rows.add(List.of(1));
+            return rows;
         }
+        List<List<Integer>> prevRows = generate(numRows - 1);
+        List<Integer> prevRow = prevRows.getLast();
 
-        return rows;
-    }
-
-    private static List<Integer> nextRow(List<Integer> row) {
-        List<Integer> next = new ArrayList<>();
-
-        next.add(1);
-        for (int i = 1; i < row.size(); i++) {
-            next.add(row.get(i) + row.get(i-1));
+        List<Integer> currRow = new ArrayList<>();
+        currRow.add(1);
+        int i = 0;
+        while (i < prevRow.size() - 1) {
+            currRow.add(prevRow.get(i) + prevRow.get(i+1));
+            i++;
         }
-        next.add(1);
+        currRow.add(1);
 
-        return next;
+        prevRows.add(currRow);
+        return prevRows;
     }
 }
