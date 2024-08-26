@@ -1,28 +1,54 @@
 package com.miscellaneous;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class TwoSum {
-    public int[] twoSum1(int[] nums, int target) {
-        for (int i = 0; i < nums.length-1; i++) {
-            for (int j = i+1; j < nums.length; j++) {
-                if (nums[i]+nums[j] == target) return new int[] {i, j};
-            }
-        }
-        Arrays.asList(1,2,3);
-        return new int[2];
+    public static void main(String[] args) {
+        int[] nums = new int[] {3,2,4};
+        int target = 6;
+        int[] answer = twoSum(nums, target);
+        System.out.println("two sum is " + answer[0] + ", " + answer[1]);
     }
-
-    public int[] twoSum(int[] nums, int target) {
-        Map<Integer, Integer> positions = new HashMap<>();
+    public static int[] twoSum1(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
-            if (positions.containsKey(target - nums[i])) {
-                return new int[]{positions.get(target - nums[i]), i};
+            if (map.containsKey(target - nums[i])) {
+                return new int[] {map.get(target-nums[i]), i};
             }
-            positions.put(nums[i], i);
+            map.put(nums[i], i);
         }
         return null;
+    }
+
+    public static int[] twoSum(int[] nums, int target) {
+        int[] numsSorted = new int[nums.length];
+        System.arraycopy(nums, 0, numsSorted, 0, nums.length);
+
+        Arrays.sort(numsSorted);
+        int left = 0, right = numsSorted.length - 1;
+        while(left < right) {
+            if (numsSorted[left] + numsSorted[right] == target) {
+                left = numsSorted[left];
+                right = numsSorted[right];
+                break;
+            }
+            else if (numsSorted[left] + numsSorted[right] < target) {
+                left++;
+            }
+            else right--;
+        }
+
+        int[] answer = new int[]{-1,-1};
+
+        for (int i = 0; i < nums.length; i++) {
+            if (answer[0] == -1 && nums[i] == left) {
+                answer[0] = i;
+            }
+            else if (nums[i] == right) {
+                answer[1] = i;
+            }
+        }
+        return answer;
+
     }
 }
