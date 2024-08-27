@@ -1,8 +1,6 @@
 package com.miscellaneous;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class ThreeSum {
 
@@ -31,6 +29,26 @@ public class ThreeSum {
             }
         }
         return triplets;
+    }
+
+    public List<List<Integer>> threeSumUsingHashing(int[] nums) {
+        Set<List<Integer>> uniqTriplets = new HashSet<>();
+        for (int i = 0; i < nums.length; i++) {
+            Set<Integer> set = new HashSet<>();
+            for (int j = i+1; j < nums.length; j++) {
+                int thirdElm = -(nums[i]+nums[j]);
+                if (set.contains(thirdElm)) {
+                    List<Integer> triplet = new ArrayList<>();
+                    triplet.add(nums[i]);
+                    triplet.add(nums[j]);triplet.add(thirdElm);
+
+                    Collections.sort(triplet);
+                    uniqTriplets.add(triplet);
+                }
+                set.add(nums[j]);
+            }
+        }
+        return new ArrayList<>(uniqTriplets);
     }
 
     public List<List<Integer>> threeSumNew(int[] nums) {
