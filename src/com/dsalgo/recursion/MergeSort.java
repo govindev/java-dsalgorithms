@@ -9,44 +9,34 @@ public class MergeSort {
 		}
 	}
 
-	private static int[] merge(int[] array1, int[] array2) {
-
-		int[] array3 = new int[array1.length + array2.length];
-
-		for (int k = 0, i = 0, j = 0; k < array3.length; k++) {
-			if ((j >= array2.length) || (i < array1.length && array1[i] <= array2[j])) {
-				array3[k] = array1[i];
-				i++;
+	private static int[] merge(int low, int mid, int high, int[] array) {
+		int[] temp = new int[array.length];
+		int left = low, right = mid+1, i = 0;
+		while (left < mid+1 && right <= high) {
+			if (array[left] <= array[right]) {
+				temp[i++] = array[left++];
 			} else {
-				array3[k] = array2[j];
-				j++;
+				temp[i++] = array[right++];
 			}
 		}
-
-		return array3;
+		while (left < mid+1) {
+			temp[i++] = array[left++];
+		}
+		while (right <= high) {
+			temp[i++] = array[right++];
+		}
+		i = 0;
+		while (low <= high) {
+			array[low++] = temp[i++];
+		}
+		return array;
 	}
-
-	private static int[] mergeSort(int start, int end, int[] array) {
-		if (start < end && start < array.length && end < array.length && (end - start >= 1)) {
-			if ((end - start) == 1) {
-				//  If  only two elements are there
-				int[] array1 = { array[start] };
-				int[] array2 = { array[end] };
-				return merge(array1, array2);
-			} else {
-				int mid = (int) (start + end) / 2;
-				int[] array1 = mergeSort(start, mid - 1, array);
-
-				int[] array2 = mergeSort(mid, end, array);
-				return merge(array1, array2);
-			}
-
-		} else {
-			// If only single element is there, we don't need to sort it; we can just simply return  it
-			int[] array3 = { array[start] };
-			return array3;
-		}
-
+	public static int[] mergeSort(int low, int high, int[] array) {
+		if (low >= high) return array;
+		int mid = (low+high)/2;
+		mergeSort(low, mid, array);
+		mergeSort(mid+1, high, array);
+		return merge(low, mid, high, array);
 	}
 
 	public static void main(String[] args) {
