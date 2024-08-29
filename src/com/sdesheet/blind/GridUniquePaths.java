@@ -1,5 +1,7 @@
 package com.sdesheet.blind;
 
+import java.util.Arrays;
+
 public class GridUniquePaths {
     public int uniquePaths(int m, int n) {
         // return getUniquePathsBruteForce(0,0,m-1,n-1);
@@ -21,25 +23,20 @@ public class GridUniquePaths {
         return (int) res;
     }
 
-
-    public int getUniquePathsDp(int pm, int pn, int m, int n, int[][] dp) {
-        if (dp[pm][pn] != -1) return dp[pm][pn];
-
-        if (pm > m || pn > n) return 0;
-        if (pm == m || pn == n) return 1;
-
-        int rightPaths = (pn != n) ? getUniquePathsDp(pm, pn+1, m, n, dp) : 0;
-        int downPaths = (pm != m) ? getUniquePathsDp(pm+1, pn, m, n, dp) : 0;
-
-        dp[pm][pn] = rightPaths + downPaths;
-        return dp[pm][pn];
+    public int getUniquePathsBruteForce(int row, int col, int m, int n) {
+        if (row == m || col == n) return 0;
+        if (row == m-1 || col == n-1) return 1;
+        return getUniquePathsBruteForce(row+1, col, m, n) + getUniquePathsBruteForce(row, col+1, m, n);
     }
 
-    public int getUniquePathsBruteForce(int pm, int pn, int m, int n) {
-        if (pm > m || pn > n) return 0;
-        if (pm == m || pn == n) return 1;
-        int rightPaths = (pn != n) ? getUniquePathsBruteForce(pm, pn+1, m, n) : 0;
-        int downPaths = (pm != m) ? getUniquePathsBruteForce(pm+1, pn, m, n) : 0;
-        return rightPaths + downPaths;
+    public int getUniquePathsDp(int row, int col, int m, int n, int[][] dp) {
+        if (dp[row][col] != -1) {
+            return dp[row][col];
+        }
+        if (row == m || col == n) return 0;
+        if (row == m-1 || col == n-1) return 1;
+
+        dp[row][col] = getUniquePathsDp(row+1, col, m, n, dp) + getUniquePathsDp(row, col+1, m, n, dp);
+        return dp[row][col];
     }
 }
