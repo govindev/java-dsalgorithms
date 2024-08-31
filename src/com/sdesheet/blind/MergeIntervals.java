@@ -12,6 +12,31 @@ public class MergeIntervals {
         Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
 
         List<int[]> result = new ArrayList<>();
+
+        int start = intervals[0][0];
+        int end = intervals[0][1];
+
+        for (int[] interval : intervals) {
+            if (interval[0] <= end) {
+                end = Math.max(end, interval[1]);
+            } else {
+                result.add(new int[] {start, end});
+                start = interval[0];
+                end = interval[1];
+            }
+        }
+        result.add(new int[] {start, end});
+        return result.toArray(new int[result.size()][]);
+
+    }
+
+    public int[][] mergeOld(int[][] intervals) {
+        if (intervals.length < 2) return intervals;
+
+        // Sort the intervals based on the first value
+        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+
+        List<int[]> result = new ArrayList<>();
         result.add(intervals[0]);
 
         for (int i = 1; i < intervals.length; i++) {
