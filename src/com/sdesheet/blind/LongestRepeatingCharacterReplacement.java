@@ -29,7 +29,7 @@ public class LongestRepeatingCharacterReplacement {
         return longest;
     }
 
-    public int characterReplacement(String s, int k) {
+    public static int characterReplacement(String s, int k) {
         int[] characterCounts = new int[26];
         int start = 0, end = 0, maxRepChCount = 0, maxWindowLength = 0;
         while (start <= end && end < s.length()) {
