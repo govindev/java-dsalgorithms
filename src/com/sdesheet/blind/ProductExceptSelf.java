@@ -2,43 +2,62 @@ package com.sdesheet.blind;
 
 public class ProductExceptSelf {
     public int[] productExceptSelf(int[] nums) {
-        // Without using the division operator
-        // Without using the extra space
-        int n = nums.length;
-        int[] res = new int[n];
-        // Prefix calculation
-        res[0] = nums[0];
-        for (int i = 1; i < n; i++) {
-            res[i] = res[i-1]*nums[i];
-        }
-        res[n-1] = res[n-2];
-        int postfix = nums[n-1];
-        for (int i = n-2; i >= 0; i--) {
-            res[i] = postfix*((i==0) ? 1 : res[i-1]);
-            postfix *= nums[i];
-        }
-        return res;
+        // return productExceptSelfWithExtraSpace(nums);
+        return productExceptSelfWithoutExtraSpace(nums);
     }
-    public int[] productExceptSelfUsingExtraSpace(int[] nums) {
-        // Without using the division operator
-        // Using the extra space
-        int n = nums.length;
-        int[] prefix = new int[n];
-        prefix[0] = nums[0];
-        for (int i = 1; i < n; i++) {
-            prefix[i] = prefix[i-1]*nums[i];
+
+    public int[] productExceptSelfWithExtraSpace(int[] nums) {
+        int[] beforeProducts = new int[nums.length];
+        int[] afterProducts = new int[nums.length];
+
+        beforeProducts[0] = 1;
+        int product = 1;
+        for (int i = 1; i < nums.length; i++) {
+            product *= nums[i-1];
+            beforeProducts[i] = product;
         }
-        int[] postfix = new int[n];
-        postfix[n-1] = nums[n-1];
-        for (int i = n-2; i >= 0; i--) {
-            postfix[i] = postfix[i+1]*nums[i];
+        // [1, 1, 2, 6]
+
+
+        product = 1;
+        afterProducts[nums.length - 1] = 1;
+        for (int i = nums.length - 2; i >= 0; i--) {
+            product *= nums[i+1];
+            afterProducts[i] = product;
+        }
+        // [24, 12,4,1]
+
+        int[] result = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            result[i] = beforeProducts[i] * afterProducts[i];
         }
 
-        int[] res = new int[n];
-        for (int i = 0; i < n; i++) {
-            res[i] = ((i == 0) ? 1 : prefix[i-1]) * ((i == n-1) ? 1 : postfix[i+1]);
+        return result;
+    }
+
+
+    public int[] productExceptSelfWithoutExtraSpace(int[] nums) {
+        int[] afterProducts = new int[nums.length];
+
+
+        int product = 1;
+        afterProducts[nums.length - 1] = 1;
+        for (int i = nums.length - 2; i >= 0; i--) {
+            product *= nums[i+1];
+            afterProducts[i] = product;
         }
-        return res;
+        // [24, 12,4,1]
+
+        return getProductResult(nums, afterProducts);
+    }
+
+    public int[] getProductResult(int[] nums, int[] result) {
+        int prevProduct = 1;
+        for (int i = 1; i < nums.length; i++) {
+            prevProduct *= nums[i-1];
+            result[i] *= prevProduct;
+        }
+        return result;
     }
 
     public int[] productExceptSelfUsingDivision(int[] nums) {
