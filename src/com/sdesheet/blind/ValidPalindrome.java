@@ -3,41 +3,50 @@ package com.sdesheet.blind;
 public class ValidPalindrome {
     public static void main(String[] args) {
         String s = "A man, a plan, a canal: Panama";
-        System.out.println("isPalindrome : " + isPalindrome(s));
+        ValidPalindrome validPalindrome = new ValidPalindrome();
+        System.out.println("isPalindrome : " + validPalindrome.isPalindrome(s));
     }
 
-    public static boolean isPalindrome(String s) {
-        int start = 0, end = s.length() - 1;
-        while(start < end) {
-            char sch = s.charAt(start);
-            char ech = s.charAt(end);
-
-            if (!isValidCharOrNum(sch)) {
-                start++;
-                continue;
+    public boolean isPalindrome(String s) {
+        int left = 0, right = s.length() - 1;
+        while (left < right && right > 0) {
+            if (isNotAAlphaNumeric(s.charAt(left))) {
+                left++;
             }
-            if (!isValidCharOrNum(ech)) {
-                end--;
-                continue;
+            else if (isNotAAlphaNumeric(s.charAt(right))) {
+                right--;
             }
-
-            sch = (sch >= 'A' && sch <= 'Z') ? (char) ('a' + sch - 'A') : sch;
-            ech = (ech >= 'A' && ech <= 'Z') ? (char) ('a' + ech - 'A') : ech;
-
-            if (sch != ech) {
+            else if (getSmallCase(s.charAt(left)) != getSmallCase(s.charAt(right))) {
                 return false;
             }
-
-            start++;
-            end--;
+            else {
+                left++;
+                right--;
+            }
         }
         return true;
     }
 
-    private static boolean isValidCharOrNum(char ch) {
-        if (ch >= 'a' && ch <= 'z') return true;
-        if (ch >= 'A' && ch <= 'Z') return true;
-        if (ch >= '0' && ch <= '9') return true;
-        return false;
+    private boolean isNotAAlphaNumeric(char ch) {
+        boolean isAlphaNumeric =
+                (isNumber(ch) || isSmallCase(ch) || isUpperCase(ch));
+        return !isAlphaNumeric;
+    }
+
+    private char getSmallCase(char ch) {
+        if (isNumber(ch) || isSmallCase(ch)) return ch;
+        return (char) ('a' + (ch - 'A'));
+    }
+
+    private boolean isNumber(char ch) {
+        return (ch >= '0' && ch <= '9');
+    }
+
+    private boolean isSmallCase(char ch) {
+        return (ch >= 'a' && ch <= 'z');
+    }
+
+    private boolean isUpperCase(char ch) {
+        return (ch >= 'A' && ch <= 'Z');
     }
 }
