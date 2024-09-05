@@ -4,8 +4,9 @@ public class ReverseLinkedList {
 
     public static void main(String[] args) {
         int[] nums = new int[] {1, 2, 3, 4, 5};
-        ListNode head = constructList(nums);
-        reverseList(head);
+        ReverseLinkedList reverseLinkedList = new ReverseLinkedList();
+        ListNode head = reverseLinkedList.constructList(nums);
+        reverseLinkedList.reverseList(head);
     }
 
     public static ListNode constructList(int[] nums) {
@@ -19,25 +20,32 @@ public class ReverseLinkedList {
         return head;
     }
 
-    public static ListNode reverseListIterative(ListNode head) {
-        ListNode prev = null, curr = head;
-        while (curr != null) {
-            ListNode newCurr = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = newCurr;
+    public ListNode reverseList(ListNode head) {
+        // return reverseListIterative(head);
+        return reverseListRecursive(head, null);
+    }
+
+    private ListNode reverseListIterative(ListNode head) {
+        ListNode prev = null;
+        ListNode current = head;
+        while (current != null) {
+            ListNode next = current.next;
+            current.next = prev;
+            prev = current;
+
+            current = next;
         }
         return prev;
     }
 
-    public static ListNode reverseList(ListNode head) {
-        if (head == null || head.next == null) {
-            return head;
+    private ListNode reverseListRecursive(ListNode head, ListNode prev) {
+        if (head != null) {
+            ListNode next = head.next;
+            head.next = prev;
+
+            return reverseListRecursive(next, head);
         }
-        ListNode newHead = reverseList(head.next);
-        head.next.next = head;
-        head.next = null;
-        return newHead;
+        return prev;
     }
 }
 
