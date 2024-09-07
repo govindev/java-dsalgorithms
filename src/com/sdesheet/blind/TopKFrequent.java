@@ -4,21 +4,27 @@ import java.util.*;
 
 public class TopKFrequent {
 
-    public int[] topKFrequent1(int[] nums, int k) {
-        Map<Integer, Integer> counts = new HashMap<>();
-        Arrays.stream(nums).forEach(num -> counts.put(num, counts.getOrDefault(num, 0) + 1));
-
-        PriorityQueue<Integer> queue = new PriorityQueue<>((a, b) -> counts.get(b) - counts.get(a));
-        counts.keySet().forEach(queue::offer);
-
-        int[] result = new int[k];
-        for (int i = 0; i < k; i++) {
-            result[i] = queue.poll();
-        }
-        return result;
+    public int[] topKFrequent(int[] nums, int k) {
+        // return topKFrequentUsingQueue(nums,k);
+        return topKFrequentBestTimeComplexity(nums, k);
     }
 
-    public int[] topKFrequent(int[] nums, int k) {
+    public int[] topKFrequentUsingQueue(int[] nums, int k) {
+        Map<Integer, Integer> numCounts = new HashMap<>();
+
+        Arrays.stream(nums).forEach(num -> numCounts.put(num, numCounts.getOrDefault(num, 0) + 1));
+
+        PriorityQueue<Integer> queue = new PriorityQueue<>((a, b) -> numCounts.get(b) - numCounts.get(a));
+        numCounts.keySet().forEach(num -> queue.offer(num));
+
+        int[] topKFreq = new int[k];
+        for (int i = 0; i < k; i++) {
+            topKFreq[i] = queue.poll();
+        }
+        return topKFreq;
+    }
+
+    public int[] topKFrequentBestTimeComplexity(int[] nums, int k) {
         Map<Integer, Integer> counts = new HashMap<>();
         int maxCount = 0;
         for (int num : nums) {
