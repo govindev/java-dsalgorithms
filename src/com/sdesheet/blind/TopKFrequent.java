@@ -1,11 +1,6 @@
 package com.sdesheet.blind;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class TopKFrequent {
 
@@ -24,38 +19,49 @@ public class TopKFrequent {
     }
 
     public int[] topKFrequent(int[] nums, int k) {
-        // Linear time approach.
-        Map<Integer, Integer> map = new HashMap<>();
-        for (int i = 0; i < nums.length; i++) {
-            int count = 1;
-            if (map.containsKey(nums[i])) {
-                count = map.get(nums[i]) + 1;
-            }
-            map.put(nums[i], count);
+        Map<Integer, Integer> counts = new HashMap<>();
+        int maxCount = 0;
+        for (int num : nums) {
+            int count = counts.getOrDefault(num, 0)+1;
+            counts.put(num, count);
+
+            maxCount = Math.max(maxCount, count);
         }
 
-        List<Integer>[] counts = new ArrayList[nums.length+1];
-        for (Integer key : map.keySet()) {
-            int value = map.get(key);
-            List<Integer> keys = counts[value];
-            if (keys == null) {
-                keys = new ArrayList<>();
+        List<Integer>[] countWithNums = new List[maxCount+1];
+        for (int num : counts.keySet()) {
+            int countInd = counts.get(num);
+
+            List<Integer> numsForCount = countWithNums[countInd];
+            if (numsForCount == null) {
+                numsForCount = new ArrayList<>();
             }
-            keys.add(key);
-            counts[value] = keys;
+            numsForCount.add(num);
+            countWithNums[countInd] = numsForCount;
         }
 
-        int[] res = new int[k];
-        int ind = 0;
-        for (int i = counts.length-1; i > 0; i--) {
-            if (counts[i] != null) {
-                for (Integer key : counts[i]) {
-                    res[ind] = key.intValue();
-                    ind++;
-                    if (ind == k) return res;
+        int[] kFreqNums = new int[k];
+        int freqNums = 0;
+        for (int i = maxCount; i >= 0; i--) {
+            if (freqNums == k) {
+                break;
+            }
+
+            List<Integer> numsForCount = countWithNums[i];
+            if (numsForCount == null) continue;
+            for (Integer integer : numsForCount) {
+                if (freqNums == k) {
+                    break;
                 }
+                kFreqNums[freqNums++] = integer;
             }
         }
-        return res;
+        return kFreqNums;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = new int[] {1,1,1,2,2,3};
+        TopKFrequent topKFrequent = new TopKFrequent();
+        topKFrequent.topKFrequent(nums, 2);
     }
 }
