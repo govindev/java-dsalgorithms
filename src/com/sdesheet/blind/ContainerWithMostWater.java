@@ -17,19 +17,19 @@ public class ContainerWithMostWater {
 		return max;
 	}
 
-	public static int maxArea(int[] height) {
-		// order of n solution with two pointers
-		int i = 0, j = height.length - 1, max = 0;
-		while (i < j) {
-			int min = Math.min(height[i], height[j]);
-			int water = (j - i) * min;
-			max = water > max ? water : max;
-			if (height[i] == min) {
-				i++;
+	public int maxArea(int[] height) {
+		int leftLine = 0, rightLine = height.length - 1;
+		int maxWater = 0;
+		while (leftLine < rightLine) {
+			int windowWater = Math.min(height[leftLine], height[rightLine]) * (rightLine - leftLine);
+			maxWater = Math.max(maxWater, windowWater);
+
+			if (height[leftLine] < height[rightLine]) {
+				leftLine++;
 			} else {
-				j--;
+				rightLine--;
 			}
 		}
-		return max;
+		return maxWater;
 	}
 }
