@@ -4,61 +4,85 @@ import java.util.*;
 
 public class GroupAnagrams {
     public static void main(String[] args) {
-        groupAnagrams(new String[] {"eat","tea","tan","ate","nat","bat"});
+        GroupAnagrams groupAnagrams = new GroupAnagrams();
+        groupAnagrams.groupAnagrams(new String[] {"eat","tea","tan","ate","nat","bat"});
     }
 
-    private static List<List<String>> groupAnagrams(String[] strs) {
-        // Using the sorting technique
-        List<List<String>> groups = new ArrayList<>();
-        Map<String, List<String>> groupsMap = new HashMap<>();
-        for (int i = 0; i < strs.length; i++) {
-            String current = strs[i];
-            char[] chars = current.toCharArray();
-            Arrays.sort(chars);
-            String sorted = new String(chars);
+    public List<List<String>> groupAnagrams(String[] strs) {
+        // return groupAnagramsTimeout(strs);
+        return groupAnagramsOptimized(strs);
+    }
 
-            if (!groupsMap.containsKey(sorted)) {
-                groupsMap.put(sorted, new ArrayList<>());
-            }
-            groupsMap.get(sorted).add(current);
+    public List<List<String>> groupAnagramsOptimized(String[] strs) {
+        Map<String, List<String>> anagramGroups = new HashMap<>();
+
+        for (String str : strs) {
+            String key = getKeyForStr(str);
+
+            List<String> anagrams = anagramGroups.getOrDefault(key, new ArrayList<>());
+            anagrams.add(str);
+            anagramGroups.put(key, anagrams);
         }
-        groups.addAll(groupsMap.values());
-        return groups;
+
+        return new ArrayList<>(anagramGroups.values());
     }
 
-    private static List<List<String>> groupAnagramsBruteForce(String[] strs) {
-        // Brute Force
-        List<List<String>> groups = new ArrayList<>();
+    private String getKeyForStr(String str) {
+        char[] chars = str.toCharArray();
+        Arrays.sort(chars);
+        return new String(chars);
+    }
+
+
+
+    public List<List<String>> groupAnagramsTimeout(String[] strs) {
+        List<List<String>> anagramsGroups = new ArrayList<>();
+
         for (int i = 0; i < strs.length; i++) {
-            // Check if current string belongs to any group
-            boolean isAdded = false;
-            for (int g = 0; g < groups.size(); g++) {
-                if (areAnagrams(strs[i], groups.get(g).get(0))) {
-                    isAdded = true;
-                    groups.get(g).add(strs[i]);
-                    break;
+            if (strs[i] == null) continue;
+
+            List<String> anagramsGroup = new ArrayList<>();
+            anagramsGroup.add(strs[i]);
+
+            for (int j = i+1; j < strs.length; j++) {
+                if (strs[j] == null) continue;
+
+                if (areAnagrams(strs[i], strs[j])) {
+                    anagramsGroup.add(strs[j]);
+                    strs[j] = null;
                 }
             }
-            if (!isAdded) {
-                List<String> newGroup = new ArrayList<>();
-                newGroup.add(strs[i]);
-                groups.add(newGroup);
-            }
+
+            anagramsGroups.add(anagramsGroup);
+            strs[i] = null;
         }
-        return groups;
+
+        return anagramsGroups;
     }
 
-    private static boolean areAnagrams(String str1, String str2) {
-        if (str1.length() != str2.length()) return false;
-        int[] counts = new int[26];
-        for (int i = 0; i < str1.length(); i++) {
-            counts[str1.charAt(i)-'a']++;
-            counts[str2.charAt(i)-'a']--;
+    private boolean areAnagrams(String s1, String s2) {
+        if (s1 == null || s2 == null) return false;
+        if (s1.length() != s2.length()) return false;
+        if (s1.equals(s2)) return true;
+
+        Map<Character, Integer> s1ChCounts = getCharacterCounts(s1);
+        Map<Character, Integer> s2ChCounts = getCharacterCounts(s2);
+
+        for (Character ch : s1ChCounts.keySet()) {
+            if (s1ChCounts.get(ch) != s2ChCounts.get(ch)) {
+                return false;
+            }
         }
-        for (int i = 0; i < counts.length; i++) {
-            if (counts[i] > 0) return false;
-        }
+
         return true;
+    }
+
+    private Map<Character, Integer> getCharacterCounts(String str) {
+        Map<Character, Integer> characterCounts = new HashMap<>();
+        for (char ch : str.toCharArray()) {
+            characterCounts.put(ch, characterCounts.getOrDefault(ch, 0)+1);
+        }
+        return characterCounts;
     }
 
 }
