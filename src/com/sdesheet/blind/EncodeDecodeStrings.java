@@ -4,37 +4,44 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EncodeDecodeStrings {
-    /*
-     * @param strs: a list of strings
-     * @return: encodes a list of strings to a single string.
-     */
+    String END_OF_LENGTHS = "/";
+    String COUNT_SEPARATOR = ",";
+
     public String encode(List<String> strs) {
-        StringBuilder encoded = new StringBuilder();
+        if (strs == null || strs.size() == 0) return null;
+
+        StringBuilder countsSb = new StringBuilder();
+        StringBuilder concatenatedSb = new StringBuilder();
+
         for (String str : strs) {
-            encoded.append(str.length());
-            encoded.append("#");
-            encoded.append(str);
+            countsSb.append(str.length());
+            countsSb.append(COUNT_SEPARATOR);
+
+            concatenatedSb.append(str);
         }
-        return encoded.toString();
+        countsSb.append(END_OF_LENGTHS);
+
+        countsSb.append(concatenatedSb);
+
+        return countsSb.toString();
     }
 
-    /*
-     * @param str: A string
-     * @return: dcodes a single string to a list of strings
-     */
     public List<String> decode(String str) {
-        List<String> strs = new ArrayList<>();
-        int i = 0;
-        while (i < str.length()) {
-            int j = i;
-            while (str.charAt(j) != '#') {
-                j++;
-            }
-            int count = Integer.parseInt(str.substring(i, j));
-            i+=(j-i+1);
-            strs.add(str.substring(i, i+count));
-            i+=count;
+        if (str == null || str.length() == 0) return new ArrayList<>();
+
+        int countStrEnd = str.indexOf(END_OF_LENGTHS) - 1;
+        int strStart = str.indexOf(END_OF_LENGTHS) + 1;
+
+        String countsStr = str.substring(0, countStrEnd);
+        String[] countsInStr = countsStr.split(COUNT_SEPARATOR);
+
+        List<String> result = new ArrayList<>();
+        for (String countStr : countsInStr) {
+            int count = Integer.parseInt(countStr);
+            result.add(str.substring(strStart, strStart+count));
+            strStart += count;
         }
-        return strs;
+
+        return result;
     }
 }
