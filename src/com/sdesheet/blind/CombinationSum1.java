@@ -6,13 +6,16 @@ import java.util.List;
 
 public class CombinationSum1 {
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        Arrays.sort(candidates);
+
         List<List<Integer>> combinations = new ArrayList<>();
-        combinations(candidates, 0, target, new ArrayList<>(), combinations);
+        combinationSum(candidates, target, 0, new ArrayList<>(), combinations);
+
         return combinations;
     }
 
-    private void combinations(int[] candidates, int current, int target,
-                              List<Integer> combination, List<List<Integer>> combinations) {
+    private void combinationSum(int[] candidates, int target, int current,
+                                List<Integer> combination, List<List<Integer>> combinations) {
 
         if (current == candidates.length) {
             if (target == 0) {
@@ -21,14 +24,13 @@ public class CombinationSum1 {
             return;
         }
 
-        if (target >= candidates[current]) {
+        if (candidates[current] <= target) {
             combination.add(candidates[current]);
-            combinations(candidates, current, target-candidates[current], combination, combinations);
+            // See if we can pick the current element again
+            combinationSum(candidates, target-candidates[current], current, combination, combinations);
             combination.remove(combination.size() - 1);
         }
 
-
-        combinations(candidates, current+1, target, combination, combinations);
-
+        combinationSum(candidates, target, current+1, combination, combinations);
     }
 }
