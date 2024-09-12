@@ -50,5 +50,36 @@ public class LongestRepeatingCharacterReplacement {
 
         return maxWindowLength;
     }
+
+    // Get the substring
+    // Get the count of the character that is most repeating in the substring
+    // Check if the length of the substring == count of most rep ch + k
+    // Modify the result if it is less than the substring length
+    public static int characterReplacementUsingMap(String s, int k) {
+        if (s == null) return 0;
+        if (s.length() <= k) return s.length();
+
+        int left = 0, right = 0, maxFreq = 0, maxWindowLength = 0;
+        Map<Character, Integer> characterCounts = new HashMap<>();
+        while (right < s.length()) {
+            char ch = s.charAt(right);
+            characterCounts.put(ch, characterCounts.getOrDefault(ch, 0)+1);
+
+            maxFreq = Math.max(maxFreq, characterCounts.get(ch));
+
+            int windowLength = (right - left) + 1;
+            if (windowLength - maxFreq <= k) {
+                // Valid window
+                maxWindowLength = Math.max(maxWindowLength, windowLength);
+            } else {
+                // Move the left pointer
+                ch = s.charAt(left);
+                characterCounts.put(ch, characterCounts.get(ch) - 1);
+                left++;
+            }
+            right++;
+        }
+        return maxWindowLength;
+    }
 }
 
