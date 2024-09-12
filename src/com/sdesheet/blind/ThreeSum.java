@@ -40,37 +40,39 @@ public class ThreeSum {
 	}
 
 	public static List<List<Integer>> threeSum(int[] nums) {
-		List<List<Integer>> res = new LinkedList<>();
 
-		// Sort the Array
+		List<List<Integer>> triplets = new ArrayList<>();
+
+		if (nums == null || nums.length < 3) return triplets;
+
 		Arrays.sort(nums);
-		for (int i = 0; i <= nums.length - 3; i++) {
-			if (i == 0 || (i > 0 && nums[i] != nums[i - 1])) {
-				int sum = 0 - nums[i];
-				int low = i + 1;
-				int high = nums.length - 1;
 
-				while (low < high) {
-					if (nums[low] + nums[high] == sum) {
-						res.add(Arrays.asList(nums[i], nums[low], nums[high]));
-						while (low < high && nums[low + 1] == nums[low]) {
-							low++;
-						}
-						while (low < high && nums[high - 1] == nums[high]) {
-							high--;
-						}
-						low++;
-						high--;
-					} else if (nums[low] + nums[high] > sum) {
-						high--;
-					} else {
-						low++;
-					}
+		for (int i = 0; i < nums.length - 2; i++) {
+			if (i != 0 && nums[i] == nums[i-1]) {
+				continue;
+			}
+
+			int left = i+1, right = nums.length - 1;
+
+			while (left < right) {
+
+				int sum = nums[left]+nums[right]+nums[i];
+				if (sum == 0) {
+					triplets.add(List.of(nums[i], nums[left], nums[right]));
+
+					do {
+						left++;
+					} while (nums[left] == nums[left-1] && left < right);
+
+				} else if (sum > 0) {
+					right--;
+				} else {
+					left++;
 				}
 			}
 		}
 
-		return res;
+		return triplets;
 	}
 
 }
