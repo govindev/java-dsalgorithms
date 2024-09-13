@@ -6,28 +6,29 @@ import java.util.List;
 
 public class MergeIntervals {
     public int[][] merge(int[][] intervals) {
-        if (intervals.length < 2) return intervals;
 
-        // Sort the intervals based on the first value
         Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
 
-        List<int[]> result = new ArrayList<>();
 
-        int start = intervals[0][0];
-        int end = intervals[0][1];
+        List<int[]> mergedIntervals = new ArrayList<>();
 
-        for (int[] interval : intervals) {
-            if (interval[0] <= end) {
-                end = Math.max(end, interval[1]);
+        int[] prevInterval = intervals[0];
+        for (int i = 1; i < intervals.length; i++) {
+            int[] currentInterval = intervals[i];
+            if (canMerge(prevInterval, currentInterval)) {
+                prevInterval[1] = Math.max(prevInterval[1], currentInterval[1]);
             } else {
-                result.add(new int[] {start, end});
-                start = interval[0];
-                end = interval[1];
+                mergedIntervals.add(prevInterval);
+                prevInterval = currentInterval;
             }
         }
-        result.add(new int[] {start, end});
-        return result.toArray(new int[result.size()][]);
+        mergedIntervals.add(prevInterval);
 
+        return mergedIntervals.toArray(new int[mergedIntervals.size()][]);
+    }
+
+    private boolean canMerge(int[] interval1, int[] interval2) {
+        return (interval1[1] >= interval2[0]);
     }
 
     public int[][] mergeOld(int[][] intervals) {
@@ -53,10 +54,6 @@ public class MergeIntervals {
 
         return result.toArray(new int[result.size()][]);
 
-    }
-
-    private boolean canMerge(int[] first, int[] second) {
-        return (first[1] >= second[0]);
     }
 
     private int[] merge(int[] first, int[] second) {
