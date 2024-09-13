@@ -12,78 +12,64 @@ public class RotateImage {
         rotateImage.printMatrix(matrix);
     }
 
-    private void printMatrix(int[][] matrix) {
-        Arrays.stream(matrix).forEach(layer -> {
-            System.out.println();
-            Arrays.stream(layer).forEach(value -> System.out.print(value + " "));
-        });
+    public void printMatrix(int[][] matrix) {
+        for (int[] ints : matrix) {
+            System.out.print("[");
+            for (int anInt : ints) {
+                System.out.print(anInt + ",");
+            }
+            System.out.print("],");
+        }
     }
 
     public void rotate(int[][] matrix) {
-        if (isRotationIsNotRequired(matrix)) return;
-        if (isNotASquare(matrix)) return;
-
-        // rotateUsingTransposeMethod(matrix);
-
-        int left = 0, right = matrix.length - 1, top = 0, bottom = matrix.length - 1;
-        rotateLayer(matrix, left, right, top, bottom);
+        // transposeMatrix(matrix);
+        rotateOptimized(matrix);
     }
 
-    public void transposeMatrix(int[][] matrix) {
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = i; j < matrix.length; j++) {
-                int temp = matrix[i][j];
-                matrix[i][j] = matrix[j][i];
-                matrix[j][i] = temp;
+    private void rotateOptimized(int[][] matrix) {
+        int start = 0, end = matrix.length - 1, i = 0;
+        while (start+i < end && start < end) {
+            // temp = topLeft;
+            int temp = matrix[start][start+i];
+            // topLeft = bottomLeft;
+            matrix[start][start+i] = matrix[end-i][start];
+            // bottomLeft = bottomRight
+            matrix[end-i][start] = matrix[end][end-i];
+            // bottomRight = topRight
+            matrix[end][end-i] = matrix[start+i][end];
+            // topRight = topLeft (which is temp)
+            matrix[start+i][end] = temp;
+
+            i++;
+            if (start+i == end) {
+                start = start+1;
+                end = end - 1;
+                i = 0;
             }
         }
     }
 
-    public void reverseRows(int[][] matrix) {
-        for (int i = 0; i < matrix.length; i++) {
-            int left = 0, right = matrix[i].length - 1;
-            while (left < right) {
-                int temp = matrix[i][left];
-                matrix[i][left] = matrix[i][right];
-                matrix[i][right] = temp;
+    private void transposeMatrix(int[][] matrix) {
+        int[][] temp = new int[matrix.length][matrix.length];
 
-                left++; right--;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++) {
+                temp[j][i] = matrix[i][j];
             }
         }
-    }
 
-    public void rotateUsingTransposeMethod(int[][] matrix) {
-        transposeMatrix(matrix);
-        reverseRows(matrix);
-    }
+        for (int i = 0; i < temp.length; i++) {
+            int[] row = temp[i];
+            int left = 0, right = temp.length - 1;
+            while (left <= right) {
+                int holder = row[left];
+                matrix[i][left] = row[right];
+                matrix[i][right] = holder;
 
-    private void rotateLayer(int[][] matrix, int left, int right, int top, int bottom) {
-        if (hasNoMoreLayersToRotate(left, right)) return;
-
-        for (int i = 0; i < right-left; i++) {
-            int corner1 = matrix[top][left+i];
-            int corner2 = matrix[top+i][right];
-            int corner3 = matrix[bottom][right-i];
-            int corner4 = matrix[bottom-i][left];
-
-            matrix[top+i][right] = corner1;
-            matrix[bottom][right-i] = corner2;
-            matrix[bottom-i][left] = corner3;
-            matrix[top][left+i] = corner4;
+                left++;
+                right--;
+            }
         }
-
-        rotateLayer(matrix, ++left, --right, ++top, --bottom);
-    }
-
-    private boolean hasNoMoreLayersToRotate(int left, int right) {
-        return (left >= right);
-    }
-
-    private boolean isRotationIsNotRequired(int[][] matrix) {
-        return (matrix.length <= 1);
-    }
-
-    private boolean isNotASquare(int[][] matrix) {
-        return (matrix.length > 1 && matrix.length != matrix[0].length);
     }
 }
