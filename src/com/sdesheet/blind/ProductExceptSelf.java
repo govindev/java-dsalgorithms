@@ -6,75 +6,54 @@ public class ProductExceptSelf {
         return productExceptSelfWithoutExtraSpace(nums);
     }
 
-    public int[] productExceptSelfWithExtraSpace(int[] nums) {
-        int[] beforeProducts = new int[nums.length];
-        int[] afterProducts = new int[nums.length];
-
-        beforeProducts[0] = 1;
-        int product = 1;
-        for (int i = 1; i < nums.length; i++) {
-            product *= nums[i-1];
-            beforeProducts[i] = product;
-        }
-        // [1, 1, 2, 6]
-
-
-        product = 1;
-        afterProducts[nums.length - 1] = 1;
-        for (int i = nums.length - 2; i >= 0; i--) {
-            product *= nums[i+1];
-            afterProducts[i] = product;
-        }
-        // [24, 12,4,1]
-
-        int[] result = new int[nums.length];
-        for (int i = 0; i < nums.length; i++) {
-            result[i] = beforeProducts[i] * afterProducts[i];
-        }
-
-        return result;
-    }
-
-
     public int[] productExceptSelfWithoutExtraSpace(int[] nums) {
-        int[] afterProducts = new int[nums.length];
+        int[] after = new int[nums.length];
 
-
-        int product = 1;
-        afterProducts[nums.length - 1] = 1;
-        for (int i = nums.length - 2; i >= 0; i--) {
-            product *= nums[i+1];
-            afterProducts[i] = product;
+        after[nums.length - 1] = 1;
+        for (int i = nums.length-2; i >= 0; i--) {
+            after[i] = nums[i+1] * after[i+1];
         }
-        // [24, 12,4,1]
 
-        return getProductResult(nums, afterProducts);
+        int before = 1;
+        for (int i = 1; i < after.length; i++) {
+            before *= nums[i-1];
+
+            after[i] *= before;
+        }
+        return after;
     }
 
-    public int[] getProductResult(int[] nums, int[] result) {
-        int prevProduct = 1;
+    public int[] productExceptSelfWithExtraSpace(int[] nums) {
+        int[] before = new int[nums.length];
+        int[] after = new int[nums.length];
+
+        before[0] = 1;
         for (int i = 1; i < nums.length; i++) {
-            prevProduct *= nums[i-1];
-            result[i] *= prevProduct;
+            before[i] = nums[i-1] * before[i-1];
         }
-        return result;
-    }
 
-    public int[] productExceptSelfUsingDivision(int[] nums) {
-        int product = 1, count = 0, zeroInd = -1;
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] == 0) {
-                count++;
-                zeroInd = i;
-            }
-            else product *= nums[i];
+        // after[nums.length-1] = 1;
+        // for (int i = nums.length-2; i >= 0; i--) {
+        //     after[i] = nums[i+1] * after[i+1];
+        // }
+
+
+        int nextElm = nums[nums.length-1];
+        nums[nums.length - 1] = 1;
+        for (int i = nums.length - 2; i >= 0; i--) {
+            int product = nextElm * nums[i+1];
+            nextElm = nums[i];
+            nums[i] = product;
         }
-        int[] res = new int[nums.length];
-        if (count == 0)
-            for (int i = 0; i < nums.length; i++) {
-                res[i] = product / nums[i];
-            }
-        if (count == 1) res[zeroInd] = product;
-        return res;
+
+        // for (int i = 0; i < nums.length; i++) {
+        //     nums[i] = before[i] * after[i];
+        // }
+
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] *= before[i];
+        }
+
+        return nums;
     }
 }
