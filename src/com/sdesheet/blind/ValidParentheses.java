@@ -2,7 +2,7 @@ package com.sdesheet.blind;
 
 import java.util.Stack;
 
-public class ValidParantheses {
+public class ValidParentheses {
     public boolean isValid(String s) {
         Stack<Character> stack = new Stack<>();
         for (char ch : s.toCharArray()) {
