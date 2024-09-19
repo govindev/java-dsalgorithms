@@ -1,40 +1,16 @@
 package com.sdesheet.blind;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class ValidBST {
     public boolean isValidBST(TreeNode root) {
-        return isValidBST(root, new HashMap<>());
+        return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
     }
 
-    public boolean isValidBST(TreeNode root, Map<TreeNode, int[]> boundaries) {
-        if (root == null) return true;
-        if (root.left == null && root.right == null) {
-            boundaries.put(root, new int[]{root.val, root.val});
+    public boolean isValidBST(TreeNode root, long leftBoundary, long rightBoundary) {
+        if (root == null) {
             return true;
         }
+        if (leftBoundary >= root.val || root.val >= rightBoundary) return false;
 
-        int leftsHighestVal = root.val;
-        int rightsLowestVal = root.val;
-
-        if (root.left != null && root.left.val <= root.val && isValidBST(root.left, boundaries)) {
-            leftsHighestVal = boundaries.get(root.left)[1];
-        } else {
-            return false;
-        }
-
-        if (root.right != null && root.right.val >= root.val && isValidBST(root.right, boundaries)) {
-            rightsLowestVal = boundaries.get(root.right)[0];
-        } else {
-            return false;
-        }
-
-        if (leftsHighestVal <= root.val && rightsLowestVal >= root.val) {
-            boundaries.put(root, new int[] {leftsHighestVal, rightsLowestVal});
-            return true;
-        }
-        return false;
-
+        return isValidBST(root.left, leftBoundary, root.val) && isValidBST(root.right, root.val, rightBoundary);
     }
 }
