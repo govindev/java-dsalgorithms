@@ -26,32 +26,35 @@ public class LongestConsecutive {
         return maxConsecutiveCount;
     }
 
-    private int longestConsecutiveBySet(int[] nums) {
-        Set<Integer> uniqueElements = new HashSet<>();
+    private Set<Integer> uniqueNums = new HashSet<>();
+
+    public int longestConsecutiveBySet(int[] nums) {
+        uniqueNums = new HashSet<>();
+
         for (int num : nums) {
-            uniqueElements.add(num);
+            uniqueNums.add(num);
         }
 
-        int maxConsecutiveCount = 0, currentConsecutiveCount = 0;
+        int maxSequenceLength = 0;
         for (int num : nums) {
-            if (isStartingElementOfASequence(num, uniqueElements)) {
-                currentConsecutiveCount = countConsecutiveSequenceFromStart(num, uniqueElements);
-                maxConsecutiveCount = Math.max(maxConsecutiveCount, currentConsecutiveCount);
+            if (isStartOfSequence(num)) {
+                int currSequenceLength = lengthOfSequenceThatStartsAt(num);
+                maxSequenceLength = Math.max(currSequenceLength, maxSequenceLength);
             }
-
         }
-        return maxConsecutiveCount;
+
+        return maxSequenceLength;
     }
 
-    private boolean isStartingElementOfASequence(int num, Set<Integer> uniqueElements) {
-        return !uniqueElements.contains(num - 1);
+    private boolean isStartOfSequence(int num) {
+        return !uniqueNums.contains(num-1);
     }
 
-    private int countConsecutiveSequenceFromStart(int start, Set<Integer> uniqueElements) {
-        int consecutiveSequenceCount = 0;
-        while (uniqueElements.contains(start++)) {
-            consecutiveSequenceCount++;
+    private int lengthOfSequenceThatStartsAt(int num) {
+        int length = 0;
+        while (uniqueNums.contains(num++)) {
+            length++;
         }
-        return consecutiveSequenceCount;
+        return length;
     }
 }
