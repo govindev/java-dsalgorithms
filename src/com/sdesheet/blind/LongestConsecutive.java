@@ -26,6 +26,7 @@ public class LongestConsecutive {
         return maxConsecutiveCount;
     }
 
+
     private Set<Integer> uniqueNums = new HashSet<>();
 
     public int longestConsecutiveBySet(int[] nums) {
