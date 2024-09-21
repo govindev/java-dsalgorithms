@@ -14,23 +14,20 @@ public class GroupAnagrams {
     }
 
     public List<List<String>> groupAnagramsOptimized(String[] strs) {
-        Map<String, List<String>> anagramGroups = new HashMap<>();
-
+        Map<String, List<String>> groups = new HashMap<>();
         for (String str : strs) {
-            String key = getKeyForStr(str);
-
-            List<String> anagrams = anagramGroups.getOrDefault(key, new ArrayList<>());
-            anagrams.add(str);
-            anagramGroups.put(key, anagrams);
+            String key = getKey(str);
+            List<String> group = (groups.containsKey(key)) ? groups.get(key) : new ArrayList<>();
+            group.add(str);
+            groups.put(key, group);
         }
-
-        return new ArrayList<>(anagramGroups.values());
+        return new ArrayList<>(groups.values());
     }
 
-    private String getKeyForStr(String str) {
-        char[] chars = str.toCharArray();
-        Arrays.sort(chars);
-        return new String(chars);
+    private String getKey(String str) {
+        char[] chArr = str.toCharArray();
+        Arrays.sort(chArr);
+        return String.valueOf(chArr);
     }
 
 
