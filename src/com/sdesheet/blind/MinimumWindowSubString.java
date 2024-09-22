@@ -11,99 +11,57 @@ public class MinimumWindowSubString {
         System.out.println("String is : " + minimumWindowSubString.minWindow(s, t));
     }
 
-
     public String minWindow(String s, String t) {
-        // return minWindowLeftMoveFirst(s, t);
-
         return minWindowOptimized(s, t);
     }
 
     public String minWindowOptimized(String s, String t) {
-        int countParity = 0;
-        Map<Character, Integer> tChCounts = getCharacterCounts(t);
-        Map<Character, Integer> sChCounts = new HashMap<>();
-        String minWindowStr = "";
-        int minWindowLen = Integer.MAX_VALUE;
+        Map<Character, Integer> tChCounts = getCharCounts(t);
+        Map<Character, Integer> winChCounts = new HashMap<>();
 
-        int left = 0;
-        for (int right = 0; right < s.length(); right++) {
-            char ch = s.charAt(right);
-            if (!tChCounts.containsKey(ch)) {
+        int start = 0, end = 0, minWindowLen = Integer.MAX_VALUE, matchCount = 0;
+        String res = "";
+
+        for (; end < s.length(); end++) {
+            char endCh = s.charAt(end);
+            if (!tChCounts.containsKey(endCh)) {
                 continue;
             }
-            int prevCount = sChCounts.getOrDefault(ch, 0);
-            if (prevCount + 1 == tChCounts.get(ch)) {
-                countParity++;
-            }
-            sChCounts.put(ch, prevCount+1);
 
-            while (countParity == tChCounts.size() && left <= right) {
-                int windowLen = right - left + 1;
+            int prevCount = winChCounts.getOrDefault(endCh, 0);
+            winChCounts.put(endCh, prevCount+1);
+
+            if (prevCount+1 == tChCounts.get(endCh)) {
+                matchCount++;
+            }
+
+            while (matchCount == tChCounts.size()) {
+                int windowLen = (end - start) + 1;
                 if (windowLen < minWindowLen) {
-                    minWindowStr = s.substring(left, right+1);
+                    minWindowLen = windowLen;
+                    res = s.substring(start, end+1);
                 }
 
-                char leftCh = s.charAt(left);
-                if (!tChCounts.containsKey(leftCh)) { left++;  continue; }
+                char startCh = s.charAt(start);
+                if (tChCounts.containsKey(startCh)) {
+                    int prevStartChCount = winChCounts.getOrDefault(startCh, 0);
+                    winChCounts.put(startCh, prevStartChCount-1);
 
-                if (sChCounts.get(leftCh) == tChCounts.get(leftCh)) {
-                    countParity--;
+                    if (prevStartChCount == tChCounts.get(startCh)) {
+                        matchCount--;
+                    }
                 }
-                sChCounts.put(leftCh, sChCounts.get(leftCh)-1);
-                left++;
-
+                start++;
             }
         }
-
-        return minWindowStr;
+        return res;
     }
 
-    public String minWindowLeftMoveFirst(String s, String t) {
-        Map<Character, Integer> sChCounts = getCharacterCounts(s);
-        Map<Character, Integer> tChCounts = getCharacterCounts(t);
-
-        for (char ch : t.toCharArray()) {
-            if (tChCounts.get(ch) > sChCounts.getOrDefault(ch, 0)) return "";
-        }
-
-        int left = 0, right = s.length() - 1;
-        while (left < right) {
-            char leftCh = s.charAt(left);
-            if (!tChCounts.containsKey(leftCh)) {
-                left++;
-                continue;
-            }
-            if (sChCounts.get(leftCh) > tChCounts.get(leftCh)) {
-                sChCounts.put(leftCh, sChCounts.get(leftCh) - 1);
-                left++;
-                continue;
-            }
-            break;
-        }
-
-        while (left < right) {
-            char rightCh = s.charAt(right);
-            if (!tChCounts.containsKey(rightCh)) {
-                right--;
-                continue;
-            }
-            if (sChCounts.get(rightCh) > tChCounts.get(rightCh)) {
-                sChCounts.put(rightCh, sChCounts.get(rightCh) - 1);
-                right--;
-                continue;
-            }
-            break;
-        }
-
-
-        return s.substring(left, right+1);
-    }
-
-    private Map<Character, Integer> getCharacterCounts(String str) {
-        Map<Character, Integer> characterCounts = new HashMap<>();
+    private Map<Character, Integer> getCharCounts(String str) {
+        Map<Character, Integer> chCounts = new HashMap<>();
         for (char ch : str.toCharArray()) {
-            characterCounts.put(ch, characterCounts.getOrDefault(ch,0)+1);
+            chCounts.put(ch, chCounts.getOrDefault(ch, 0)+1);
         }
-        return characterCounts;
+        return chCounts;
     }
 }
