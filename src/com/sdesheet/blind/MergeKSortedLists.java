@@ -3,40 +3,49 @@ package com.sdesheet.blind;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MergeKSortedLists {
+class MergeKSortedLists {
     public ListNode mergeKLists(ListNode[] lists) {
-        if (lists == null || lists.length < 1) return null;
-        List<ListNode> nodes = new ArrayList<>();
+        if (lists == null || lists.length < 1) {
+            return null;
+        }
+        if (lists.length == 1) {
+            return lists[0];
+        }
+        if (lists.length == 2) {
+            return merge(lists[0], lists[1]);
+        }
+        List<ListNode> result = new ArrayList<>();
         int i = 0;
         while (i < lists.length) {
-            ListNode mergedNode = merge(lists[i], (i+1 < lists.length) ? lists[i+1] : null);
-            nodes.add(mergedNode);
+            result.add(merge(lists[i], (i+1) < lists.length ? lists[i+1] : null));
             i += 2;
         }
-        if (nodes.size() == 1) return nodes.get(0);
-        return mergeKLists(nodes.toArray(new ListNode[nodes.size()]));
+        return mergeKLists(result.toArray(new ListNode[result.size()]));
     }
 
-    private ListNode merge(ListNode head1, ListNode head2) {
+    public ListNode merge(ListNode head1, ListNode head2) {
         ListNode dummyNode = new ListNode();
         ListNode current = dummyNode;
         while (head1 != null && head2 != null) {
             if (head1.val <= head2.val) {
                 current.next = head1;
                 head1 = head1.next;
-                current = current.next;
-            } else {
+            }
+            else {
                 current.next = head2;
                 head2 = head2.next;
-                current = current.next;
             }
+            current = current.next;
         }
+
         if (head1 != null) {
             current.next = head1;
         }
+
         if (head2 != null) {
             current.next = head2;
         }
+
         return dummyNode.next;
     }
 }
