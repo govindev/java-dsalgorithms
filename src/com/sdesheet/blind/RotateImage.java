@@ -27,29 +27,20 @@ public class RotateImage {
         rotateOptimized(matrix);
     }
 
-    private void rotateOptimized(int[][] matrix) {
-        int start = 0, end = matrix.length - 1, i = 0;
-        while (start+i < end && start < end) {
-            // temp = topLeft;
-            int temp = matrix[start][start+i];
-            // topLeft = bottomLeft;
-            matrix[start][start+i] = matrix[end-i][start];
-            // bottomLeft = bottomRight
-            matrix[end-i][start] = matrix[end][end-i];
-            // bottomRight = topRight
-            matrix[end][end-i] = matrix[start+i][end];
-            // topRight = topLeft (which is temp)
-            matrix[start+i][end] = temp;
-
-            i++;
-            if (start+i == end) {
-                start = start+1;
-                end = end - 1;
-                i = 0;
+    public void rotateOptimized(int[][] matrix) {
+        int top = 0, left = 0, bottom = matrix.length - 1, right = matrix.length - 1;
+        while (top <= bottom && left <= right) {
+            for (int i = 0; left+i < right; i++) {
+                int temp = matrix[bottom-i][left];
+                matrix[bottom-i][left] = matrix[bottom][right-i];
+                matrix[bottom][right-i] = matrix[top+i][right];
+                matrix[top+i][right] = matrix[top][left+i];
+                matrix[top][left+i] = temp;
             }
+            top++; left++; bottom--; right--;
         }
     }
-
+    
     private void transposeMatrix(int[][] matrix) {
         int[][] temp = new int[matrix.length][matrix.length];
 
