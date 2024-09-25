@@ -33,17 +33,13 @@ public class BinaryTreeLevelOrderTraversal {
         }
 
         while (!queue.isEmpty()) {
-            List<Integer> level = new ArrayList<>();
             int size = queue.size();
-            for (int i = 0; i < size; i++) {
-                TreeNode node = queue.remove();
-                level.add(node.val);
-                if (node.left != null) {
-                    queue.add(node.left);
-                }
-                if (node.right != null) {
-                    queue.add(node.right);
-                }
+            List<Integer> level = new ArrayList<>();
+            for(int i = 0; i < size; i++) {
+                TreeNode element = queue.remove();
+                if (element.left != null) queue.add(element.left);
+                if (element.right != null) queue.add(element.right);
+                level.add(element.val);
             }
             levels.add(level);
         }

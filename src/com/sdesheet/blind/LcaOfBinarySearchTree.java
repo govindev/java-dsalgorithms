@@ -7,11 +7,23 @@ public class LcaOfBinarySearchTree {
     }
 
     public TreeNode lowestCommonAncestorRecursive(TreeNode root, TreeNode p, TreeNode q) {
-        if (p.val > root.val && q.val > root.val) return lowestCommonAncestorRecursive(root.right, p, q);
-        else if (p.val < root.val && q.val < root.val) return lowestCommonAncestorRecursive(root.left, p, q);
+        if (root == null) {
+            return null;
+        }
+        if (root == p) {
+            return p;
+        }
+        if (root == q) {
+            return q;
+        }
+        if (root.val > p.val  && root.val > q.val) {
+            return lowestCommonAncestorRecursive(root.left, p, q);
+        }
+        if (root.val < p.val && root.val < q.val) {
+            return lowestCommonAncestorRecursive(root.right, p, q);
+        }
         return root;
     }
-
     public TreeNode lowestCommonAncestorIterative(TreeNode root, TreeNode p, TreeNode q) {
         while (root != null) {
             if (p.val > root.val && q.val > root.val) root = root.right;

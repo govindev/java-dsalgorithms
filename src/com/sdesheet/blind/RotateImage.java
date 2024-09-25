@@ -40,7 +40,7 @@ public class RotateImage {
             top++; left++; bottom--; right--;
         }
     }
-    
+
     private void transposeMatrix(int[][] matrix) {
         int[][] temp = new int[matrix.length][matrix.length];
 
