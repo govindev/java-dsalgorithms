@@ -2,19 +2,11 @@ package com.sdesheet.blind;
 
 public class MaximumSubArray {
     public int maxSubArray(int[] nums) {
-        // Kadans Algorithm
-
-        int maxSum = nums[0], windowSum = nums[0];
-        for (int i = 1; i < nums.length; i++) {
-            if (nums[i] >= windowSum+nums[i]) {
-                windowSum = nums[i];
-            } else {
-                windowSum += nums[i];
-            }
-
-            maxSum = Math.max(windowSum, maxSum);
+        int sum = nums[0], largest = sum;
+        for (int end = 1; end < nums.length; end++) {
+            sum = Math.max(sum+nums[end], nums[end]);
+            largest = Math.max(sum, largest);
         }
-
-        return maxSum;
+        return largest;
     }
 }
