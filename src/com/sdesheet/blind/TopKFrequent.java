@@ -5,64 +5,64 @@ import java.util.*;
 public class TopKFrequent {
 
     public int[] topKFrequent(int[] nums, int k) {
-        // return topKFrequentUsingQueue(nums,k);
-        return topKFrequentBestTimeComplexity(nums, k);
+        return topKFrequentUsingQueue(nums, k);
+        // return topKFrequentOptimized(nums, k);
     }
 
     public int[] topKFrequentUsingQueue(int[] nums, int k) {
-        Map<Integer, Integer> numCounts = new HashMap<>();
 
-        Arrays.stream(nums).forEach(num -> numCounts.put(num, numCounts.getOrDefault(num, 0) + 1));
-
-        PriorityQueue<Integer> queue = new PriorityQueue<>((a, b) -> numCounts.get(b) - numCounts.get(a));
-        numCounts.keySet().forEach(num -> queue.offer(num));
-
-        int[] topKFreq = new int[k];
-        for (int i = 0; i < k; i++) {
-            topKFreq[i] = queue.poll();
+        Map<Integer, Integer> valueCountMap = new HashMap<>();
+        for (int num : nums) {
+            int count = valueCountMap.getOrDefault(num, 0)+1;
+            valueCountMap.put(num, count);
         }
-        return topKFreq;
+
+        PriorityQueue<Integer> countOrderedValues = new PriorityQueue<>((a, b) -> valueCountMap.get(b) - valueCountMap.get(a));
+        countOrderedValues.addAll(valueCountMap.keySet());
+
+        int[] result = new int[k];
+        int r = 0;
+        while (!countOrderedValues.isEmpty()) {
+            if (r >= k) {
+                return result;
+            }
+            result[r++] = countOrderedValues.remove();
+        }
+
+        return result;
     }
 
-    public int[] topKFrequentBestTimeComplexity(int[] nums, int k) {
-        Map<Integer, Integer> counts = new HashMap<>();
+    public int[] topKFrequentOptimized(int[] nums, int k) {
         int maxCount = 0;
+        Map<Integer, Integer> valueCountMap = new HashMap<>();
         for (int num : nums) {
-            int count = counts.getOrDefault(num, 0)+1;
-            counts.put(num, count);
-
-            maxCount = Math.max(maxCount, count);
+            int count = valueCountMap.getOrDefault(num, 0)+1;
+            valueCountMap.put(num, count);
+            maxCount = Math.max(count, maxCount);
         }
 
-        List<Integer>[] countWithNums = new List[maxCount+1];
-        for (int num : counts.keySet()) {
-            int countInd = counts.get(num);
-
-            List<Integer> numsForCount = countWithNums[countInd];
-            if (numsForCount == null) {
-                numsForCount = new ArrayList<>();
+        List<Integer>[] countValues = new List[maxCount+1];
+        for (int value : valueCountMap.keySet()) {
+            int count = valueCountMap.get(value);
+            List<Integer> values = countValues[count];
+            if (values == null) {
+                values = new ArrayList<>();
             }
-            numsForCount.add(num);
-            countWithNums[countInd] = numsForCount;
+            values.add(value);
+            countValues[count] = values;
         }
 
-        int[] kFreqNums = new int[k];
-        int freqNums = 0;
-        for (int i = maxCount; i >= 0; i--) {
-            if (freqNums == k) {
-                break;
-            }
-
-            List<Integer> numsForCount = countWithNums[i];
-            if (numsForCount == null) continue;
-            for (Integer integer : numsForCount) {
-                if (freqNums == k) {
-                    break;
+        int[] result = new int[k];
+        int r = 0;
+        for (int i = maxCount; i > 0; i--) {
+            List<Integer> values = countValues[i];
+            if (values != null)
+                for (int value: values) {
+                    if (r >= k) return result;
+                    result[r++] = value;
                 }
-                kFreqNums[freqNums++] = integer;
-            }
         }
-        return kFreqNums;
+        return result;
     }
 
     public static void main(String[] args) {

@@ -5,26 +5,40 @@ import java.util.Stack;
 public class ValidParantheses {
 	public static void main(String[] args) {
 		String s = "()[]{}";
-		System.out.println(isValid(s));
+		ValidParantheses validParantheses = new ValidParantheses();
+		System.out.println(validParantheses.isValid(s));
 	}
 
-	public static boolean isValid(String s) {
-		// Much cleaner
+	public boolean isValid(String s) {
 		Stack<Character> stack = new Stack<>();
-		for (int i = 0; i < s.length(); i++) {
-			char a = s.charAt(i);
-			if (a == '(' || a == '[' || a == '{')
-				stack.push(a);
-			else if (stack.empty())
+		for (char ch : s.toCharArray()) {
+			if (isOpeningCharacter(ch)) {
+				stack.push(ch);
+				continue;
+			}
+			if (stack.isEmpty()) {
 				return false;
-			else if (a == ')' && stack.pop() != '(')
+			}
+			char lastCh = stack.peek();
+			if (!arePair(lastCh, ch)) {
 				return false;
-			else if (a == ']' && stack.pop() != '[')
-				return false;
-			else if (a == '}' && stack.pop() != '{')
-				return false;
+			}
+			stack.pop();
 		}
-		return stack.empty();
+		return stack.isEmpty();
+	}
+
+	private boolean isOpeningCharacter(char ch) {
+		return (ch == '(' || ch == '[' || ch == '{');
+	}
+
+	private boolean arePair(char start, char end) {
+		switch(end) {
+			case ']': return start == '[';
+			case ')': return start == '(';
+			case '}': return start == '{';
+			default: return false;
+		}
 	}
 
 	public static boolean isValidNaive(String s) {
