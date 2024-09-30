@@ -25,6 +25,35 @@ public class LongestConsecutive {
         }
         return maxConsecutiveCount;
     }
+    public int longestConsecutiveByModifiedSet(int[] nums) {
+        Set<Integer> counts = new HashSet<>();
+        for (int num : nums) {
+            counts.add(num);
+        }
+        int maxCount = 0;
+        for (int num : nums) {
+            if (!counts.contains(num)) {
+                continue;
+            }
+            int count = 1;
+            counts.remove(num);
+            int left = num - 1;
+            while (counts.contains(left)) {
+                count++;
+                counts.remove(left);
+                left = left-1;
+            }
+
+            int right = num + 1;
+            while (counts.contains(right)) {
+                count++;
+                counts.remove(right);
+                right = right+1;
+            }
+            maxCount = Math.max(count, maxCount);
+        }
+        return maxCount;
+    }
 
 
     private Set<Integer> uniqueNums = new HashSet<>();
