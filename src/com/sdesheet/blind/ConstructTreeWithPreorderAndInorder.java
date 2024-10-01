@@ -33,6 +33,25 @@ public class ConstructTreeWithPreorderAndInorder {
         return rootNode;
     }
 
+    public TreeNode buildTree(int[] preorder, int[] inorder, int poStart, int poEnd, int ioStart, int ioEnd) {
+        if (poStart > poEnd || ioStart > ioEnd) {
+            return null;
+        }
+        int root = preorder[poStart];
+        TreeNode rootNode = new TreeNode(root);
+        int rootInd = ioStart;
+        for (int i = ioStart; i <= ioEnd; i++) {
+            if (root == inorder[i]) {
+                rootInd = i;
+                break;
+            }
+        }
+        int leftLen = (rootInd - ioStart);
+        rootNode.left = buildTree(preorder, inorder, poStart+1, poStart+leftLen, ioStart, rootInd-1);
+        rootNode.right = buildTree(preorder, inorder, poStart+leftLen+1, poEnd, rootInd+1, ioEnd);
+        return rootNode;
+    }
+
     public TreeNode buildTreeExtraSpace(int[] preorder, int[] inorder) {
         if (inorder.length == 0) {
             return null;
