@@ -9,36 +9,43 @@ public class ValidPalindrome {
 
     public boolean isPalindrome(String s) {
         int left = 0, right = s.length() - 1;
-        while (left < right && right > 0) {
-            if (isNotAAlphaNumeric(s.charAt(left))) {
+        while (left <= right) {
+            char leftCh = s.charAt(left);
+            if (!isAlphanumeric(leftCh)) {
                 left++;
+                continue;
             }
-            else if (isNotAAlphaNumeric(s.charAt(right))) {
+            char rightCh = s.charAt(right);
+            if (!isAlphanumeric(rightCh)) {
                 right--;
+                continue;
             }
-            else if (getSmallCase(s.charAt(left)) != getSmallCase(s.charAt(right))) {
+            if (!areSame(leftCh, rightCh)) {
                 return false;
             }
-            else {
-                left++;
-                right--;
-            }
+            left++;
+            right--;
         }
         return true;
     }
 
-    private boolean isNotAAlphaNumeric(char ch) {
-        boolean isAlphaNumeric =
-                (isNumber(ch) || isSmallCase(ch) || isUpperCase(ch));
-        return !isAlphaNumeric;
+    private boolean areSame(char a, char b) {
+        if (a == b) {
+            return true;
+        }
+        if (isNumeric(a)) {
+            return false;
+        }
+        char smallA = isSmallCase(a) ? a : smallcase(a);
+        char smallB = isSmallCase(b) ? b : smallcase(b);
+        return (smallA == smallB);
     }
 
-    private char getSmallCase(char ch) {
-        if (isNumber(ch) || isSmallCase(ch)) return ch;
-        return (char) ('a' + (ch - 'A'));
+    private char smallcase(char ch) {
+        return (char)(ch-'A'+'a');
     }
 
-    private boolean isNumber(char ch) {
+    private boolean isNumeric(char ch) {
         return (ch >= '0' && ch <= '9');
     }
 
@@ -48,5 +55,9 @@ public class ValidPalindrome {
 
     private boolean isUpperCase(char ch) {
         return (ch >= 'A' && ch <= 'Z');
+    }
+
+    private boolean isAlphanumeric(char ch) {
+        return isNumeric(ch) || isSmallCase(ch) || isUpperCase(ch);
     }
 }
