@@ -1,24 +1,27 @@
 package com.sdesheet.blind;
 
 public class BinaryTreeMaximumPathSum {
-    int maxSum = Integer.MIN_VALUE;
+    int max = Integer.MIN_VALUE;
     public int maxPathSum(TreeNode root) {
-        maxSum = Integer.MIN_VALUE;
-        currPathSum(root);
-        return maxSum;
+        max = Integer.MIN_VALUE;
+        maximumPathSum(root);
+        return max;
     }
-    private int currPathSum(TreeNode root) {
+
+    private int maximumPathSum(TreeNode root) {
         if (root == null) {
             return 0;
         }
-        int leftMax = currPathSum(root.left);
-        int rightMax = currPathSum(root.right);
-
         int current = root.val;
-        maxSum = Math.max(current, maxSum);
-        maxSum = Math.max(current+leftMax, maxSum);
-        maxSum = Math.max(current+rightMax, maxSum);
-        maxSum = Math.max(current+leftMax+rightMax, maxSum);
-        return Math.max(current, Math.max(current+leftMax, current+rightMax));
+        int leftSum = maximumPathSum(root.left);
+        int rightSum = maximumPathSum(root.right);
+
+        max = Math.max(max, current);
+        max = Math.max(max, current+leftSum);
+        max = Math.max(max, current+rightSum);
+        max = Math.max(max, current+leftSum+rightSum);
+
+        return Math.max(current, Math.max(current+leftSum, current+rightSum));
     }
+
 }
