@@ -2,13 +2,12 @@ package com.sdesheet.blind;
 
 public class BestTimeToBuyAndSellStock1 {
     public int maxProfit(int[] prices) {
-        int maxProfit = 0, boughtPrice = Integer.MAX_VALUE;
-
-        for (int price : prices) {
-            boughtPrice = Math.min(boughtPrice, price);
-            maxProfit = Math.max(maxProfit, price - boughtPrice);
+        int boughtPrice = prices[0];
+        int maxProfit = 0;
+        for (int i = 1; i < prices.length; i++) {
+            boughtPrice = Math.min(boughtPrice, prices[i]);
+            maxProfit = Math.max(maxProfit, prices[i] - boughtPrice);
         }
-
         return maxProfit;
     }
 }
