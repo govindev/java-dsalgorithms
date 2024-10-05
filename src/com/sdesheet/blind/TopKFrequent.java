@@ -64,7 +64,35 @@ public class TopKFrequent {
         }
         return result;
     }
+    public int[] topKFrequentOptimizedWithSingleMap(int[] nums, int k) {
+        Arrays.sort(nums);
+        int maxFreq = 0;
+        Map<Integer,List<Integer>> freqElementsMap = new HashMap<>();
 
+        int currentFreq = 0;
+        for (int i = 0; i < nums.length; i++) {
+            currentFreq++;
+            if (i == nums.length-1 || nums[i] != nums[i+1]) {
+                List<Integer> elements = freqElementsMap.getOrDefault(currentFreq, new ArrayList<>());
+                elements.add(nums[i]);
+                freqElementsMap.put(currentFreq, elements);
+                maxFreq = Math.max(currentFreq, maxFreq);
+                currentFreq = 0;
+            }
+        }
+
+        int[] freqElements = new int[k];
+        int i = 0;
+        while (true) {
+            List<Integer> elements = freqElementsMap.get(maxFreq--);
+            if (elements != null && !elements.isEmpty()) {
+                for (Integer element : elements) {
+                    freqElements[i++] = element;
+                    if (i == k) return freqElements;
+                }
+            }
+        }
+    }
     public static void main(String[] args) {
         int[] nums = new int[] {1,1,1,2,2,3};
         TopKFrequent topKFrequent = new TopKFrequent();
