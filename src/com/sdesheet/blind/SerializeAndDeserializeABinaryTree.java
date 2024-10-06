@@ -6,63 +6,54 @@ import java.util.Queue;
 public class SerializeAndDeserializeABinaryTree {
     // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
-        if (root == null) {
-            return "";
-        }
+        StringBuilder sb = new StringBuilder();
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
-        StringBuilder str = new StringBuilder();
+
         while (!queue.isEmpty()) {
-            TreeNode top = queue.remove();
-            if (top != null) {
-                queue.add(top.left);
-                queue.add(top.right);
-                str.append(top.val);
+            TreeNode current = queue.remove();
+            if (current != null) {
+                queue.add(current.left);
+                queue.add(current.right);
+                sb.append(current.val);
             } else {
-                str.append("null");
+                sb.append("n");
             }
-            str.append(",");
+            sb.append(",");
         }
-        str.deleteCharAt(str.length() - 1);
-        // System.out.println("string is : " + str.toString());
-        return str.toString();
+        sb.deleteCharAt(sb.length() - 1);
+        return sb.toString();
     }
 
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
-        // System.out.println("received is : " + data);
-        if (data.equals("")) {
+        String[] strs = data.split(",");
+        TreeNode root = getNode(strs[0]);
+        if (root == null) {
             return null;
         }
-        String[] strs = data.split(",");
-        int val = Integer.parseInt(strs[0]);
-        TreeNode root = new TreeNode(val);
-
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
-        int i = 1;
-        while (i < strs.length) {
+        for (int i = 1; i < strs.length; i++) {
             TreeNode current = queue.remove();
-            String leftStr = strs[i];
-            String rightStr = strs[i+1];
-
-            if (leftStr.equals("null")) {
-                current.left = null;
-            } else {
-                int leftVal = Integer.parseInt(leftStr);
-                current.left = new TreeNode(leftVal);
+            current.left = getNode(strs[i++]);
+            current.right = getNode(strs[i]);
+            if (current.left != null) {
                 queue.add(current.left);
             }
-            if (rightStr.equals("null")) {
-                current.right = null;
-            } else {
-                int rightVal = Integer.parseInt(rightStr);
-                current.right = new TreeNode(rightVal);
+            if (current.right != null) {
                 queue.add(current.right);
             }
-
-            i+=2;
         }
         return root;
+    }
+
+
+    private TreeNode getNode(String valStr) {
+        if ("n".equals(valStr)) {
+            return null;
+        }
+        int val = Integer.parseInt(valStr);
+        return new TreeNode(val);
     }
 }
