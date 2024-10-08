@@ -88,5 +88,28 @@ public class LongestRepeatingCharacterReplacement {
 
             return longestLen;
         }
+
+    public int characterReplacementOptimized(String s, int k) {
+        Map<Character, Integer> charCounts = new HashMap<>();
+        int maxRepCharCount = Integer.MIN_VALUE;
+        int start = 0, longest = 0;
+        for (int end = 0; end < s.length(); end++) {
+            char ch = s.charAt(end);
+            int count = charCounts.getOrDefault(ch, 0);
+            maxRepCharCount = Math.max(maxRepCharCount, count+1);
+            charCounts.put(ch, count+1);
+
+            int subStrLen = (end-start)+1;
+            if (subStrLen - maxRepCharCount <= k) {
+                longest = Math.max(longest, subStrLen);
+            } else {
+                char startCh = s.charAt(start);
+                int startChCount = charCounts.get(startCh);
+                charCounts.put(startCh, startChCount-1);
+                start++;
+            }
+        }
+        return longest;
+    }
 }
 
