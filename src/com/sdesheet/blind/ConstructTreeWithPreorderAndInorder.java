@@ -33,58 +33,34 @@ public class ConstructTreeWithPreorderAndInorder {
         return rootNode;
     }
 
-    public TreeNode buildTree(int[] preorder, int[] inorder, int poStart, int poEnd, int ioStart, int ioEnd) {
-        if (poStart > poEnd || ioStart > ioEnd) {
+    public TreeNode buildTree1(int[] preorder, int[] inorder) {
+        int len = preorder.length;
+        return buildTree(preorder, 0, len-1, inorder, 0, len-1);
+    }
+
+    private TreeNode buildTree(int[] preorder, int pStart, int pEnd, int[] inorder, int iStart, int iEnd) {
+        if (pStart > pEnd || iStart > iEnd) {
             return null;
         }
-        int root = preorder[poStart];
-        TreeNode rootNode = new TreeNode(root);
-        int rootInd = ioStart;
-        for (int i = ioStart; i <= ioEnd; i++) {
-            if (root == inorder[i]) {
-                rootInd = i;
+        int rootVal = preorder[pStart];
+        // Find the rootVal in the inorder
+        int inOrderRootInd = iStart;
+        for (; inOrderRootInd <= iEnd; inOrderRootInd++) {
+            if (rootVal == inorder[inOrderRootInd]) {
+                // Found
                 break;
             }
         }
-        int leftLen = (rootInd - ioStart);
-        rootNode.left = buildTree(preorder, inorder, poStart+1, poStart+leftLen, ioStart, rootInd-1);
-        rootNode.right = buildTree(preorder, inorder, poStart+leftLen+1, poEnd, rootInd+1, ioEnd);
-        return rootNode;
-    }
+        TreeNode root = new TreeNode(rootVal);
+        // Left tree number of elements
+        int leftTreeLen = (inOrderRootInd-iStart);
+        // Right tree number of elements
+        int rightTreeLen = (iEnd-inOrderRootInd);
 
-    public TreeNode buildTreeExtraSpace(int[] preorder, int[] inorder) {
-        if (inorder.length == 0) {
-            return null;
-        }
-        if (inorder.length == 1) {
-            return new TreeNode(inorder[0]);
-        }
-        int rootIndex = -1;
-        for (int i = 0; i < inorder.length; i++) {
-            if (preorder[0] == inorder[i]) {
-                rootIndex = i;
-                break;
-            }
-        }
-
-        TreeNode rootNode = new TreeNode(preorder[0]);
-
-        int[] leftInorder = leftArrayBefore(inorder, rootIndex);
-        int[] rightInorder = rightArrayAfter(inorder, rootIndex);
-        int[] leftPreorder = Arrays.copyOfRange(preorder, 1, leftInorder.length+1);
-        int[] rightPreorder = Arrays.copyOfRange(preorder, leftInorder.length+1, preorder.length);
-
-        rootNode.left = buildTreeExtraSpace(leftPreorder, leftInorder);
-        rootNode.right = buildTreeExtraSpace(rightPreorder, rightInorder);
-
-        return rootNode;
-    }
-
-    private int[] leftArrayBefore(int[] array, int ind) {
-        return Arrays.copyOfRange(array, 0, ind);
-    }
-
-    private int[] rightArrayAfter(int[] array, int ind) {
-        return Arrays.copyOfRange(array, ind+1, array.length);
+        root.left = buildTree(preorder, pStart+1, pStart+leftTreeLen,
+                inorder, iStart, inOrderRootInd-1);
+        root.right = buildTree(preorder, pStart+leftTreeLen+1, pStart+leftTreeLen+rightTreeLen,
+                inorder, inOrderRootInd+1, iEnd);
+        return root;
     }
 }
