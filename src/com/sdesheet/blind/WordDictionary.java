@@ -28,30 +28,19 @@ public class WordDictionary {
     }
 
     public boolean search(String word) {
-        return search(word, root);
+        return search(word, 0, root);
     }
 
-    private boolean search(String word, TrieNode current) {
-        for (int i = 0; i < word.length(); i++) {
+    private boolean search(String word, int start, TrieNode current) {
+        for (int i = start; i < word.length(); i++) {
             char ch = word.charAt(i);
             if (ch == '.') {
-                if (i == word.length() - 1) {
-                    // If it is the last character
-                    for (TrieNode childNode : current.children) {
-                        if (childNode != null && childNode.isEndOfWord) {
-                            return true;
-                        }
+                for (TrieNode childNode : current.children) {
+                    if (childNode != null && search(word, i+1, childNode)) {
+                        return true;
                     }
-                    return false;
-                } else {
-                    String subWord = word.substring(i+1, word.length());
-                    for (TrieNode childNode : current.children) {
-                        if (childNode != null && search(subWord, childNode)) {
-                            return true;
-                        }
-                    }
-                    return false;
                 }
+                return false;
             }
             // Handle normal (smallcase) character
             int ind  = ch - 'a';
