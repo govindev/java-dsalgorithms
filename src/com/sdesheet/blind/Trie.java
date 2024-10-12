@@ -1,14 +1,15 @@
 package com.sdesheet.blind;
 
-public class Trie {
-    class TrieNode {
-        Boolean isEndOfWord;
-        TrieNode[] children;
-        public TrieNode() {
-            children = new TrieNode[26];
-            isEndOfWord = false;
-        }
+class TrieNode {
+    TrieNode[] children;
+    boolean isEndOfWord;
+    public TrieNode() {
+        children = new TrieNode[26];
+        isEndOfWord = false;
     }
+}
+
+class Trie {
     TrieNode root;
     public Trie() {
         root = new TrieNode();
@@ -17,37 +18,37 @@ public class Trie {
     public void insert(String word) {
         TrieNode current = root;
         for (char ch : word.toCharArray()) {
-            TrieNode temp = current.children[ch-'a'];
-            if (temp == null) {
-                temp = new TrieNode();
-                current.children[ch-'a'] = temp;
+            TrieNode node = current.children[ch-'a'];
+            if (node == null) {
+                node = new TrieNode();
             }
-            current = temp;
+            current.children[ch-'a'] = node;
+            current = node;
         }
         current.isEndOfWord = true;
     }
 
     public boolean search(String word) {
-        TrieNode endCharTrieNode = getEndCharTrieNode(word);
-        if (endCharTrieNode == null) {
+        TrieNode wordsEndTrieNode = getWordsEndTrieNode(word);
+        if (wordsEndTrieNode == null) {
             return false;
         }
-        return endCharTrieNode.isEndOfWord;
+        return wordsEndTrieNode.isEndOfWord;
     }
 
     public boolean startsWith(String prefix) {
-        TrieNode node = getEndCharTrieNode(prefix);
-        return (node != null);
+        TrieNode wordsEndTrieNode = getWordsEndTrieNode(prefix);
+        return (wordsEndTrieNode != null);
     }
 
-
-    private TrieNode getEndCharTrieNode(String word) {
+    private TrieNode getWordsEndTrieNode(String word) {
         TrieNode current = root;
         for (char ch : word.toCharArray()) {
-            if (current == null) {
-                break;
+            TrieNode node = current.children[ch-'a'];
+            if (node == null) {
+                return node;
             }
-            current = current.children[ch-'a'];
+            current = node;
         }
         return current;
     }
