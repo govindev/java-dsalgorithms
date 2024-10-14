@@ -1,47 +1,37 @@
 package com.sdesheet.blind;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class EncodeDecodeStrings {
-    String END_OF_LENGTHS = "/";
-    String COUNT_SEPARATOR = ",";
-
     public String encode(List<String> strs) {
-        if (strs == null || strs.size() == 0) return null;
-
-        StringBuilder countsSb = new StringBuilder();
-        StringBuilder concatenatedSb = new StringBuilder();
-
+        StringBuilder sb = new StringBuilder();
         for (String str : strs) {
-            countsSb.append(str.length());
-            countsSb.append(COUNT_SEPARATOR);
-
-            concatenatedSb.append(str);
+            sb.append(str.length());
+            sb.append(",");
+            sb.append(str);
         }
-        countsSb.append(END_OF_LENGTHS);
-
-        countsSb.append(concatenatedSb);
-
-        return countsSb.toString();
+        String res = sb.toString();
+        return res;
     }
 
     public List<String> decode(String str) {
-        if (str == null || str.length() == 0) return new ArrayList<>();
-
-        int countStrEnd = str.indexOf(END_OF_LENGTHS) - 1;
-        int strStart = str.indexOf(END_OF_LENGTHS) + 1;
-
-        String countsStr = str.substring(0, countStrEnd);
-        String[] countsInStr = countsStr.split(COUNT_SEPARATOR);
-
-        List<String> result = new ArrayList<>();
-        for (String countStr : countsInStr) {
-            int count = Integer.parseInt(countStr);
-            result.add(str.substring(strStart, strStart+count));
-            strStart += count;
+        if (str == null || str.isEmpty()) {
+            return Collections.emptyList();
         }
-
-        return result;
+        List<String> res = new ArrayList<>();
+        int start = 0, end = str.indexOf(",");
+        while (end <= str.length()-1) {
+            end = str.indexOf(",", start);
+            String lenStr = str.substring(start, end);
+            int len = Integer.parseInt(lenStr);
+            start = end+1;
+            end = end+1+len;
+            String subStr = str.substring(start, end);
+            res.add(subStr);
+            start = end;
+        }
+        return res;
     }
 }
