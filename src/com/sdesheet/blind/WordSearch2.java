@@ -1,7 +1,9 @@
 package com.sdesheet.blind;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class WordSearch2 {
     class TrieNode {
@@ -21,60 +23,79 @@ public class WordSearch2 {
 
 
         TrieNode root;
+        Set<String> foundWords;
+        char[][] board;
+        boolean[][] used;
         private List<String> findWordsUsingTrie(char[][] board, String[] words) {
+            constructTrie(words);
+            this.board = board;
+            this.used = new boolean[board.length][board[0].length];
+            findWords();
+
+            return new ArrayList<>(foundWords);
+        }
+
+        private void constructTrie(String[] words) {
             root = new TrieNode();
-            constructTrie(board);
-
-            List<String> res = new ArrayList<>();
             for (String word : words) {
-                if (search(word)) {
-                    res.add(word);
-                }
-            }
-            return res;
-        }
-
-        private void constructTrie(char[][] board) {
-            boolean[][] used = new boolean[board.length][board[0].length];
-            for (int i = 0; i < board.length; i++) {
-                for (int j = 0; j < board[i].length; j++) {
-                    fillTrie(board, used, i, j, root);
-                }
+                constructTrie(word);
             }
         }
 
-        private void fillTrie(char[][] board, boolean[][] used, int i, int j, TrieNode parent) {
-            if (i < 0 || i > board.length - 1
-                    || j < 0 || j > board[0].length - 1
-                    || used[i][j]) {
-                return;
-            }
-
-            char ch = board[i][j];
-            TrieNode node = new TrieNode();
-            node.isEndOfWord = true;
-            parent.children[ch - 'a'] = node;
-
-            used[i][j] = true;
-            fillTrie(board, used, i-1, j, node);
-            fillTrie(board, used, i, j+1, node);
-            fillTrie(board, used, i+1, j, node);
-            fillTrie(board, used, i, j-1, node);
-            used[i][j] = false;
-        }
-
-        private boolean search(String word) {
+        private void constructTrie(String word) {
             TrieNode current = root;
-            int ind = 0;
-            while (ind < word.length()) {
-                char ch = word.charAt(ind++);
+            for (char ch : word.toCharArray()) {
                 TrieNode node = current.children[ch - 'a'];
                 if (node == null) {
-                    return false;
+                    node = new TrieNode();
+                    current.children[ch - 'a'] = node;
                 }
                 current = node;
             }
-            return current.isEndOfWord;
+            current.isEndOfWord = true;
+        }
+
+        private void findWords() {
+            foundWords = new HashSet<>();
+            List<Character> path = new ArrayList<>();
+            for (int i = 0; i < board.length; i++) {
+                for (int j = 0; j < board[i].length; j++) {
+                    findWords(i, j, root, path);
+                }
+            }
+        }
+
+        private void findWords(int i, int j, TrieNode current, List<Character> chars) {
+            if (i < 0 || i > board.length-1
+                    || j < 0 || j > board[i].length-1
+                    || current == null
+                    || used[i][j]) {
+                return;
+            }
+            char ch = board[i][j];
+            TrieNode node = current.children[ch - 'a'];
+            if (node == null) {
+                return;
+            }
+            chars.add(ch);
+            used[i][j] = true;
+            if (node.isEndOfWord) {
+                foundWords.add(getWord(chars));
+            }
+            findWords(i-1, j, node, chars);
+            findWords(i, j+1, node, chars);
+            findWords(i+1, j, node, chars);
+            findWords(i, j-1, node, chars);
+            chars.removeLast();
+            used[i][j] = false;
+        }
+
+        private String getWord(List<Character> chars) {
+            StringBuilder sb = new StringBuilder();
+            for (Character ch : chars) {
+                sb.append(ch);
+            }
+            return sb.toString();
         }
 
         private List<String> findWordsBruteForce(char[][] board, String[] words) {
