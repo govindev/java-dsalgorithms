@@ -5,26 +5,25 @@ import java.util.Map;
 
 public class LengthOfLongestSubstring {
     public int lengthOfLongestSubstring(String s) {
-        Map<Character, Integer> charCounts = new HashMap<>();
-
-        int left = 0, right = 0, longestLen = 0;
-        while (left <= right && right < s.length()) {
-            char ch = s.charAt(right);
-            int charCount = charCounts.getOrDefault(ch, 0);
-            if (charCount == 1) {
-                char leftCh = s.charAt(left);
-                charCounts.put(leftCh, 0);
-                left++;
-                continue;
+        Map<Character, Integer> counts = new HashMap<>();
+        int start = 0, max = 0;
+        for (int end = 0; end < s.length(); end++) {
+            char endCh = s.charAt(end);
+            int endChCount = counts.getOrDefault(endCh, 0);
+            endChCount++;
+            counts.put(endCh, endChCount);
+            if (endChCount == 1) {
+                int length = (end-start)+1;
+                max = Math.max(max, length);
             }
-            charCounts.put(ch, 1);
-
-            int windowLen = (right - left) + 1;
-            longestLen = Math.max(windowLen, longestLen);
-
-            right++;
+            while (counts.get(endCh) > 1) {
+                char startCh = s.charAt(start);
+                int startChCount = counts.get(startCh);
+                startChCount--;
+                counts.put(startCh, startChCount);
+                start++;
+            }
         }
-
-        return longestLen;
+        return max;
     }
 }
