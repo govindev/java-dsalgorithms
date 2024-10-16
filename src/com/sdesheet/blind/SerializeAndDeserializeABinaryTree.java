@@ -6,54 +6,64 @@ import java.util.Queue;
 public class SerializeAndDeserializeABinaryTree {
     // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
+        if (root == null) {
+            return "";
+        }
         StringBuilder sb = new StringBuilder();
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
-
         while (!queue.isEmpty()) {
             TreeNode current = queue.remove();
             if (current != null) {
+                sb.append(current.val);
                 queue.add(current.left);
                 queue.add(current.right);
-                sb.append(current.val);
             } else {
                 sb.append("n");
             }
             sb.append(",");
         }
-        sb.deleteCharAt(sb.length() - 1);
+        sb.setLength(sb.length()-1);
         return sb.toString();
     }
 
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
-        String[] strs = data.split(",");
-        TreeNode root = getNode(strs[0]);
-        if (root == null) {
+        if (data == null || data.equals("")) {
             return null;
         }
+        String[] vals = data.split(",");
+
+        if (vals.length == 0) {
+            return null;
+        }
+
+        Integer rootVal = Integer.parseInt(vals[0]);
+        TreeNode root = new TreeNode(rootVal);
+
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
-        for (int i = 1; i < strs.length; i++) {
+
+        int i = 1;
+        while (!queue.isEmpty()) {
             TreeNode current = queue.remove();
-            current.left = getNode(strs[i++]);
-            current.right = getNode(strs[i]);
-            if (current.left != null) {
-                queue.add(current.left);
+            if (current == null) {
+                continue;
             }
-            if (current.right != null) {
-                queue.add(current.right);
-            }
+            current.left = getNode(vals[i++]);
+            current.right = getNode(vals[i++]);
+            queue.add(current.left);
+            queue.add(current.right);
         }
+
         return root;
     }
 
-
     private TreeNode getNode(String valStr) {
-        if ("n".equals(valStr)) {
+        if (valStr == null || valStr.equals("n")) {
             return null;
         }
-        int val = Integer.parseInt(valStr);
+        Integer val = Integer.parseInt(valStr);
         return new TreeNode(val);
     }
 }
