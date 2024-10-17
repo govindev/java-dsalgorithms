@@ -2,58 +2,46 @@ package com.sdesheet.blind;
 
 public class ProductExceptSelf {
     public int[] productExceptSelf(int[] nums) {
-        // return productExceptSelfWithExtraSpace(nums);
-        return productExceptSelfWithoutExtraSpace(nums);
+        // return productExceptSelfExtraSpace(nums);
+        return productExceptSelfNoExtraSpace(nums);
     }
 
-    public int[] productExceptSelfWithoutExtraSpace(int[] nums) {
-        int[] after = new int[nums.length];
 
-        after[nums.length - 1] = 1;
-        for (int i = nums.length-2; i >= 0; i--) {
-            after[i] = nums[i+1] * after[i+1];
+    public int[] productExceptSelfNoExtraSpace(int[] nums) {
+        int[] res = getPreProducts(nums);
+        int postProduct = 1;
+        for (int i = nums.length-2; i >=0; i--) {
+            postProduct *= nums[i+1];
+            res[i] *= postProduct;
         }
-
-        int before = 1;
-        for (int i = 1; i < after.length; i++) {
-            before *= nums[i-1];
-
-            after[i] *= before;
-        }
-        return after;
+        return res;
     }
 
-    public int[] productExceptSelfWithExtraSpace(int[] nums) {
-        int[] before = new int[nums.length];
-        int[] after = new int[nums.length];
-
-        before[0] = 1;
-        for (int i = 1; i < nums.length; i++) {
-            before[i] = nums[i-1] * before[i-1];
-        }
-
-        // after[nums.length-1] = 1;
-        // for (int i = nums.length-2; i >= 0; i--) {
-        //     after[i] = nums[i+1] * after[i+1];
-        // }
-
-
-        int nextElm = nums[nums.length-1];
-        nums[nums.length - 1] = 1;
-        for (int i = nums.length - 2; i >= 0; i--) {
-            int product = nextElm * nums[i+1];
-            nextElm = nums[i];
-            nums[i] = product;
-        }
-
-        // for (int i = 0; i < nums.length; i++) {
-        //     nums[i] = before[i] * after[i];
-        // }
-
+    public int[] productExceptSelfExtraSpace(int[] nums) {
+        int[] preProducts = getPreProducts(nums);
+        int[] postProducts = getPostProducts(nums);
+        int[] res = new int[nums.length];
         for (int i = 0; i < nums.length; i++) {
-            nums[i] *= before[i];
+            res[i] = preProducts[i] * postProducts[i];
         }
+        return res;
+    }
 
-        return nums;
+    private int[] getPreProducts(int[] nums) {
+        int[] preProducts = new int[nums.length];
+        preProducts[0] = 1;
+        for (int i = 1; i < nums.length; i++) {
+            preProducts[i] = preProducts[i-1] * nums[i-1];
+        }
+        return preProducts;
+    }
+
+    private int[] getPostProducts(int[] nums) {
+        int[] postProducts = new int[nums.length];
+        postProducts[nums.length-1] = 1;
+        for (int i = nums.length-2; i >= 0; i--) {
+            postProducts[i] = postProducts[i+1] * nums[i+1];
+        }
+        return postProducts;
     }
 }
