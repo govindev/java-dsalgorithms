@@ -5,44 +5,69 @@ import java.util.Stack;
 public class ReorderList {
     public void reorderList(ListNode head) {
         // reorderListWithExtraSpace(head);
-        reorderListWithoutExtraSpace(head);
+        reorderListNoExtraSpace(head);
+    }
+    public void reorderListNoExtraSpace(ListNode head) {
+        // ListNode center = getCenter(head);
+        ListNode center = getCenterSlowFastPtr(head);
+
+        ListNode tailHead = reverse(center.next);
+
+        center.next = null;
+        ListNode current = head;
+        while (current != null && tailHead != null) {
+            ListNode currentNext = current.next;
+            ListNode tailNext = tailHead.next;
+            current.next = tailHead;
+            tailHead.next = currentNext;
+            current = currentNext;
+            tailHead = tailNext;
+        }
     }
 
-
-    public void reorderListWithoutExtraSpace(ListNode head) {
-        if (head == null) {
-            return;
-        }
-        // 1. Find the middle node
+    private ListNode getCenterSlowFastPtr(ListNode head) {
         ListNode slow = head, fast = head.next;
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
-        // 2. Reverse the second half
-        ListNode secHalfHead = slow.next, prev = null;
-        slow.next = null;
-        while (secHalfHead != null) {
-            ListNode temp = secHalfHead.next;
-            secHalfHead.next = prev;
-            prev = secHalfHead;
-            secHalfHead = temp;
-        }
-        secHalfHead = prev;
-
-        // 3. Now do the merge
-        ListNode current = head, newCurrent = null;
-        while (current != null && secHalfHead != null) {
-            newCurrent = current.next;
-            current.next = secHalfHead;
-            ListNode newSecHalfHead = secHalfHead.next;
-            secHalfHead.next = newCurrent;
-            secHalfHead = newSecHalfHead;
-            current = newCurrent;
-        }
+        return slow;
     }
 
-    public void reorderListWithExtraSpace(ListNode head) {
+    private ListNode getCenter(ListNode head) {
+        int centerInd = getLength(head) / 2;
+        int ind = 0;
+        while (head != null) {
+            if (ind == centerInd) {
+                return head;
+            }
+            ind++;
+            head = head.next;
+        }
+        return head;
+    }
+
+    private int getLength(ListNode head) {
+        int len = 0;
+        while (head != null) {
+            len++;
+            head = head.next;
+        }
+        return len;
+    }
+
+    private ListNode reverse(ListNode head) {
+        ListNode prev = null;
+        while (head != null) {
+            ListNode nextHead = head.next;
+            head.next = prev;
+            prev = head;
+            head = nextHead;
+        }
+        return prev;
+    }
+
+    private void reorderListWithExtraSpace(ListNode head) {
         Stack<ListNode> stack = new Stack<>();
         ListNode current = head;
         int length = 0;
