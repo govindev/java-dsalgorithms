@@ -4,33 +4,31 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 class MedianFinder {
-
-    PriorityQueue<Integer> smallHeap;
-    PriorityQueue<Integer> largeHeap;
-
+    Queue<Integer> smallHeap;
+    Queue<Integer> largeHeap;
     public MedianFinder() {
-        smallHeap = new PriorityQueue<>((a,b) -> b-a);
-        largeHeap = new PriorityQueue<>((a,b) -> a-b);
+        smallHeap = new PriorityQueue<Integer>((a, b) -> b-a);
+        largeHeap = new PriorityQueue<Integer>((a, b) -> a-b);
     }
 
     public void addNum(int num) {
         smallHeap.add(num);
-        while (smallHeap.size() > largeHeap.size()+1) {
-            int maxElement = smallHeap.remove();
-            largeHeap.add(maxElement);
+        while (smallHeap.size()-1 > largeHeap.size()) {
+            largeHeap.add(smallHeap.remove());
         }
-        if (!largeHeap.isEmpty() && smallHeap.peek() > largeHeap.peek()) {
-            int smallHeapMax = smallHeap.remove();
-            int largeHeapMin = largeHeap.remove();
-            smallHeap.add(largeHeapMin);
-            largeHeap.add(smallHeapMax);
+        while (!largeHeap.isEmpty() && smallHeap.peek() > largeHeap.peek()) {
+            int high = smallHeap.remove();
+            int low = largeHeap.remove();
+            smallHeap.add(low);
+            largeHeap.add(high);
         }
     }
 
     public double findMedian() {
-        if (!largeHeap.isEmpty() && (smallHeap.size() + largeHeap.size()) % 2 == 0) {
+        int size = smallHeap.size() + largeHeap.size();
+        if (size % 2 == 0) {
             return (smallHeap.peek() + largeHeap.peek()) / 2.0;
         }
-        return !smallHeap.isEmpty() ? smallHeap.peek() : null;
+        return smallHeap.peek();
     }
 }
