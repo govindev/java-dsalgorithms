@@ -2,17 +2,22 @@ package com.sdesheet.blind;
 
 public class SubtreeOfAnotherTree {
     public boolean isSubtree(TreeNode root, TreeNode subRoot) {
+        if (isSame(root, subRoot)) {
+            return true;
+        }
         if (root == null) {
             return false;
         }
-        return isSameTree(root, subRoot)
-                || isSubtree(root.left, subRoot)
-                || isSubtree(root.right, subRoot);
+        return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
     }
 
-    public boolean isSameTree(TreeNode p, TreeNode q) {
-        if (p == null && q == null) return true;
-        if (p == null || q == null || p.val != q.val) return false;
-        return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+    private boolean isSame(TreeNode head1, TreeNode head2) {
+        if (head1 == head2) {
+            return true;
+        }
+        if (head1 == null || head2 == null || head1.val != head2.val) {
+            return false;
+        }
+        return isSame(head1.left, head2.left) && isSame(head1.right, head2.right);
     }
 }
