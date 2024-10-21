@@ -56,35 +56,26 @@ public class LongestConsecutive {
     }
 
 
-    private Set<Integer> uniqueNums = new HashSet<>();
-
     public int longestConsecutiveBySet(int[] nums) {
-        uniqueNums = new HashSet<>();
-
-        for (int num : nums) {
-            uniqueNums.add(num);
+        if (nums.length == 0) {
+            return 0;
         }
-
-        int maxSequenceLength = 0;
+        Set<Integer> set = new HashSet<>();
         for (int num : nums) {
-            if (isStartOfSequence(num)) {
-                int currSequenceLength = lengthOfSequenceThatStartsAt(num);
-                maxSequenceLength = Math.max(currSequenceLength, maxSequenceLength);
+            set.add(num);
+        }
+        int count = 0, longest = 1;
+        for (int num : nums) {
+            count = 1;
+            if (!set.contains(num-1)) {
+                // starting element
+                while (set.contains(++num)) {
+                    set.remove(num);
+                    count++;
+                }
+                longest = Math.max(longest, count);
             }
         }
-
-        return maxSequenceLength;
-    }
-
-    private boolean isStartOfSequence(int num) {
-        return !uniqueNums.contains(num-1);
-    }
-
-    private int lengthOfSequenceThatStartsAt(int num) {
-        int length = 0;
-        while (uniqueNums.contains(num++)) {
-            length++;
-        }
-        return length;
+        return longest;
     }
 }
