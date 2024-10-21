@@ -2,63 +2,56 @@ package com.sdesheet.blind;
 
 public class RemoveNthFromEnd {
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        //  return removeNthFromEndNaive(head, n);
-        return removeNthNodeFromEndOnePass(head, n);
+        // return removeNthFromEndTwoPass(head, n);
+        return removeNthFromEndOnePass(head, n);
     }
 
-    public ListNode removeNthNodeFromEndOnePass(ListNode head, int n) {
-        ListNode start = head;
-        ListNode end = head;
+    public ListNode removeNthFromEndOnePass(ListNode head, int n) {
+        ListNode dummy = new ListNode();
+        dummy.next = head;
 
-        ListNode headsPrev = new ListNode();
-        headsPrev.next = head;
-        ListNode startsPrev = headsPrev;
+        ListNode prev = dummy;
+        ListNode slow = head;
+        ListNode fast = head;
 
+        for (int i = 0; i < n-1; i++) {
+            fast = fast.next;
+        }
+        while (fast.next != null) {
+            prev = slow;
+            slow = slow.next;
+            fast = fast.next;
+        }
+        prev.next = slow.next;
+
+        return dummy.next;
+    }
+
+    public ListNode removeNthFromEndTwoPass(ListNode head, int n) {
+        int length = 0;
+        ListNode current = head;
+        while (current != null) {
+            length++;
+            current = current.next;
+        }
+        if (n == 0 || n > length) {
+            return head;
+        }
+        ListNode dummy = new ListNode();
+        dummy.next = head;
+
+        int ind = (length-n) + 1;
+        current = dummy;
         int i = 0;
-        while (i < n) {
-            end = end.next;
-            i++;
-        }
-        while (end != null) {
-            startsPrev = start;
-            start = start.next;
-            end = end.next;
-        }
-        startsPrev.next = start.next;
-        return headsPrev.next;
-    }
-
-    public ListNode removeNthFromEndNaive(ListNode head, int n) {
-        int length = getLength(head);
-        if (length-n-1 < 0) return head.next;
-        ListNode beforeNode = getNodeAtIndex(head, length, length-n-1);
-        removeNextNode(beforeNode);
-        return head;
-    }
-
-    private ListNode getNodeAtIndex(ListNode head, int length, int ind) {
-        for (int i = 0; i < length; i++) {
-            if (i == ind) {
+        while (current != null) {
+            if (i == ind-1) {
+                current.next = current.next.next;
                 break;
             }
-            head = head.next;
+            current = current.next;
+            i++;
         }
-        return head;
-    }
 
-    private void removeNextNode(ListNode head) {
-        if (head == null || head.next == null) {
-            return;
-        }
-        head.next = head.next.next;
-    }
-
-    private int getLength(ListNode head) {
-        int length = 0;
-        while (head != null) {
-            length++;
-            head = head.next;
-        }
-        return length;
+        return dummy.next;
     }
 }

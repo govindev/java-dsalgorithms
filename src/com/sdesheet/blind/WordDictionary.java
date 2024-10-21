@@ -1,15 +1,15 @@
 package com.sdesheet.blind;
 
-public class WordDictionary {
-    class TrieNode {
-        TrieNode[] children;
-        boolean isEndOfWord;
-        public TrieNode() {
-            this.children = new TrieNode[26];
-            this.isEndOfWord = false;
-        }
+class TrieNode {
+    TrieNode[] children;
+    boolean isEndOfWord;
+    public TrieNode() {
+        children = new TrieNode[26];
+        isEndOfWord = false;
     }
+}
 
+class WordDictionary {
     TrieNode root;
     public WordDictionary() {
         root = new TrieNode();
@@ -18,11 +18,12 @@ public class WordDictionary {
     public void addWord(String word) {
         TrieNode current = root;
         for (char ch : word.toCharArray()) {
-            int ind = ch - 'a';
-            if (current.children[ind] == null) {
-                current.children[ind] = new TrieNode();
+            TrieNode node = current.children[ch-'a'];
+            if (node == null) {
+                node = new TrieNode();
             }
-            current = current.children[ind];
+            current.children[ch-'a'] = node;
+            current = node;
         }
         current.isEndOfWord = true;
     }
@@ -31,24 +32,32 @@ public class WordDictionary {
         return search(word, 0, root);
     }
 
-    private boolean search(String word, int start, TrieNode current) {
-        for (int i = start; i < word.length(); i++) {
+    public boolean search(String word, int ind, TrieNode current) {
+        for (int i = ind; i < word.length(); i++) {
             char ch = word.charAt(i);
             if (ch == '.') {
-                for (TrieNode childNode : current.children) {
-                    if (childNode != null && search(word, i+1, childNode)) {
+                for (TrieNode node : current.children) {
+                    if (node == null) {
+                        continue;
+                    }
+                    if (ind == word.length()-1) {
+                        if (node.isEndOfWord) {
+                            return true;
+                        }
+                    }
+                    else if (search(word, i+1, node)) {
                         return true;
                     }
                 }
                 return false;
+            } else {
+                TrieNode node = current.children[ch-'a'];
+                if (node == null) {
+                    return false;
+                }
+                current = node;
             }
-            // Handle normal (smallcase) character
-            int ind  = ch - 'a';
-            if (current.children[ind] == null) {
-                return false;
-            }
-            current = current.children[ind];
         }
-        return current.isEndOfWord;
+        return (current != null && current.isEndOfWord);
     }
 }

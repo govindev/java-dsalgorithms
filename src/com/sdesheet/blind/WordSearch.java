@@ -13,14 +13,17 @@ public class WordSearch {
         return false;
     }
 
+
     private boolean exist(char[][] board, boolean[][] used, int i, int j, String word, int ind) {
-        if (ind >= word.length() || i < 0 || i > board.length-1 || j < 0
-                || j > board[i].length-1 || used[i][j]) {
+        if (i < 0 || i > board.length-1
+                || j < 0 || j > board[i].length-1
+                || ind > word.length()-1
+                || used[i][j]) {
             return false;
         }
 
-        char key = word.charAt(ind);
-        if (key != board[i][j]) {
+        char ch = word.charAt(ind);
+        if (ch != board[i][j]) {
             return false;
         }
         if (ind == word.length()-1) {
@@ -28,10 +31,10 @@ public class WordSearch {
         }
 
         used[i][j] = true;
-        if (exist(board, used, i-1, j, word, ind+1) ||
-                exist(board, used, i, j+1, word, ind+1) ||
-                exist(board, used, i+1, j, word, ind+1) ||
-                exist(board, used, i, j-1, word, ind+1)) {
+        if (exist(board, used, i-1, j, word, ind+1)
+                || exist(board, used, i, j+1, word, ind+1)
+                || exist(board, used, i+1, j, word, ind+1)
+                || exist(board, used, i, j-1, word, ind+1)) {
             return true;
         }
         used[i][j] = false;

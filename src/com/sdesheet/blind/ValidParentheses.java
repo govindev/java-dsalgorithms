@@ -6,23 +6,27 @@ public class ValidParentheses {
     public boolean isValid(String s) {
         Stack<Character> stack = new Stack<>();
         for (char ch : s.toCharArray()) {
-            if (!stack.isEmpty()) {
-                char top = (char) stack.peek();
-                if (isItCloseOfTop(top, ch)) {
-                    stack.pop();
-                    continue;
+            if (ch == '(' || ch == '{' || ch == '[') {
+                stack.push(ch);
+            }
+            else {
+                if (stack.isEmpty()) {
+                    return false;
+                }
+                char openChar = stack.pop();
+                if (!arePair(openChar, ch)) {
+                    return false;
                 }
             }
-            stack.push(ch);
         }
         return stack.isEmpty();
     }
 
-    private boolean isItCloseOfTop(char top, char curr) {
-        return switch (top) {
-            case '[' -> curr == ']';
-            case '{' -> curr == '}';
-            case '(' -> curr == ')';
+    private boolean arePair(char openCh, char closeCh) {
+        return switch (openCh) {
+            case '(' -> closeCh == ')';
+            case '{' -> closeCh == '}';
+            case '[' -> closeCh == ']';
             default -> false;
         };
     }
