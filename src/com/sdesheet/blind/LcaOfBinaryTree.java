@@ -18,7 +18,7 @@ public class LcaOfBinaryTree {
         }
         return null;
     }
-    
+
     public TreeNode lowestCommonAncestorBruteForce(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null) return null;
         TreeNode leftAncestor = lowestCommonAncestorBruteForce(root.left, p, q);

@@ -6,96 +6,82 @@ import java.util.List;
 import java.util.Set;
 
 public class WordSearch2 {
+
     class TrieNode {
         TrieNode[] children;
         boolean isEndOfWord;
-        public TrieNode() {
+        TrieNode() {
             this.children = new TrieNode[26];
             this.isEndOfWord = false;
         }
     }
-
+    
     class Solution {
         public List<String> findWords(char[][] board, String[] words) {
 //        return findWordsBruteForce(board, words);
             return findWordsUsingTrie(board, words);
         }
 
-
         TrieNode root;
-        Set<String> foundWords;
         char[][] board;
+        String[] words;
         boolean[][] used;
-        private List<String> findWordsUsingTrie(char[][] board, String[] words) {
-            constructTrie(words);
+        Set<String> found;
+
+        public List<String> findWordsUsingTrie(char[][] board, String[] words) {
+            root = new TrieNode();
+            this.words = words;
+            for (String word : words) {
+                addWord(word);
+            }
             this.board = board;
             this.used = new boolean[board.length][board[0].length];
-            findWords();
-
-            return new ArrayList<>(foundWords);
-        }
-
-        private void constructTrie(String[] words) {
-            root = new TrieNode();
-            for (String word : words) {
-                constructTrie(word);
-            }
-        }
-
-        private void constructTrie(String word) {
-            TrieNode current = root;
-            for (char ch : word.toCharArray()) {
-                TrieNode node = current.children[ch - 'a'];
-                if (node == null) {
-                    node = new TrieNode();
-                    current.children[ch - 'a'] = node;
-                }
-                current = node;
-            }
-            current.isEndOfWord = true;
-        }
-
-        private void findWords() {
-            foundWords = new HashSet<>();
-            List<Character> path = new ArrayList<>();
+            StringBuilder sb = new StringBuilder();
+            found = new HashSet<>();
             for (int i = 0; i < board.length; i++) {
                 for (int j = 0; j < board[i].length; j++) {
-                    findWords(i, j, root, path);
+                    dfs(i, j, root, sb);
                 }
             }
+            return new ArrayList<>(found);
         }
 
-        private void findWords(int i, int j, TrieNode current, List<Character> chars) {
+        private void dfs(int i, int j, TrieNode current, StringBuilder path) {
             if (i < 0 || i > board.length-1
                     || j < 0 || j > board[i].length-1
-                    || current == null
                     || used[i][j]) {
                 return;
             }
             char ch = board[i][j];
-            TrieNode node = current.children[ch - 'a'];
-            if (node == null) {
+            current = current.children[ch - 'a'];
+            if (current == null) {
                 return;
             }
-            chars.add(ch);
+            path.append(ch);
             used[i][j] = true;
-            if (node.isEndOfWord) {
-                foundWords.add(getWord(chars));
+            if (current.isEndOfWord) {
+                found.add(path.toString());
             }
-            findWords(i-1, j, node, chars);
-            findWords(i, j+1, node, chars);
-            findWords(i+1, j, node, chars);
-            findWords(i, j-1, node, chars);
-            chars.removeLast();
+            dfs(i-1, j, current, path);
+            dfs(i, j+1, current, path);
+            dfs(i+1, j, current, path);
+            dfs(i, j-1, current, path);
+
+            path.setLength(path.length()-1);
             used[i][j] = false;
         }
 
-        private String getWord(List<Character> chars) {
-            StringBuilder sb = new StringBuilder();
-            for (Character ch : chars) {
-                sb.append(ch);
+        private void addWord(String word) {
+            TrieNode current = root;
+            for (char ch : word.toCharArray()) {
+                TrieNode node = current.children[ch-'a'];
+                if (node == null) {
+                    node = new TrieNode();
+                    current.children[ch-'a'] = node;
+                }
+                current = node;
             }
-            return sb.toString();
+            current.isEndOfWord = true;
         }
 
         private List<String> findWordsBruteForce(char[][] board, String[] words) {
