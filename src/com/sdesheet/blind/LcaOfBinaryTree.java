@@ -2,20 +2,23 @@ package com.sdesheet.blind;
 
 public class LcaOfBinaryTree {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if (root == null) {
-            return null;
-        }
-        if (root == p || root == q) {
+        if (root == p || root == q || root == null) {
             return root;
         }
-        TreeNode left = lowestCommonAncestor(root.left, p, q);
-        TreeNode right = lowestCommonAncestor(root.right, p, q);
-        if (left != null && right != null) {
+        TreeNode leftLca = lowestCommonAncestor(root.left, p, q);
+        TreeNode rightLca = lowestCommonAncestor(root.right, p, q);
+        if (leftLca != null && rightLca != null) {
             return root;
         }
-        return (left != null) ? left : right;
+        if (leftLca != null) {
+            return leftLca;
+        }
+        if (rightLca != null) {
+            return rightLca;
+        }
+        return null;
     }
-
+    
     public TreeNode lowestCommonAncestorBruteForce(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null) return null;
         TreeNode leftAncestor = lowestCommonAncestorBruteForce(root.left, p, q);
