@@ -45,51 +45,40 @@ public class SetZeroes {
     }
 
     private void setZerosWithoutExtraSpace(int[][] matrix) {
-        int MARK_ZERO_FLAG = 0;
-        boolean isRowZeroAZeroRow = false;
-
+        boolean isRowZero = false;
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
-                if (matrix[i][j] == 0) {
-                    if (i == 0) {
-                        isRowZeroAZeroRow = true;
-                    } else {
-                        matrix[i][0] = MARK_ZERO_FLAG;
-                    }
-                    matrix[0][j] = MARK_ZERO_FLAG;
+                if (i == 0 && matrix[i][j] == 0) {
+                    isRowZero = true;
+                }
+                else if (matrix[i][j] == 0) {
+                    matrix[0][j] = 0;
+                    matrix[i][0] = 0;
                 }
             }
         }
 
+
         for (int i = 1; i < matrix.length; i++) {
             for (int j = 1; j < matrix[i].length; j++) {
-                if (matrix[i][j] != 0 &&
-                        (matrix[i][0] == MARK_ZERO_FLAG || matrix[0][j] == MARK_ZERO_FLAG)) {
+                if (matrix[i][0] == 0 || matrix[0][j] == 0) {
                     matrix[i][j] = 0;
                 }
             }
         }
 
-        if (matrix[0][0] == MARK_ZERO_FLAG) {
-            setZerosForFirstColumn(matrix);
-        }
-        if (isRowZeroAZeroRow) {
-            setZerosForFirstRow(matrix);
+        // Set zero column
+        if (matrix[0][0] == 0) {
+            for (int i = 0; i < matrix.length; i++) {
+                matrix[i][0] = 0;
+            }
         }
 
-    }
-
-    private void setZerosForFirstColumn(int[][] matrix) {
-        int j = 0;
-        for (int i = 0; i < matrix.length; i++) {
-            matrix[i][j] = 0;
-        }
-    }
-
-    private void setZerosForFirstRow(int[][] matrix) {
-        int i = 0;
-        for (int j = 0; j < matrix[i].length; j++) {
-            matrix[i][j] = 0;
+        // Set zero row
+        if (isRowZero) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                matrix[0][j] = 0;
+            }
         }
     }
 }
