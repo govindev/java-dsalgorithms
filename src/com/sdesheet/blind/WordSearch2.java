@@ -15,7 +15,7 @@ public class WordSearch2 {
             this.isEndOfWord = false;
         }
     }
-    
+
     class Solution {
         public List<String> findWords(char[][] board, String[] words) {
 //        return findWordsBruteForce(board, words);
